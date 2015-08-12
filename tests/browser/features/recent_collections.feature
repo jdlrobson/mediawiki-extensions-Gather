@@ -5,7 +5,7 @@ Feature: Viewing recent changes
     Given I am using the mobile site
       And there are more than 100 collections
 
-  @smoke
+  @smoke @integration
   Scenario: Infinite scrolling is working for anonymous users
     Given I am on the "Special:Gather/all/recent" page
       And I see 100 collections

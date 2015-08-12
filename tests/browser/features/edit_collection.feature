@@ -3,13 +3,14 @@ Feature: Editing collections
 
   Background:
     Given I am using the mobile site
-      And I am logged into the mobile website
       And I have Gather
+      And I am logged into the mobile website
       And I view one of my public collections
 
   Scenario: Edit button shown
     Then I see edit collection button
 
+  @integration
   Scenario: Clicking edit button
     When I click the edit collection button
     Then I see the collection editor overlay

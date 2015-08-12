@@ -1,9 +1,10 @@
 Given(/^I am using the mobile site$/) do
   visit(MainPage)
   on(MainPage) do |page|
-    page.goto
+    page_uri = URI.parse(page.page_url_value)
     # A domain is explicitly given to avoid a bug in earlier versions of Chrome
-    page.browser.cookies.add 'mf_useformat', 'true', domain: URI.parse(page.page_url_value).host
+    domain = page_uri.host == 'localhost' ? nil : page_uri.host
+    browser.cookies.add 'mf_useformat', 'true', domain: domain
     page.refresh
   end
 end
@@ -31,7 +32,10 @@ Given(/^I have Gather$/) do
     page.browser.execute_script("localStorage.setItem('gather-has-dismissed-mainmenu','true');")
 
     # A domain is explicitly given to avoid a bug in earlier versions of Chrome
-    page.browser.cookies.add 'optin', 'beta', domain: URI.parse(page.page_url_value).host
+    page_uri = URI.parse(page.page_url_value)
+    # A domain is explicitly given to avoid a bug in earlier versions of Chrome
+    domain = page_uri.host == 'localhost' ? nil : page_uri.host
+    page.browser.cookies.add 'optin', 'beta', domain: domain
     page.refresh
   end
 end

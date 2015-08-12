@@ -2,9 +2,9 @@
 Feature: Add to a collection
 
   Background:
-    Given I am logged into the mobile website
-      And I am using the mobile site
+    Given I am using the mobile site
       And I have Gather
+      And I am logged into the mobile website
 
   Scenario: Check the default watchstar has been replaced
     Given I am on the "Selenium Gather test" page

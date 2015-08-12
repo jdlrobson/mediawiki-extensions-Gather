@@ -2,9 +2,9 @@
 Feature: Creating new collections
 
   Background:
-    Given I am logged into the mobile website
-      And I am using the mobile site
+    Given I am using the mobile site
       And I have Gather
+      And I am logged into the mobile website
       And I am on the "Selenium Gather test" page
      When I click the watchstar
 
