@@ -285,7 +285,7 @@
 				"mobile.user",
 				"ext.gather.api",
 				"ext.gather.collection.base",
-				"mobile.settings",
+				"mediawiki.storage",
 				"skins.minerva.icons.variants.js",
 				"ext.gather.watchstar.icons",
 				"ext.gather.buttonspinner"
