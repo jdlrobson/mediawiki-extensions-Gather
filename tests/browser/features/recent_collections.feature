@@ -1,11 +1,11 @@
-@chrome @en.m.wikipedia.beta.wmflabs.org
+@chrome @en.m.wikipedia.beta.wmflabs.org @integration
 Feature: Viewing recent changes
 
   Background:
     Given I am using the mobile site
       And there are more than 100 collections
 
-  @smoke @integration
+  @smoke
   Scenario: Infinite scrolling is working for anonymous users
     Given I am on the "Special:Gather/all/recent" page
       And I see 100 collections

@@ -1,4 +1,4 @@
-@chrome @en.m.wikipedia.beta.wmflabs.org
+@chrome @en.m.wikipedia.beta.wmflabs.org @integration
 Feature: Creating new collections
 
   Background:
