@@ -140,6 +140,7 @@
 	"apihelp-query+lists-paramvalue-mode-allpublic": "Zeigt alle (öffentliche) Listen",
 	"apihelp-query+lists-paramvalue-prop-label": "Titel der Liste",
 	"apihelp-query+lists-paramvalue-prop-description": "Beschreibung der Liste",
+	"apihelp-query+lists-paramvalue-prop-count": "Anzahl der Objekte in der Liste",
 	"apihelp-query+lists-paramvalue-prop-owner": "Listenbesitzer",
 	"apihelp-query+lists-example-1": "Die Sammlungen des Benutzers <kbd>john</kbd> auflisten.",
 	"gather-lists-collection-more-link-label": "Weitere öffentliche Sammlungen ansehen.",
