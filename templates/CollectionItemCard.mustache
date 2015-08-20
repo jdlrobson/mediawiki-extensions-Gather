@@ -1,15 +1,15 @@
 <div class="collection-card">
-	{{#cardImage}}
+	{{#hasCardImage}}
 	<a href="{{page.url}}">{{{cardImage}}}</a>
-	{{/cardImage}}
+	{{/hasCardImage}}
 	<h2 class="collection-card-title" dir="{{dir}}">
 		{{#page}}
 		<a href="{{url}}" class="{{#isMissing}}new{{/isMissing}}">{{displayTitle}}</a>
 		{{/page}}
 	</h2>
-	{{#extract}}
+	{{#hasExtract}}
 	<p class="collection-card-excerpt" dir="{{dir}}">{{extract}}</p>
-	{{/extract}}
+	{{/hasExtract}}
 	{{#isMissing}}
 	<p class="collection-card-excerpt" dir="{{dir}}">{{msgMissing}}</p>
 	{{/isMissing}}

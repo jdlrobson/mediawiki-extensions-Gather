@@ -69,9 +69,11 @@ class CollectionItemCard extends View {
 
 		// Handle excerpt for titles with an extract or unknown pages
 		if ( $item->hasExtract() ) {
+			$data['hasExtract'] = true;
 			$data['extract'] = $item->getExtract();
 		}
 		if ( $img ) {
+			$data['hasCardImage'] = true;
 			$data['cardImage'] = $img;
 		}
 		return Template::render( 'CollectionItemCard', $data );
