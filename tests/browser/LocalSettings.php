@@ -1,0 +1,1 @@
+$wgMFEnableBeta = true;
