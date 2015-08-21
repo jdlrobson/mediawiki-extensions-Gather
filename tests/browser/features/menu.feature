@@ -10,7 +10,7 @@ Scenario: Check links in menu
   When I click on the main navigation button
   Then I should see a link to "Collections" in the main navigation menu
 
-Scenario: Check links in menu
+Scenario: Check links in special page menu
   And I have Gather
   And I am on the "Special:MobileOptions" page
   When I click on the main navigation button
