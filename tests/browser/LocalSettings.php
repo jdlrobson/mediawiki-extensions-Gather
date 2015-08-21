@@ -1,1 +1,2 @@
+<?php
 $wgMFEnableBeta = true;
