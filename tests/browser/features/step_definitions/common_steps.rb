@@ -18,6 +18,7 @@ end
 Given(/^I am logged into the mobile website$/) do
   step 'I am using the mobile site'
   visit(LoginPage).login_with(user, password, false)
+  expect(on(ArticlePage).is_authenticated_element.when_present(20)).to exist
 end
 
 Then(/^I wait$/) do
@@ -52,5 +53,12 @@ Given(/^I am on the "(.+)" page$/) do |article|
 end
 
 When(/^I click the watchstar$/) do
+  on(ArticlePage) do |page|
+    page.wait_until do
+      # Wait for JS to have fully executed
+      browser.execute_script("return mw.loader.getState('ext.gather.init') === 'ready'")
+    end
+  end
+  expect(on(ArticlePage).watch_star_element.when_present).to be_visible
   on(ArticlePage).watch_star_element.when_present.click
 end

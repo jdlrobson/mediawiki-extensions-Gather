@@ -24,6 +24,7 @@ Then(/^I see the recent collections page$/) do
 end
 
 Then(/^I see the login page$/) do
+  expect(on(LoginPage).login_form_element.when_present(20)).to be_visible
   expect(browser.url).to match(/Special\:UserLogin/)
 end
 

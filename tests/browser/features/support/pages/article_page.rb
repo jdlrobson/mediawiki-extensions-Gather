@@ -1,6 +1,7 @@
 class ArticlePage
   include PageObject
   page_url "<%= URI.encode(params[:article_name]) %><%= params[:hash] %>"
+  body(:is_authenticated, css: '.is-authenticated')
 
   # UI elements
   a(:mainmenu_button, css: '.main-menu-button', index: 0)

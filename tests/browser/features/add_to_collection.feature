@@ -15,6 +15,7 @@ Feature: Add to a collection
     Given I have a collection
      And I am on the "Selenium Gather test" page
     When I click the watchstar
+     And I see the collection dialog
      And I select a collection
     Then I see a toast panel
 
