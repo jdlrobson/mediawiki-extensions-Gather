@@ -28,6 +28,13 @@ $specialPageAliases['de'] = array(
 	'Gather' => array( 'Sammeln' ),
 );
 
+/** Persian (فارسی) */
+$specialPageAliases['fa'] = array(
+	'Gather' => array( 'جمع‌آوری' ),
+	'GatherEditFeed' => array( 'خوراک_ویرایش_جمع‌آوری' ),
+	'GatherLists' => array( 'فهرست‌های_جمع‌آوری' ),
+);
+
 /** Hebrew (עברית) */
 $specialPageAliases['he'] = array(
 	'Gather' => array( 'לקט' ),
