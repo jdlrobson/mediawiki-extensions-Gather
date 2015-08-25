@@ -57,7 +57,7 @@
 		 *  e.g. by WatchstarPageActionOverlay
 		 */
 		defaults: {
-			page: M.getCurrentPage(),
+			page: undefined,
 			inCollections: 0,
 			label: mw.msg( 'gather-watchstar-button-label' ),
 			wasUserPrompted: false,

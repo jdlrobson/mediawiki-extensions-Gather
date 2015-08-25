@@ -234,7 +234,7 @@
 		 * @param {jQuery.Event} ev
 		 */
 		onCreateNewCollection: function ( ev ) {
-			var page = M.getCurrentPage(),
+			var page = this.options.page,
 				title = this.$( '.create-collection-input' ).val();
 
 			ev.preventDefault();
@@ -261,7 +261,7 @@
 		onSelectCollection: function ( ev ) {
 			var collection,
 				$target = $( ev.currentTarget ),
-				page = M.getCurrentPage();
+				page = this.options.page;
 
 			collection = {
 				title: $target.data( 'collection-title' ),

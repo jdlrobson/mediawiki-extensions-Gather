@@ -5,6 +5,7 @@
 // mw.config.set( 'wgGatherCollections', state );
 ( function ( M, $ ) {
 	var CollectionsApi = M.require( 'ext.gather.api/CollectionsApi' ),
+		Page = M.require( 'Page' ),
 		CollectionsContentOverlay = M.require( 'ext.gather.watchstar/CollectionsContentOverlay' );
 
 	QUnit.module( 'Gather: Add to collection overlay', {
@@ -13,6 +14,9 @@
 					id: 2
 				} ),
 				d2 = $.Deferred().resolve();
+			this.page = new Page( {
+				title: 'Gather test'
+			} );
 			this.sandbox.stub( CollectionsApi.prototype, 'addCollection' ).returns( d );
 			this.sandbox.stub( CollectionsApi.prototype, 'addPageToCollection' ).returns( d2 );
 			this.sandbox.stub( CollectionsContentOverlay.prototype, 'loadEditor' );
@@ -33,7 +37,7 @@
 		var overlay = new CollectionsContentOverlay( {
 			collections: [ this.watchlist, this.collection ]
 		} );
-		overlay.addToCollection( this.collection, M.getCurrentPage() ).done( function () {
+		overlay.addToCollection( this.collection, this.page ).done( function () {
 			assert.strictEqual( overlay.options.collections[0].titleInCollection, true,
 				'Check that the internal state does not get changed by this.' );
 			assert.strictEqual( overlay.options.collections[1].titleInCollection, true,
@@ -47,7 +51,7 @@
 		} );
 		assert.strictEqual( overlay.options.collections.length, 1,
 			'Check we start with 1 collection.' );
-		overlay.addCollection( 'Bar', M.getCurrentPage() ).done( function () {
+		overlay.addCollection( 'Bar', this.page ).done( function () {
 			assert.strictEqual( overlay.options.collections.length, 2,
 				'Check we now have 2 collections.' );
 		} );
