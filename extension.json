@@ -494,7 +494,7 @@
 				"skins.minerva.beta.images",
 				"mobile.pagelist",
 				"ext.gather.watchstar.icons",
-				"mobile.search"
+				"mobile.search.api"
 			],
 			"messages": [
 				"search",
