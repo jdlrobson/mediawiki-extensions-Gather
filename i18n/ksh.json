@@ -132,7 +132,7 @@
 	"apihelp-editlist-paramvalue-mode-hidelist": "Maach di Leß prevaht. Doföhr bruch mer et Rääsch <kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">gather-hidelist</code> n kann der ohne dat och nit widder retuhr jenomme wähde.",
 	"apihelp-editlist-paramvalue-mode-showlist": "Nemm et voheerejje Onsseschbaar-Maache zerök.",
 	"apihelp-query+lists-description": "Donn de Leßte fun enem aanjejobbe Metmaacher opleßte.",
-	"apihelp-query+lists-param-mode": "Zeijsch alle Leßte, woh en beschtemmpte Ußwahl drop paß. Kam_mer nit  (cannot be used with owner/id parameters; if neither those nor mode is provided, only the lists of the current user are shown). <!-- \nhttps://translatewiki.net/wiki/Thread:Support/About_MediaWiki:Listings-checkout/ksh_(3)\n-->",
+	"apihelp-query+lists-param-mode": "Zeijsch alle Leßte, woh en beschtemmpte Ußwahl drop paß. Kam_mer nit met „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">owner</kbd>“ för der Nahme vum Metmaacher udder „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">ID</kbd>“ för de Kännong vum Metmaacher bruche. Wann dervun nix, un och „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">mode</kbd>“ nit aanjejovve es, dann weed blohs en Leßte vum aktoälle Metmaache aanjezeijsch.",
 	"apihelp-query+lists-param-prop": "Zohsäzlejje Aanjahbe zom Aanzeije.",
 	"apihelp-query+lists-param-ids": "De Kännonge vun dä Leßte zom ußjävve. Jif <kbd>0</kbd> en, för de Oppaßleß.",
 	"apihelp-query+lists-param-title": "Zeijsch blohß de Leßte aan, wo heh di Sigg dren es.",

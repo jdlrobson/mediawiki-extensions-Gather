@@ -7,7 +7,8 @@
 			"Nemo bis",
 			"Robby",
 			"Siebrand",
-			"Yurik"
+			"Yurik",
+			"Purodha"
 		]
 	},
 	"gather": "Title of special page shown on Special:SpecialPages for viewing your own lists.",
@@ -148,7 +149,7 @@
 	"apihelp-editlist-paramvalue-mode-flag": "{{doc-apihelp-paramvalue|editlist|mode|flag}}",
 	"apihelp-editlist-paramvalue-mode-approve": "{{doc-apihelp-paramvalue|editlist|mode|approve}}",
 	"apihelp-query+lists-description": "{{doc-apihelp-description|query+lists}}",
-	"apihelp-query+lists-param-mode": "{{doc-apihelp-param|query+lists|mode|paramvalues=1}}",
+	"apihelp-query+lists-param-mode": "\"owner\" and \"id\" and \"mode\" must not be translated. Use the appropriate quotes or tags.\n\n{{doc-apihelp-param|query+lists|mode|paramvalues=1}}",
 	"apihelp-query+lists-param-prop": "{{doc-apihelp-param|query+lists|prop|paramvalues=1}}",
 	"apihelp-query+lists-param-ids": "{{doc-apihelp-param|query+lists|ids}}",
 	"apihelp-query+lists-param-title": "{{doc-apihelp-param|query+lists|title}}",
