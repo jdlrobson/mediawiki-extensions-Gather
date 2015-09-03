@@ -11,8 +11,8 @@
 		router = M.require( 'router' ),
 		CollectionDeleteOverlay = M.require( 'ext.gather.collection.delete/CollectionDeleteOverlay' ),
 		RelatedPages = M.require( 'ext.gather.relatedpages/RelatedPages' ),
-		SearchTutorialOverlay = M.require( 'ext.gather.collection.edit/SearchTutorialOverlay' ),
-		skin = M.require( 'skin' );
+		SearchTutorialOverlay = M.require( 'ext.gather.collection.edit/SearchTutorialOverlay' );
+
 	/**
 	 * Overlay for editing a collection
 	 * @extends Overlay
@@ -36,8 +36,13 @@
 		className: 'collection-editor-overlay overlay',
 		titleMaxLength: 90,
 		descriptionMaxLength: 280,
-		/** @inheritdoc */
+		/**
+		 * @inheritdoc
+		 * @cfg {Object} defaults Default options hash.
+		 * @cfg {Skin} defaults.skin the skin the overlay is operating in
+		 */
 		defaults: $.extend( {}, Overlay.prototype.defaults, {
+			skin: undefined,
 			clearIcon: new Icon( {
 				name: 'clear',
 				label: mw.msg( 'gather-edit-collection-clear-label' ),
@@ -170,7 +175,7 @@
 					self.searchTutorialOverlay = new SearchTutorialOverlay( {
 						appendToElement: self.$el,
 						target: self.$( '.mw-ui-icon-search' ),
-						skin: skin
+						skin: self.options.skin
 					} );
 					self.searchTutorialOverlay.show();
 					// Refresh pointer otherwise it is not positioned

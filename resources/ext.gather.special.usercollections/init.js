@@ -6,6 +6,7 @@
 
 	$( function () {
 		new CollectionsList( {
+			skin: M.require( 'skin' ),
 			el: $collectionsList,
 			enhance: true,
 			owner: owner,

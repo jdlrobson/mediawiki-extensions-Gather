@@ -11,8 +11,13 @@
 	 * @extends Button
 	 */
 	CreateCollectionButton = Button.extend( {
-		/** @inheritdoc */
+		/**
+		 * @inheritdoc
+		 * @cfg {Object} defaults Default options hash.
+		 * @cfg {Skin} defaults.skin the skin the overlay is operating in
+		 */
 		defaults: {
+			skin: undefined,
 			tagName: 'div',
 			progressive: true,
 			label: mw.msg( 'gather-create-collection-button-label' ),
@@ -34,6 +39,7 @@
 			ev.stopPropagation();
 			ev.preventDefault();
 			editOverlay = new CollectionEditOverlay( {
+				skin: this.options.skin,
 				reloadOnSave: true
 			} );
 			editOverlay.show();

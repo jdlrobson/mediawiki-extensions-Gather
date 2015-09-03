@@ -24,6 +24,7 @@
 					loadingOverlay.hide();
 					d.resolve(
 						new CollectionEditOverlay( {
+							skin: M.require( 'skin' ),
 							collection: collection,
 							reloadOnSave: isSpecialPage,
 							showTutorial: showTutorial
