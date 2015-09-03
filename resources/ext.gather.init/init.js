@@ -16,7 +16,14 @@
 		context = M.require( 'context' ),
 		skin = M.require( 'skin' ),
 		mainMenu = M.require( 'mainMenu' ),
-		page = M.getCurrentPage();
+		Page = M.require( 'Page' ),
+		page = new Page( {
+			title: mw.config.get( 'wgPageName' ).replace( /_/g, ' ' ),
+			isMainPage: mw.config.get( 'wgIsMainPage' ),
+			isWatched: $( '#ca-watch' ).hasClass( 'watched' ),
+			id: mw.config.get( 'wgArticleId' ),
+			namespaceNumber: mw.config.get( 'wgNamespaceNumber' )
+		} );
 
 	/**
 	 * Determines if collection tutorial should be shown
