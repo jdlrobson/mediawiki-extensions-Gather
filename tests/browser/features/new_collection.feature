@@ -6,6 +6,7 @@ Feature: Creating new collections
       And I have Gather
       And I am logged into the mobile website
       And I am on the "Selenium Gather test" page
+      And I wait
      When I click the watchstar
 
   Scenario: New collection overlay interface visible
