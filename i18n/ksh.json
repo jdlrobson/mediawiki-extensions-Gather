@@ -173,5 +173,6 @@
 	"apihelp-query+listpages-param-limit": "Bejränz de Aanzahl Sigge zom ußjävve.",
 	"apihelp-query+listpages-paramvalue-sort-position": "Vun Hand zottehre.",
 	"apihelp-query+listpages-paramvalue-sort-namespace": "Noh_m Appachtemang un der Övverschreff zottehre.",
-	"apihelp-query+lists-param-minitems": "Zeijsch blohß Leßte met esu vill Enndrähssch udder mih. Dat bedügg ävver nix för Oppaßßleßte."
+	"apihelp-query+lists-param-minitems": "Zeijsch blohß Leßte met esu vill Enndrähssch udder mih. Dat bedügg ävver nix för Oppaßßleßte.",
+	"gather-main-menu-new-feature": "'''Neu!''' Donn de leevste Tehme vun de Lässer {{GRAMMAR:gen vun|{{ucfirst:{{SITENAME}}}}}} eruß fenge, un lääsche en Leß met Dinge eije aan."
 }
