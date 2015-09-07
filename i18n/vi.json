@@ -74,7 +74,10 @@
 	"gather-delete-button": "Xóa",
 	"gather-overlay-edit-button": "Sửa đổi tên và miêu tả",
 	"gather-overlay-continue": "Tiếp",
+	"gather-overlay-search-empty": "Tìm trang để thêm",
 	"gather-overlay-search-new": "Bắt đầu tìm kiếm mới...",
+	"gather-overlay-search-results-empty": "Rất tiếc, không tìm thấy trang nào cho “$1”",
+	"gather-overlay-search-tutorial-text": "Hoặc chọn từ các trang được gợi ý.",
 	"right-gather-hidelist": "Cưỡng ép ẩn một danh sách người dùng công cộng",
 	"gather-watchstar-button-label": "Thêm vào tập hợp",
 	"gather-view-collection": "Xem tập hợp"

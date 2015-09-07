@@ -164,6 +164,7 @@
 	"gather-view-collection": "Sammlung ansehen",
 	"apihelp-query+listpages-description": "Gibt die Seiten in der angegebenen Liste zurück.",
 	"apihelp-query+listpages-example-1": "Zeigt die Seiten in der Beobachtungsliste des Benutzers an.",
+	"apihelp-query+listpages-example-2": "Zeigt die Seiten in der Liste mit der Kennung <kbd>2</kbd> an.",
 	"apihelp-query+listpages-param-namespace": "Beschränkt Sammlungen auf diese Namensräume.",
 	"apihelp-query+listpages-param-sort": "Gibt den zu verwendenden Sortiermechanismus an.",
 	"apihelp-query+listpages-param-dir": "Sortierrichtung festlegen.",
