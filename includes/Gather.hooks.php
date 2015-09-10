@@ -27,26 +27,32 @@ class Hooks {
 	/**
 	 * ResourceLoaderRegisterModules hook handler
 	 *
+	 * Registers the <code>ext.gather.schema</code> module with or without schema
+	 * dependencies depending on whether or not the EventLogging extension is
+	 * loaded.
+	 *
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderRegisterModules
 	 * @param ResourceLoader &$resourceLoader The ResourceLoader object
 	 * @return bool Always true
 	 */
 	public static function onResourceLoaderRegisterModules( ResourceLoader &$resourceLoader ) {
-		// register an empty RL module
-		self::registerSchemas();
-		return true;
-	}
+		$dependencies = array();
 
-	public static function registerSchemas( $dependencies = array() ) {
-		global $wgResourceModules;
-		$schema = array(
-			'dependencies' => $dependencies,
-			'targets' => array( 'desktop', 'mobile' ),
-		);
-		// exploits fact onEventLoggingRegisterSchemas runs after onResourceLoaderRegisterModules
-		if ( !isset( $wgResourceModules['ext.gather.schema'] ) || count( $dependencies ) > 0 ) {
-			$wgResourceModules['ext.gather.schema'] = $schema;
+		if ( is_callable( 'EventLogging::logEvent' ) ) {
+			$dependencies = array(
+				'schema.GatherClicks',
+				'schema.GatherFlags',
+			);
 		}
+
+		$resourceLoader->register( 'ext.gather.schema', array(
+			'dependencies' => $dependencies,
+			'targets' => array(
+				'desktop',
+				'mobile'
+			),
+		) );
+
 		return true;
 	}
 
@@ -142,7 +148,6 @@ class Hooks {
 			'GatherClicks' => 12114785,
 			'GatherFlags' => 11793295,
 		);
-		self::registerSchemas( array( 'schema.GatherClicks', 'schema.GatherFlags' ) );
 		return true;
 	}
 
