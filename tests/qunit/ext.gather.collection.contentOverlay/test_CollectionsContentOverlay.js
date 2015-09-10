@@ -6,14 +6,17 @@
 ( function ( M, $ ) {
 	var CollectionsApi = M.require( 'ext.gather.api/CollectionsApi' ),
 		Page = M.require( 'Page' ),
-		CollectionsContentOverlay = M.require( 'ext.gather.watchstar/CollectionsContentOverlay' );
+		CollectionsContentOverlay = M.require( 'ext.gather.watchstar/CollectionsContentOverlay' ),
+		Schema = M.require( 'Schema' );
 
 	QUnit.module( 'Gather: Add to collection overlay', {
 		setup: function () {
 			var d = $.Deferred().resolve( {
 					id: 2
 				} ),
-				d2 = $.Deferred().resolve();
+				d2 = $.Deferred().resolve(),
+				logResult = $.Deferred().reject( 'ACCESS DENIED' );
+
 			this.page = new Page( {
 				title: 'Gather test'
 			} );
@@ -30,6 +33,8 @@
 				title: 'Foo',
 				titleInCollection: false
 			};
+
+			this.sandbox.stub( Schema.prototype, 'log' ).returns( logResult );
 		}
 	} );
 
