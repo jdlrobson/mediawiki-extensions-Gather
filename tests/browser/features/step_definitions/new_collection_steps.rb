@@ -9,4 +9,3 @@ end
 Then(/^I see add to new collection button$/) do
   expect(on(ArticlePage).collection_overlay_new_collection_button_element.when_present).to exist
 end
-

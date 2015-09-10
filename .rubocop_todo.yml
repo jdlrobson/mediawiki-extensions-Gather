@@ -64,12 +64,3 @@ Style/SpaceInsideParens:
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 Style/StringLiterals:
   Enabled: false
-
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-Style/TrailingBlankLines:
-  Exclude:
-    - 'tests/browser/features/step_definitions/edit_collection_steps.rb'
-    - 'tests/browser/features/step_definitions/new_collection_steps.rb'
-    - 'tests/browser/features/support/pages/gather_user_collection_page.rb'
