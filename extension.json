@@ -388,7 +388,7 @@
 			],
 			"dependencies": [
 				"ext.gather.menu.icon",
-				"mobile.experiments",
+				"mediawiki.experiments",
 				"mobile.watchstar",
 				"ext.gather.watchstar"
 			],
@@ -712,7 +712,9 @@
 		"GatherShouldShowTutorial": true,
 		"GatherAllowPublicWatchlist": false,
 		"GatherEnableBetaFeature": false,
-		"GatherAutohideFlagLimit": 1000000
+		"GatherAutohideFlagLimit": 1000000,
+		"@GatherEnableSample": "A number between 0-1 which represents the bucketing rate on stable",
+		"GatherEnableSample": 0
 	},
 	"manifest_version": 1
 }

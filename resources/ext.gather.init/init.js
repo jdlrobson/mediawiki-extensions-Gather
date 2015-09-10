@@ -3,6 +3,7 @@
 
 	var $star, watchstar, pageActionPointer, actionOverlay,
 		bucket, useGatherStar,
+		sampleRate = mw.config.get( 'wgGatherEnableSample' ),
 		CollectionsWatchstar = M.require( 'ext.gather.watchstar/CollectionsWatchstar' ),
 		Watchstar = M.require( 'mobile.watchstar/Watchstar' ),
 		PageActionOverlay = M.require( 'mobile.contentOverlays/PointerOverlay' ),
@@ -12,7 +13,6 @@
 		settingOverlayWasDismissed = 'gather-has-dismissed-tutorial',
 		mainMenuPointerDismissed = 'gather-has-dismissed-mainmenu',
 		user = M.require( 'user' ),
-		experiments = M.require( 'experiments' ),
 		context = M.require( 'context' ),
 		skin = M.require( 'skin' ),
 		mainMenu = M.require( 'mainMenu' ),
@@ -169,11 +169,17 @@
 		} );
 	}
 
-	try {
-		bucket = experiments.getBucket( 'gather' );
+	if ( sampleRate > 0 && sampleRate <= 1 ) {
+		bucket = mw.experiments.getBucket( {
+			name: 'gather',
+			enabled: true,
+			buckets: {
+				control: 1 - sampleRate,
+				A: sampleRate
+			}
+		}, user.getSessionId() );
 		useGatherStar = context.isBetaGroupMember() || bucket === 'A';
-	} catch ( e ) {
-		// experiment hasn't been defined. Only enable in beta.
+	} else {
 		useGatherStar = context.isBetaGroupMember();
 	}
 
