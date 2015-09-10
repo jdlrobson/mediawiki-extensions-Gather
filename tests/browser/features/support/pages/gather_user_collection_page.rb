@@ -3,4 +3,3 @@ class GatherUserCollectionPage < GatherPage
 
   page_url 'Special:Gather/id/<%= params[:id] %>'
 end
-

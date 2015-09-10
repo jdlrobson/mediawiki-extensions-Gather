@@ -52,4 +52,3 @@ end
 When(/^I click to edit name and description$/) do
   on(GatherPage).edit_name_and_description_element.when_present.click
 end
-
