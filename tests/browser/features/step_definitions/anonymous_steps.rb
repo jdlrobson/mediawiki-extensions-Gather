@@ -42,5 +42,5 @@ When(/^I visit a public collection$/) do
 end
 
 Then(/^I can see items in the collection$/) do
-   expect(on(GatherPage).collection_items_element.when_present).to be_visible
+  expect(on(GatherPage).collection_items_element.when_present).to be_visible
 end

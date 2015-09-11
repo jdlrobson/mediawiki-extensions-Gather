@@ -23,10 +23,3 @@ Style/AlignParameters:
 # Configuration parameters: EnforcedStyle, SupportedStyles, UseHashRocketsWithSymbolValues.
 Style/HashSyntax:
   Enabled: false
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: Width.
-Style/IndentationWidth:
-  Exclude:
-    - 'tests/browser/features/step_definitions/anonymous_steps.rb'
