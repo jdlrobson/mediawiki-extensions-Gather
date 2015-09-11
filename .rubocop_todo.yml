@@ -37,9 +37,3 @@ Style/IndentationWidth:
 Style/RegexpLiteral:
   Exclude:
     - 'tests/browser/features/step_definitions/anonymous_steps.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/SpaceAfterColon:
-  Exclude:
-    - 'tests/browser/features/support/pages/gather_page.rb'

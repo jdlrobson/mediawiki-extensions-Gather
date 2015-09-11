@@ -2,7 +2,7 @@ class GatherPage
   include PageObject
 
   page_url 'Special:Gather'
-  a(:my_first_public_collection, css: '.collection-card-title a', index:1)
+  a(:my_first_public_collection, css: '.collection-card-title a', index: 1)
   a(:edit, css: '.edit-collection')
   div(:edit_overlay, css: '.collection-editor-overlay')
   text_field(:edit_overlay_title, css: '.collection-editor-overlay .editor-pane .title')
