@@ -58,9 +58,3 @@ Style/SpaceInsideParens:
   Exclude:
     - 'tests/browser/features/step_definitions/common_steps.rb'
     - 'tests/browser/features/support/pages/gather_recent_page.rb'
-
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-Style/StringLiterals:
-  Enabled: false

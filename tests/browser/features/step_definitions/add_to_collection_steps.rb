@@ -4,7 +4,7 @@ Given(/^I have more than 100 collections$/) do
 end
 
 Given(/^I have a collection$/) do
-  make_collection("Z0")
+  make_collection('Z0')
 end
 
 When(/^I select a collection$/) do
