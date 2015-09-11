@@ -12,7 +12,7 @@ end
 Given(/^I view one of my public collections$/) do
   # create a collection with a random name
   response = make_collection(@random_string)
-  visit(GatherUserCollectionPage, using_params: { :id => response.data['id'] })
+  visit(GatherUserCollectionPage, using_params: { id: response.data['id'] })
 end
 
 Given(/^I am logged into the mobile website$/) do
@@ -49,7 +49,7 @@ Given(/^I am on the "(.+)" page$/) do |article|
   # Ensure we do not cause a redirect
   article = article.sub(/ /, '_')
   # article parameters need to be encoded.
-  visit(ArticlePage, using_params: { :article_name => article })
+  visit(ArticlePage, using_params: { article_name: article })
 end
 
 When(/^I click the watchstar$/) do

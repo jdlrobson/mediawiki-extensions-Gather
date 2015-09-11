@@ -17,9 +17,3 @@ Metrics/LineLength:
 Style/AlignParameters:
   Exclude:
     - 'tests/browser/features/support/pages/gather_page.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles, UseHashRocketsWithSymbolValues.
-Style/HashSyntax:
-  Enabled: false
