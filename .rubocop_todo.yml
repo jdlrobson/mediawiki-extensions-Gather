@@ -51,10 +51,3 @@ Style/SpaceAroundOperators:
   Exclude:
     - 'tests/browser/features/step_definitions/add_to_collection_steps.rb'
     - 'tests/browser/features/step_definitions/recent_collections_steps.rb'
-
-# Offense count: 5
-# Cop supports --auto-correct.
-Style/SpaceInsideParens:
-  Exclude:
-    - 'tests/browser/features/step_definitions/common_steps.rb'
-    - 'tests/browser/features/support/pages/gather_recent_page.rb'
