@@ -13,7 +13,8 @@ When(/^I scroll to the bottom of the page$/) do
 end
 
 Then(/^I see more than 100 collections$/) do
-  expect(on(GatherRecentPage).collection_one_hundred_plus_one_element.when_present(10)).to be_visible
+  expect(on(GatherRecentPage).collection_one_hundred_plus_one_element.when_present(10))
+    .to be_visible
 end
 
 Then(/^the 101st collection has a title$/) do
