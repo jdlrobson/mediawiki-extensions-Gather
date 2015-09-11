@@ -1,6 +1,6 @@
 Given(/^I have more than 100 collections$/) do
   response = api.action(:query, list: 'lists', owner: user, lstlimit: 101)
-  1.upto(101-response.data['lists'].length) { |i| make_collection("B#{i}") }
+  1.upto(101 - response.data['lists'].length) { |i| make_collection("B#{i}") }
 end
 
 Given(/^I have a collection$/) do
