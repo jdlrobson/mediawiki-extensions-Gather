@@ -1,5 +1,6 @@
 Given(/^there are more than 100 collections$/) do
-  response = api.action(:query, list: 'lists', lstmode: 'allpublic', lstlimit: 101)
+  response = api.action(
+    :query, list: 'lists', lstmode: 'allpublic', lstlimit: 101, lstminitems: 4)
   1.upto(101-response.data['lists'].length) { |i| make_collection("B#{i}") }
 end
 

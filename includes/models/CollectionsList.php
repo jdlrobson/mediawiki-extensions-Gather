@@ -124,7 +124,7 @@ class CollectionsList implements IteratorAggregate, ArraySerializable, WithImage
 	}
 
 	/**
-	 * Return a URL that allows you to retreive the rest of the list of collections
+	 * Return a URL that allows you to retrieve the rest of the list of collections
 	 * @return string|null
 	 */
 	public function getContinueUrl() {

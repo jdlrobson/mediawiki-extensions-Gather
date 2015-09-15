@@ -195,6 +195,7 @@
 				"ext.gather.api",
 				"ext.gather.menu.icon",
 				"ext.gather.collection.editor",
+				"skins.minerva.scripts",
 				"mobile.startup"
 			],
 			"styles": [],
@@ -390,7 +391,8 @@
 				"ext.gather.menu.icon",
 				"mediawiki.experiments",
 				"mobile.watchstar",
-				"ext.gather.watchstar"
+				"ext.gather.watchstar",
+				"skins.minerva.scripts"
 			],
 			"messages": {
 				"gather-main-menu-new-feature": [ "parse" ],
@@ -571,7 +573,8 @@
 			"dependencies": [
 				"ext.gather.api",
 				"mobile.toast",
-				"mobile.overlays"
+				"mobile.overlays",
+				"skins.minerva.scripts"
 			],
 			"scripts": [
 				"resources/ext.gather.routes/routes.js"
@@ -601,7 +604,8 @@
 			"group": "other",
 			"dependencies": [
 				"ext.gather.special.base",
-				"ext.gather.collections.list"
+				"ext.gather.collections.list",
+				"skins.minerva.scripts"
 			],
 			"scripts": [
 				"resources/ext.gather.special.usercollections/init.js"
