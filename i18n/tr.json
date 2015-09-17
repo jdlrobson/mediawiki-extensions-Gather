@@ -6,7 +6,8 @@
 			"Captantrips",
 			"Stultiwikia",
 			"Sayginer",
-			"Article1"
+			"Article1",
+			"Rapsar"
 		]
 	},
 	"gather-delete-collection-delete-label": "Sil",
@@ -14,7 +15,7 @@
 	"gather-create-collection-button-label": "Bir derleme oluştur",
 	"gather-moderation-hidden": "[[$1|Derlemeniz]] gizlendi. Bu sadece sizin görebileceğiniz anlamına gelir. Derlemeler [[Project:Gather/Moderation_Criteria|denetleme kriterlerimizi]] sağlamıyorsa gizlenir. İtirazınızı [[Project:Gather/User_Feedback|burada]] belirtebilirsiniz.",
 	"gather-moderation-unhidden": "[[$1|Your collection]] gizliliği kaldırıldı. Bu, yeniden herkes tarafından görülebileceği anlamına gelir.",
-	"gather-edit-button": "Düzenle",
+	"gather-edit-button": "Değiştir",
 	"gather-delete-button": "Sil",
 	"gather-overlay-search-empty": "Bu derlemeye eklemek için sayfa ara",
 	"gather-overlay-search-new": "Yeni bir arama başlat...",
