@@ -1,9 +1,9 @@
 ( function ( M, $ ) {
 
 	var CollectionsApi = M.require( 'ext.gather.api/CollectionsApi' ),
-		toast = M.require( 'toast' ),
-		overlayManager = M.require( 'overlayManager' ),
-		loader = M.require( 'loader' );
+		toast = M.require( 'mobile.toast/toast' ),
+		overlayManager = M.require( 'mobile.startup/overlayManager' ),
+		loader = M.require( 'mobile.overlays/moduleLoader' );
 
 	/**
 	 * Render the collection edit overlay
@@ -24,7 +24,7 @@
 					loadingOverlay.hide();
 					d.resolve(
 						new CollectionEditOverlay( {
-							skin: M.require( 'skin' ),
+							skin: M.require( 'mobile.startup/skin' ),
 							collection: collection,
 							reloadOnSave: isSpecialPage,
 							showTutorial: showTutorial

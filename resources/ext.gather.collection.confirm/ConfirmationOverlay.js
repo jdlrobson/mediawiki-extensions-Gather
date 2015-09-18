@@ -1,8 +1,8 @@
 ( function ( M, $ ) {
 
 	var ConfirmationOverlay,
-		toast = M.require( 'toast' ),
-		icons = M.require( 'icons' ),
+		toast = M.require( 'mobile.toast/toast' ),
+		icons = M.require( 'mobile.startup/icons' ),
 		CollectionsContentOverlayBase = M.require( 'ext.gather.collection.base/CollectionsContentOverlayBase' );
 
 	/**

@@ -1,9 +1,9 @@
 ( function ( M, $ ) {
 
-	var PageList = M.require( 'PageList' ),
-		Page = M.require( 'Page' ),
+	var PageList = M.require( 'mobile.pagelist/PageList' ),
+		Page = M.require( 'mobile.startup/Page' ),
 		CollectionsApi = M.require( 'ext.gather.api/CollectionsApi' ),
-		Icon = M.require( 'Icon' ),
+		Icon = M.require( 'mobile.startup/Icon' ),
 		CollectionPageList;
 
 	/**

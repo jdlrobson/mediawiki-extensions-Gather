@@ -6,7 +6,7 @@
 
 	$( function () {
 		new CollectionsList( {
-			skin: M.require( 'skin' ),
+			skin: M.require( 'mobile.startup/skin' ),
 			el: $collectionsList,
 			enhance: true,
 			owner: owner,

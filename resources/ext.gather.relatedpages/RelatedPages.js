@@ -1,10 +1,10 @@
 ( function ( M, $ ) {
 
 	var RelatedPagesApi = M.require( 'ext.gather.api/RelatedPagesApi' ),
-		View = M.require( 'View' ),
-		Page = M.require( 'Page' ),
+		View = M.require( 'mobile.view/View' ),
+		Page = M.require( 'mobile.startup/Page' ),
 		CollectionPageList = M.require( 'ext.gather.page.search/CollectionPageList' ),
-		icons = M.require( 'icons' ),
+		icons = M.require( 'mobile.startup/icons' ),
 		RelatedPages;
 
 	/**

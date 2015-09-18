@@ -2,7 +2,7 @@
 ( function ( M ) {
 
 	var Tag,
-		View = M.require( 'View' );
+		View = M.require( 'mobile.view/View' );
 
 	/**
 	 * A tag with a label

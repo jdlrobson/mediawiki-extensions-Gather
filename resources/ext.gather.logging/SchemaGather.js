@@ -1,10 +1,10 @@
 ( function ( M, $ ) {
 	var SchemaGather,
 		skinName = mw.config.get( 'skin' ),
-		context = M.require( 'context' ),
+		context = M.require( 'mobile.context/context' ),
 		mobileMode = context.getMode(),
-		Schema = M.require( 'Schema' ),
-		user = M.require( 'user' );
+		Schema = M.require( 'mobile.startup/Schema' ),
+		user = M.require( 'mobile.user/user' );
 
 	if ( mobileMode ) {
 		skinName += '-' + mobileMode;

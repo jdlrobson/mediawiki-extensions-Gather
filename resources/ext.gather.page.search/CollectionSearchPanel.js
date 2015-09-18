@@ -1,8 +1,8 @@
 ( function ( M, $ ) {
 
-	var Panel = M.require( 'Panel' ),
-		Icon = M.require( 'Icon' ),
-		SearchApi = M.require( 'modules/search/SearchApi' ),
+	var Panel = M.require( 'mobile.startup/Panel' ),
+		Icon = M.require( 'mobile.startup/Icon' ),
+		SearchApi = M.require( 'mobile.search.api/SearchApi' ),
 		SEARCH_DELAY = 200,
 		CollectionPageList = M.require( 'ext.gather.page.search/CollectionPageList' ),
 		CollectionSearchPanel;

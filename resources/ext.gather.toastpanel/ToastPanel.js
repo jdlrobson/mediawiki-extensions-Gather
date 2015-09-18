@@ -2,8 +2,8 @@
 ( function ( M, $ ) {
 
 	var ToastPanel,
-		Button = M.require( 'Button' ),
-		Panel = M.require( 'Panel' );
+		Button = M.require( 'mobile.startup/Button' ),
+		Panel = M.require( 'mobile.startup/Panel' );
 
 	/**
 	 * API for managing collection items

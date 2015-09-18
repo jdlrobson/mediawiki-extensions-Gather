@@ -2,8 +2,8 @@
 
 	var CollectionsApi = M.require( 'ext.gather.api/CollectionsApi' ),
 		CollectionFlagOverlay = M.require( 'ext.gather.collection.flag/CollectionFlagOverlay' ),
-		Button = M.require( 'Button' ),
-		Icon = M.require( 'Icon' ),
+		Button = M.require( 'mobile.startup/Button' ),
+		Icon = M.require( 'mobile.startup/Icon' ),
 		api = new CollectionsApi(),
 		CollectionFlagButton;
 

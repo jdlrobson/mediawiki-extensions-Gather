@@ -1,7 +1,7 @@
 ( function ( M ) {
 
-	var Button = M.require( 'Button' ),
-		icons = M.require( 'icons' ),
+	var Button = M.require( 'mobile.startup/Button' ),
+		icons = M.require( 'mobile.startup/icons' ),
 		ButtonWithSpinner;
 
 	/**

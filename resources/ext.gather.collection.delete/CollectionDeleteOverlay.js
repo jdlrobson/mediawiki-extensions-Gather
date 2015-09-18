@@ -3,7 +3,7 @@
 	var CollectionDeleteOverlay,
 		SchemaGather = M.require( 'ext.gather.logging/SchemaGather' ),
 		schema = new SchemaGather(),
-		toast = M.require( 'toast' ),
+		toast = M.require( 'mobile.toast/toast' ),
 		CollectionsApi = M.require( 'ext.gather.api/CollectionsApi' ),
 		ConfirmationOverlay = M.require( 'ext.gather.collection.confirm/ConfirmationOverlay' );
 

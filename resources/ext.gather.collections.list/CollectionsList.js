@@ -1,12 +1,12 @@
 ( function ( M, $ ) {
 
 	var CollectionsList,
-		InfiniteScroll = M.require( 'InfiniteScroll' ),
-		icons = M.require( 'icons' ),
+		InfiniteScroll = M.require( 'mobile.infiniteScroll/InfiniteScroll' ),
+		icons = M.require( 'mobile.startup/icons' ),
 		CollectionsApi = M.require( 'ext.gather.api/CollectionsApi' ),
-		toast = M.require( 'toast' ),
-		View = M.require( 'View' ),
-		Icon = M.require( 'Icon' ),
+		toast = M.require( 'mobile.toast/toast' ),
+		View = M.require( 'mobile.view/View' ),
+		Icon = M.require( 'mobile.startup/Icon' ),
 		CreateCollectionButton = M.require( 'ext.gather.collections.list/CreateCollectionButton' );
 
 	CollectionsList = View.extend( {
@@ -16,7 +16,7 @@
 		 * @cfg {Skin} defaults.skin the skin the overlay is operating in
 		 */
 		defaults: {
-			skin: M.require( 'skin' ),
+			skin: M.require( 'mobile.startup/skin' ),
 			collections: [],
 			// FIXME: Use the icon partials in server and client when supported in server templates.
 			userIconClass: new Icon( {

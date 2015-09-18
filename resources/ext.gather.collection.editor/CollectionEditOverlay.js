@@ -1,14 +1,14 @@
 ( function ( M, $ ) {
 
 	var CollectionEditOverlay,
-		toast = M.require( 'toast' ),
+		toast = M.require( 'mobile.toast/toast' ),
 		CollectionsApi = M.require( 'ext.gather.api/CollectionsApi' ),
 		CollectionSearchPanel = M.require( 'ext.gather.page.search/CollectionSearchPanel' ),
-		Overlay = M.require( 'Overlay' ),
-		Icon = M.require( 'Icon' ),
+		Overlay = M.require( 'mobile.overlays/Overlay' ),
+		Icon = M.require( 'mobile.startup/Icon' ),
 		SchemaGather = M.require( 'ext.gather.logging/SchemaGather' ),
 		schema = new SchemaGather(),
-		router = M.require( 'router' ),
+		router = M.require( 'mobile.startup/router' ),
 		CollectionDeleteOverlay = M.require( 'ext.gather.collection.delete/CollectionDeleteOverlay' ),
 		RelatedPages = M.require( 'ext.gather.relatedpages/RelatedPages' ),
 		SearchTutorialOverlay = M.require( 'ext.gather.collection.edit/SearchTutorialOverlay' );

@@ -1,7 +1,7 @@
 ( function ( M ) {
 
 	var CollectionsContentOverlayBase,
-		ContentOverlay = M.require( 'ContentOverlay' );
+		ContentOverlay = M.require( 'mobile.overlays/ContentOverlay' );
 
 	/**
 	 * A clickable watchstar for managing collections

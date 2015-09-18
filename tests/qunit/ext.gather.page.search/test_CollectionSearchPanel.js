@@ -1,6 +1,6 @@
 ( function ( M ) {
-	var Page = M.require( 'Page' ),
-		Icon = M.require( 'Icon' ),
+	var Page = M.require( 'mobile.startup/Page' ),
+		Icon = M.require( 'mobile.startup/Icon' ),
 		CollectionSearchPanel = M.require( 'ext.gather.page.search/CollectionSearchPanel' );
 
 	QUnit.module( 'Gather: CollectionSearchPanel', {

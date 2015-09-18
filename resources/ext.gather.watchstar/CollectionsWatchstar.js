@@ -4,9 +4,9 @@
 	var CollectionsWatchstar,
 		SchemaGather = M.require( 'ext.gather.logging/SchemaGather' ),
 		schema = new SchemaGather(),
-		CtaDrawer = M.require( 'CtaDrawer' ),
+		CtaDrawer = M.require( 'mobile.drawers/CtaDrawer' ),
 		CollectionsContentOverlay = M.require( 'ext.gather.watchstar/CollectionsContentOverlay' ),
-		Icon = M.require( 'Icon' ),
+		Icon = M.require( 'mobile.startup/Icon' ),
 		// FIXME: MobileFrontend code duplication
 		watchIcon = new Icon( {
 			name: 'watch',
@@ -16,8 +16,8 @@
 			name: 'watched',
 			additionalClassNames: 'icon-32px watch-this-article'
 		} ),
-		user = M.require( 'user' ),
-		View = M.require( 'View' );
+		user = M.require( 'mobile.user/user' ),
+		View = M.require( 'mobile.view/View' );
 
 	/**
 	 * A clickable watchstar for managing collections

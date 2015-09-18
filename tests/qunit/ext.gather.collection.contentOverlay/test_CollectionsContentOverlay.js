@@ -5,9 +5,9 @@
 // mw.config.set( 'wgGatherCollections', state );
 ( function ( M, $ ) {
 	var CollectionsApi = M.require( 'ext.gather.api/CollectionsApi' ),
-		Page = M.require( 'Page' ),
+		Page = M.require( 'mobile.startup/Page' ),
 		CollectionsContentOverlay = M.require( 'ext.gather.watchstar/CollectionsContentOverlay' ),
-		Schema = M.require( 'Schema' );
+		Schema = M.require( 'mobile.startup/Schema' );
 
 	QUnit.module( 'Gather: Add to collection overlay', {
 		setup: function () {

@@ -1,8 +1,8 @@
 ( function ( M ) {
 
 	var CollectionEditOverlay = M.require( 'ext.gather.collection.edit/CollectionEditOverlay' ),
-		Button = M.require( 'Button' ),
-		Icon = M.require( 'Icon' ),
+		Button = M.require( 'mobile.startup/Button' ),
+		Icon = M.require( 'mobile.startup/Icon' ),
 		CreateCollectionButton;
 
 	/**

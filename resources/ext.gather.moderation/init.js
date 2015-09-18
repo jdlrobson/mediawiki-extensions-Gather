@@ -1,7 +1,7 @@
 ( function ( M, $ ) {
 	var CollectionsApi = M.require( 'ext.gather.api/CollectionsApi' ),
-		toast = M.require( 'toast' ),
-		Icon = M.require( 'Icon' ),
+		toast = M.require( 'mobile.toast/toast' ),
+		Icon = M.require( 'mobile.startup/Icon' ),
 		api = new CollectionsApi();
 
 	/**

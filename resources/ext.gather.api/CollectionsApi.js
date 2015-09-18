@@ -1,9 +1,9 @@
 /*jshint unused:vars */
 ( function ( M, $ ) {
 
-	var Api = M.require( 'api' ).Api,
-		user = M.require( 'user' ),
-		Page = M.require( 'Page' ),
+	var Api = M.require( 'mobile.startup/api' ).Api,
+		user = M.require( 'mobile.user/user' ),
+		Page = M.require( 'mobile.startup/Page' ),
 		CollectionsApi;
 
 	/**

@@ -1,7 +1,7 @@
 ( function ( M, $ ) {
 	var SchemaGatherFlags,
-		Schema = M.require( 'Schema' ),
-		user = M.require( 'user' );
+		Schema = M.require( 'mobile.startup/Schema' ),
+		user = M.require( 'mobile.user/user' );
 
 	/**
 	 * @class SchemaGatherFlags

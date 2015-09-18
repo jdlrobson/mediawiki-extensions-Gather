@@ -1,5 +1,5 @@
 ( function ( M, $ ) {
-	var Api = M.require( 'api' ).Api,
+	var Api = M.require( 'mobile.startup/api' ).Api,
 		RelatedPagesApi = M.require( 'ext.gather.api/RelatedPagesApi' ),
 		relatedPages = {
 			query: {
