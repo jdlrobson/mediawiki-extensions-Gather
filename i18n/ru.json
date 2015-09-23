@@ -7,7 +7,8 @@
 			"Mariya",
 			"Okras",
 			"Дмитрий",
-			"WindEwriX"
+			"WindEwriX",
+			"Kaganer"
 		]
 	},
 	"gather": "Собрать",
@@ -49,8 +50,8 @@
 	"gather-flag-collection-success": "Коллекция была успешно помечена.",
 	"gather-confirmation-cancel-button-label": "Отмена",
 	"gather-error-unknown-collection": "Не удалось найти запрошенную для редактирования коллекцию.",
-	"gather-collection-member": "Является элементом коллекции.",
-	"gather-collection-non-member": "Не является элементом коллекции.",
+	"gather-collection-member": "Элемент коллекции.",
+	"gather-collection-non-member": "Не элемент коллекции.",
 	"gather-collection-owner-text": "Коллекция {{GENDER:$2|участника|участницы}} $1",
 	"gather-anon-cta": "Добавить эту страницу в коллекцию, которой вы можете поделиться с миром.",
 	"gather-create-new-button-label": "Создать",
