@@ -229,7 +229,6 @@ class GatherTests extends ApiTestCase {
 		) );
 		$this->assertLists( 'ed-bb1', $usr, 0, $expListsW, $expListsW2 );
 
-		//
 		// Add one page to the non-created watchlist
 		$res = $this->editList( 'ed-c1', $usr, $token, $idWL . ', "titles": "Gather-ListW"' );
 		$this->getVal( 'ed-c1', '"id"', $res, 0 );
@@ -246,7 +245,6 @@ class GatherTests extends ApiTestCase {
 		$this->assertLists( 'ed-c4', $usr, 0, $expListsW, $expListsW2 );
 		$this->assertIsIn( 'ed-c5', $usr, 0, $expPagesIn );
 
-		//
 		// Create Watchlist row
 		$res = $this->editList( 'ed-d1', $usr, $token, '"id":0, "description": "x"' );
 		$id0 = $this->getVal( 'ed-d1', '"id"', $res );
@@ -298,7 +296,6 @@ class GatherTests extends ApiTestCase {
 		$this->badUseLists( 'ed-da25', $usrA, '"lstmode":"allhidden"' );
 		$this->assertLists( 'ed-da26', $usrS, '"lstmode":"allhidden"', null );
 
-		//
 		// Add Gather-ListWA to the created watchlist
 		$res = $this->editList( 'ed-e1', $usr, $token, $idWL . ', "titles": "Gather-ListWA"' );
 		$this->getVal( 'ed-e1', '"id"', $res, $id0 );
@@ -318,7 +315,6 @@ class GatherTests extends ApiTestCase {
 		$this->assertLists( 'ed-e6', $usr, $id0, $expListsW, $expListsW2 );
 		$this->assertIsIn( 'ed-e6a', $usr, $id0, $expPagesIn );
 
-		//
 		// Add Gather-ListWAB to the created watchlist with ID=0 and description change
 		$res = $this->editList( 'ed-f1', $usr, $token,
 			'"id":0, "description":"y", "titles": "Gather-ListWAB"' );
@@ -340,7 +336,6 @@ class GatherTests extends ApiTestCase {
 		$this->assertLists( 'ed-f6', $usr, $id0, $expListsW, $expListsW2 );
 		$this->assertIsIn( 'ed-f6a', $usr, $id0, $expPagesIn );
 
-		//
 		// Create new list A
 		$res = $this->editList( 'ed-i1', $usr, $token, '"label": "A"' );
 		$this->getVal( 'ed-i1', '"status"', $res, 'created' );
@@ -392,7 +387,6 @@ class GatherTests extends ApiTestCase {
 		$this->badUseLists( 'ed-ia25', $usrA, '"lstmode":"allhidden"' );
 		$this->assertLists( 'ed-ia26', $usrS, '"lstmode":"allhidden"', null );
 
-		//
 		// Rename list A to 'a'
 		$res = $this->editList( 'ed-j1', $usr, $token, $idAs . ', "label": "a"' );
 		$this->getVal( 'ed-j1', '"status"', $res, 'updated' );
@@ -420,7 +414,6 @@ class GatherTests extends ApiTestCase {
 		$this->badUseEdit( 'ed-ja10', $usr2, $token, $idAs . ', "mode": "deletelist"' );
 		$this->badUseEdit( 'ed-ja11', $usrS, $token, $idAs . ', "mode": "deletelist"' );
 
-		//
 		// Make list 'a' public
 		$res = $this->editList( 'ed-k1', $usr, $token, '"label": "a", "perm": "public"' );
 		$this->getVal( 'ed-k1', '"status"', $res, 'updated' );
@@ -468,7 +461,6 @@ class GatherTests extends ApiTestCase {
 		$this->badUseLists( 'ed-ka25', $usrA, '"lstmode":"allhidden"' );
 		$this->assertLists( 'ed-ka26', $usrS, '"lstmode":"allhidden"', null );
 
-		//
 		// Delete list A
 		$res = $this->editList( 'ed-l1', $usr, $token, $idAs . ', "mode": "deletelist"' );
 		$this->getVal( 'ed-l1', '"status"', $res, 'deleted' );
@@ -489,7 +481,6 @@ class GatherTests extends ApiTestCase {
 		$this->badUseEdit( 'ed-l10', $usr2, $token2, $idAs . ', "label": "xx"' );
 		$this->badUseEdit( 'ed-l11', $usrS, $tokenS, $idAs . ', "label": "xx"' );
 
-		//
 		// Create public list B
 		$res = $this->editList( 'ed-n1', $usr, $token,
 			'"label": "B", "perm":"public", ' .
@@ -537,13 +528,11 @@ class GatherTests extends ApiTestCase {
 		$this->badUseEdit( 'ed-na13', $usr2, $token2, $idBs . ', "mode": "hidelist"' );
 		$this->badUseEdit( 'ed-na14', $usr2, $token2, $idBs . ', "mode": "showlist"' );
 
-		//
 		// Noop - show a list that is already public
 		$res = $this->editList( 'ed-o1', $usrS, $tokenS, $idBs . ', "mode":"showlist"' );
 		$this->getVal( 'ed-o1', '"status"', $res, 'nochanges' );
 		$this->getVal( 'ed-o1', '"id"', $res, $idB );
 
-		//
 		// Hide public list
 		$res = $this->editList( 'ed-o2', $usrS, $tokenS, $idBs . ', "mode":"hidelist"' );
 		$this->getVal( 'ed-o2', '"status"', $res, 'updated' );
@@ -582,7 +571,6 @@ class GatherTests extends ApiTestCase {
 		$this->badUseEdit( 'ed-oa3', $usr, $token, $idBs . ', "perm": "public"' );
 		$this->badUseEdit( 'ed-oa3', $usr, $token, $idBs . ', "perm": "private"' );
 
-		//
 		// Restore hidden list
 		$res = $this->editList( 'ed-p1', $usrS, $tokenS, $idBs . ', "mode":"showlist"' );
 		$this->getVal( 'ed-p1', '"status"', $res, 'updated' );
@@ -656,7 +644,6 @@ class GatherTests extends ApiTestCase {
 		$this->getVal( "$p b1", '"query","lists",1,"id"', $res, $idA );
 		$this->getVal( "$p b1", '"query","lists",2,"id"', $res, $idB );
 
-		//
 		// Continuation
 		$request = $this->toApiParams( "$p c1", 'lists', false, '"lstlimit": 1' );
 
@@ -673,7 +660,6 @@ class GatherTests extends ApiTestCase {
 		$this->assertListNoId( "$p c3a", $res, '[{"label":"B"}]' );
 		$this->assertArrayNotHasKey( 'continue', $res, "$p c3c" );
 
-		//
 		// ids=A
 		$res = $this->getLists( "$p d1", $u, '"lstids":' . $idA );
 		$this->assertListNoId( "$p d1", $res, '[{"label":"A"}]' );
@@ -686,7 +672,6 @@ class GatherTests extends ApiTestCase {
 		$res = $this->getLists( "$p d3", $u2, '"lstids":' . $idA );
 		$this->assertListNoId( "$p d3", $res, '[]' );
 
-		//
 		// ids=B
 		$res = $this->getLists( "$p e1", $u, '"lstids":' . $idB );
 		$this->assertListNoId( "$p e1", $res, '[{"label":"B"}]' );
@@ -699,7 +684,6 @@ class GatherTests extends ApiTestCase {
 		$res = $this->getLists( "$p e3", $u2, '"lstids":' . $idB );
 		$this->assertListNoId( "$p e3", $res, '[{"label":"B"}]' );
 
-		//
 		// Use owner param
 		// user: get all with owner=user
 		$this->assertLists( "$p i0", $u, '"lstowner":' . $n,
@@ -748,7 +732,6 @@ class GatherTests extends ApiTestCase {
 		$wlOnly = '[{"id":0, "watchlist":true, "label":"Watchlist"}]';
 		$n = '"' . $u->getName() . '"'; // Name of the user for this test
 
-		//
 		// Validate empty watchlist / lists
 		$res = $this->getLists( 'nc-a0', $u, '{}' );
 		$this->assertListNoId( 'nc-a0', $res, $wlOnly );
@@ -768,7 +751,6 @@ class GatherTests extends ApiTestCase {
 		$this->assertListNoId( 'nc-a4', $res,
 			'[{"id":0,"watchlist":true,"label":"Watchlist","title":false}]' );
 
-		//
 		// Add page to watchlist
 		$this->legacyAddToWatchlist( 'nc-b0', $u, $token, 'Gather-ListW' );
 		$res = $this->getLists( 'nc-b0', $u, '"lstprop": "count"' );
@@ -778,7 +760,6 @@ class GatherTests extends ApiTestCase {
 		$this->assertListNoId( 'nc-b1', $res,
 			'[{"id":0,"watchlist":true,"label":"Watchlist","title":true}]' );
 
-		//
 		// Re-add the same page, using action=editlist & id=0
 		$res = $this->editList( 'nc-c0', $u, $token, '"id":0,"titles":"Gather-ListW"' );
 		$this->getVal( "nc-c0", '"status"', $res, 'nochanges' );
@@ -802,7 +783,6 @@ class GatherTests extends ApiTestCase {
 		$this->assertListNoId( 'nc-c5', $res,
 			'[{"id":0,"watchlist":true,"label":"Watchlist","title":true}]' );
 
-		//
 		// What can others see from this user
 		$res = $this->getLists( 'nc-e0', $a, '"lstowner":' . $n );
 		$this->assertListNoId( 'nc-e0', $res, '[]' );
@@ -816,7 +796,6 @@ class GatherTests extends ApiTestCase {
 		$res =  $this->getLists( 'nc-e3', $u2, '"lstowner": ' . $n . ', "lstids": 0' );
 		$this->assertListNoId( 'nc-e3', $res, '[]' );
 
-		//
 		// Create watchlist list DB record
 		$res = $this->editList( 'nc-f0', $u, $token, '"id":0, "description":"aa"' );
 		$this->getVal( 'nc-f0', '"status"', $res, 'created' );
@@ -834,7 +813,6 @@ class GatherTests extends ApiTestCase {
 		$this->assertLists( 'nc-f5', $u, '"lsttitle": "Gather-ListW"', '[{"id":' . $id .
 			',"watchlist":true,"label":"Watchlist","title":true}]' );
 
-		//
 		// Others still can't see the watchlist
 		$res = $this->getLists( 'nc-g0', $a, '"lstowner":' . $n );
 		$this->assertListNoId( 'nc-g0', $res, '[]' );
@@ -860,7 +838,6 @@ class GatherTests extends ApiTestCase {
 		$res = $this->getLists( 'nc-h3', $u2, '"lstowner": ' . $n . ', "lstids": ' . $id );
 		$this->assertListNoId( 'nc-h3', $res, '[]' );
 
-		//
 		// Watchlist editing assertions
 		$this->badUseEdit( 'nc-i0', $u, false, '"id":0, "label":"bb"' );
 		$this->badUseEdit( 'nc-i1', $u, false, '"id":' . $id . ', "label":"bb"' );
