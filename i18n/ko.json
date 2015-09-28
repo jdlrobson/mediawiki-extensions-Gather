@@ -4,7 +4,8 @@
 			"SeoJeongHo",
 			"Macofe",
 			"LiteHell",
-			"Alex00728"
+			"Alex00728",
+			"Hwangjy9"
 		]
 	},
 	"gather-lists-collection-owner": "소유자",
@@ -25,7 +26,7 @@
 	"gather-remove-from-collection-failed-toast": "컬렉션에서 이 페이지를 제거 할수 없습니다.",
 	"gather-add-to-collection-failed-toast": "컬렉션에 페이지를 추가 할수 없습니다.",
 	"gather-edit-collection-related-pages": "관련된 문서",
-	"gather-add-new-placeholder": "새로운 컬렉션 이름을 입력해 주세요.",
+	"gather-add-new-placeholder": "컬렉션 이름",
 	"gather-add-to-new": "새 공용 컬렉션에 추가",
 	"gather-add-to-collection-summary": "$1을 콜렉션에 추가 시키시겠습니까?",
 	"gather-add-to-collection-confirm": "콜렉션에 추가",

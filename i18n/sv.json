@@ -6,7 +6,8 @@
 			"Jopparn",
 			"WikiPhoenix",
 			"Josve05a",
-			"Rockyfelle"
+			"Rockyfelle",
+			"Ainali"
 		]
 	},
 	"gather": "Samla in",
@@ -28,6 +29,9 @@
 	"gather-lists-show-collection": "Vill du göra listan \"$1\" av $2 offentlig igen?",
 	"gather-lists-show-success-toast": "Listan \"$1\" gjordes offentligt igen.",
 	"gather-lists-show-failure-toast": "Kunde inte visa listan \"$1\".",
+	"gather-all-collections": "Senaste",
+	"gather-collection-random-title": "Slumpsidor",
+	"gather-collection-edited-title": "Nyligen redigerade",
 	"gather-editfeed-show": "Visa",
 	"gather-editfeed-title": "Redigeringar av sidor i mina samlingar",
 	"gather-editfeed-empty": "Det har inte gjorts några nyliga ändringar på några sidor i denna samling.",
@@ -36,9 +40,12 @@
 	"gather-edit-collection-heading": "Redigera samling",
 	"gather-edit-collection-label-name": "Namn",
 	"gather-edit-collection-label-description": "Beskrivning",
+	"gather-edit-collection-label-private": "Privat samling",
 	"gather-edit-collection-save-label": "Spara",
 	"gather-edit-collection-title-label": "Redigerar samling",
+	"gather-edit-collection-settings-title-label": "Samlingsinställningar",
 	"gather-edit-collection-clear-label": "Rensa",
+	"gather-edit-collection-related-pages": "Relaterade sidor",
 	"gather-delete-collection-confirm": "Är du säker på att du vill radera denna samling?",
 	"gather-delete-collection-heading": "Radera samling",
 	"gather-delete-collection-delete-label": "Ta bort",
@@ -52,6 +59,7 @@
 	"gather-collection-member": "Är medlem i samlingen.",
 	"gather-collection-non-member": "Är inte medlem i samlingen.",
 	"gather-collection-owner-text": "En samling {{GENDER:$2|av}} $1",
+	"gather-tutorial-dismiss-button-label": "Okej",
 	"gather-create-new-button-label": "Skapa",
 	"gather-create-collection-button-label": "Skapa en samling",
 	"gather-add-new-placeholder": "Namn på samlingen",
@@ -110,5 +118,6 @@
 	"gather-menu-guider": "Tryck på menyikonen för att ta en titt på din nya samling.",
 	"apihelp-query+listmembership-example-1": "Kontrollera om <kbd>Page</kbd> är på bevakningslistan.",
 	"gather-view-collection": "Visa samling",
+	"apihelp-query+listpages-paramvalue-dir-ascending": "Normal.",
 	"gather-main-menu-new-feature": "\"Nytt!\" Kolla på dom nya favorit ämnena av {{SITENAME}} läsare eller skapa din egen kollektion."
 }
