@@ -127,7 +127,7 @@ class ApiEditList extends ApiBase {
 		$isNew = $listId === null;
 		$isWatchlist = $listId === 0;
 
-		$dbw = wfGetDB( DB_MASTER, 'api' );
+		$dbw = wfGetDB( DB_MASTER );
 		$logEventName = false;
 
 		if ( $isNew || $isWatchlist ) {
