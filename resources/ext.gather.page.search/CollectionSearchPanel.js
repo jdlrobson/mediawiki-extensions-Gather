@@ -2,7 +2,7 @@
 
 	var Panel = M.require( 'mobile.startup/Panel' ),
 		Icon = M.require( 'mobile.startup/Icon' ),
-		SearchApi = M.require( 'mobile.search.api/SearchApi' ),
+		SearchGateway = M.require( 'mobile.search.api/SearchGateway' ),
 		SEARCH_DELAY = 200,
 		CollectionPageList = M.require( 'ext.gather.page.search/CollectionPageList' ),
 		CollectionSearchPanel;
@@ -44,7 +44,7 @@
 			var self = this;
 			this.query = '';
 			// FIXME: In future we'll want to use CollectionApi for this
-			this.api = new SearchApi();
+			this.gateway = new SearchGateway( new mw.Api() );
 			this._members = {};
 			$.each( options.pages, function ( i, page ) {
 				self._members[page.title] = true;
@@ -162,14 +162,16 @@
 			this.query = query;
 
 			if ( query !== this.lastQuery ) {
-				this.api.abort();
+				if ( self._request ) {
+					self._request.abort();
+				}
 				clearTimeout( this.timer );
 
 				if ( query.length ) {
 					this.$( '.spinner' ).show();
 
 					this.timer = setTimeout( function () {
-						self.api.search( query ).done( function ( data ) {
+						self._request = self.gateway.search( query ).done( function ( data ) {
 							// check if we're getting the rights response in case of out of
 							// order responses (need to get the current value of the input)
 							if ( data.query === query ) {
