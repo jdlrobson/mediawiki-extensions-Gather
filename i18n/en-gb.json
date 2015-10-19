@@ -5,7 +5,8 @@
 			"Karthik3377",
 			"Jagwar",
 			"Shirayuki",
-			"Aursani"
+			"Aursani",
+			"Macofe"
 		]
 	},
 	"gather-edit-collection-label-name": "Name",
@@ -14,7 +15,7 @@
 	"gather-collection-content-tutorial-heading": "Start a collection of your favourite interests that you can bookmark for later or share with others.",
 	"gather-loginpage-desc": "With Collections you can create and share lists of your favourite pages.",
 	"gather-watchlist-title": "Watchlist",
-	"gather-read-more": "وڌيڪ پڙهو",
+	"gather-read-more": "Read more",
 	"gather-edit-button": "Edit",
 	"apihelp-query+lists-param-minitems": "குறைந்த பட்சம் இந்த பல பொருட்களை கொண்ட மட்டும் பட்டியல்கள் காட்டவும். (Watchlists அலட்சியம்.)",
 	"gather-main-menu-new-feature": "'''New!''' Check out the favourite topics of {{SITENAME}} readers or create a collection of your own."
