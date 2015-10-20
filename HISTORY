@@ -1,0 +1,567 @@
+==Gather 0.5.0==
+174c07c Commit extension boilerplate and existing code from github
+81c4818 Fix ResourceLoader paths
+7ead40a Fix missnamed variable on Collection
+ee2c09e Fix namespace references and errors
+6cae460 Fix icons not showing up in collection page
+e1219a1 Collection page: Make owner a link to profile
+76119e9 User icon as a span inside the user page link
+2d34351 Collection model is composed of CollectionItems
+b42bc26 Create store for retrieving list of collections
+48c017c Add text extracts support for collection items.
+eb9bc62 Show page image for items on collection page
+934ecde Add collections link to personal tools menu in alpha
+a57d6c6 Hygiene: fix whitespace and comments
+86645ff Rename onMobilePersonalTools method
+a5429d1 Hygiene: namespace php classes
+33510d8 Hygiene: Remove suffix from stores names
+17bcfe5 Hygiene: Remove suffix from view names
+3206e36 Hygiene: Rename UserNotFound to NotFound
+153c39b Hygiene: models\Collection shouldn't use stores\Collection
+41269f6 Fix collection owner link on collection view
+3340081 Get local url for collections link
+da4357d Update extension.json
+bc2e808 Set the collection id upon construction
+6fd6aff Add unit tests support
+5f2d81f Hygiene: Fix phpdoc on models\Collection constructor
+670db15 Tweaks for labs deployment:
+02c1ea3 Remove dependency from special.minerva styles
+9e7c4bf Add warning to translators that this feature is experimental.
+9bfe5b5 Style: Adjust margin for collections list items
+5cc6a64 Hygiene: Collection doesn't need to use stores
+e0ade0f Collections list collections show image
+01dd754 Hygiene: Don't assume, that all pages has text extracts
+ed224ad Split the Collection model and add JSON serialization
+37ca052 Retrieve collections list from json store
+bf3d37d Hygiene: Rename views\ItemImage to views\Image
+5e1cb2d Add collection-owner icon
+e6e4ccb Move efGatherExtensionSetup() to Hooks.php to fix CI breakage
+e5c1414 Protect storage json pages for collections
+39d27f5 UserPageCollectionsList shows collection images
+f7f2197 Setup browser tests
+367ba74 Remove absent ExtensionFunctions
+3879197 Hygiene: Rename/reorganise modules
+32c70e3 Enable Gruntfile
+5680d05 Hygiene: Use one query to get all page images
+9d765fb QA: Add browser test for acessing private collection
+e3a41fe Do not load css via JavaScript
+50b0490 Hygiene: remove unused store
+312131b QA: Apply anonymous test to mobile site only
+5769e0c Tag anon browser test with chrome and beta.wmflabs
+e44273f Add json user page storage for a collection
+a8ca739 Hijack watchstar behaviour in alpha
+575db3d Make watch star work.
+9185cb1 Add api action for listing collections of a user
+57bd1f3 Hygiene: Collection stores as functions & fix docs
+e0e92af Hygiene: Clean up stores\UserPageCollectionsList
+c24fc70 Add collections interface smoke and mirrors
+1412e34 Add hasMember method and collection tests
+4cef503 Hygiene: Name scenarios
+5a39c4b QA: Log into mobile site
+cbeec2f QA: Provide step for logging into mobile site
+ae5ca32 Add new collection workflow
+840c349 Hygiene: Correct hook in extension.json
+e2240b6 Avoid API requests to page images / extracts when no titles
+9536193 QA: Update browser test step to use mobile site for logging in
+211526a More API smoke and mirrors - editing collection
+41b54db Add items to collection frontend changes
+d4135e4 Add edit button to a collection page
+dbfdd2e Introduce crazy temporary JSON API
+0663816 Improve styling of Special:Gather on Vector skin
+c5c8618 Hygiene: Update Gruntfile for jscs
+eedc921 Hygiene: Remove unused $wgGatherMobileSpecialPageResourceBoilerplate
+96dbb96 Register qunit tests and phpunit tests on Jenkins
+ee0bdf1 Hygiene: unset RL boilerplates after usage
+6294779 Implemented api action=editcollection
+72f2402 Hygiene: Fix use of __FILE__
+4f6ba42 Add watchlist to user collections list
+a5cf0d8 Add context to watchstar overlay
+269feeb Support creation of initial collection
+2699d91 Create no public lists view and render when user has no public lists
+5100a37 Hygiene: Make special pages group 'other'
+5b57b3c Show anon cta to anons again
+a7154ee Hygiene: transform messages to text
+d39d568 Hygiene: Renamed api action=editcollection -> editlist
+d235d24 Don't repeat Watchlist in existing collections
+669df3a action=query & list=lists implementation
+9172b7c API lists=lists tweaks
+9e67aca Implemented action=query & list=listpages
+0b7dfcd Create interface should be on a single line on smaller screens
+acf3d32 Hygiene: Cleanup how modules are added
+39eefb4 Hygiene: Remove dead css
+940ea76 Avoid flash of unstyled content
+ee3dc5f Make collection content overlay scrollable
+9dcd629 Fix visual feedback for creating a new collection
+84b56ca Hygiene: Cleanup unused template parameter
+1d46aa3 Fix edit/delete of collection
+997c2f0 Fix design issues (spacing and icon position)
+ec3b792 Make JSON importing more robust to avoid runtime errors
+de5b23f Do not open the editing overlay if the collection is a watchlist
+1bf31e7 Return status & ID on action=editlist
+2618cc8 Switch to API for editing a collection
+074d886 Switch to API for creating collections
+73f2f68 Hygiene: cleanup redundant else&return
+8b150a9 Switch to API for adding/removing pages from collection
+5c27bc7 Add ellipsis to collection titles that are too long
+438a3a6 Fix list selection on watchstar overlay
+d8b43f7 Fix long titles breaking layout on watchstar overlay
+11440c5 Special:Gather and collections overlay should use API
+9081e79 Create Special:Gather/<user>/<id> via api
+8233ef6 Database schema for gather lists
+53a2c44 Store API data in database
+636dffb Hygiene: Remove unused api module
+9b6fd48 Tweaks for watchlist overlay lit creation when keyboard is open
+ffe10f3 A user can delete their own collection
+4f5a58a Report duplicate list label name error
+f4841c9 Hygiene: Delete all code relating to user page storage
+258e49a Restore page images on Special:Gather
+fd58311 Implement privacy label on Special:Gather
+28d19e6 API ownershir/permissions implementation
+9710550 Disable privacy checkbox when editing a collection
+9e3c375 Fix side spacing for pre-content (page title)
+11a4f03 Make new collections public by default
+6b996f9 Added article counts for list=lists
+bd84a93 Added article counts and images, bugfixes
+47d570b Show all page images on a collection and extracts
+7762a5c I should be able to view other users public lists
+2554cac Fixed extract ['*'] bug
+722c231 Add "composer test" command to run phpcs, and fix warnings
+9b3f0a2 Default to 50 items when seeing collection
+10d07e7 Don't check watch status on special pages
+c8d0201 Create a base class for our content overlays
+d9f4508 Hygiene: Use one api request to access meta data and members for viewing collection
+c06b33b Unit tests and a number of minor bug fixes
+5947162 Enable Gather in beta site.
+e5a7462 Fix overflow and scrolling in the content overlay.
+4d5b59f API bugfix - doesn't show public list to another user
+3d58028 Ability to see if lists contain a title
+e6a3014 Bind events to collections overlay only when created
+a311d81 Fixed API ids+owner shows watchlist in list result
+cd5b933 API: list=lists & lstmode=allpublic gets all lists
+dfad42f Use Exception
+1f22bdb Reduce API requests on any given non-special page to 1
+f03557d Disable create collection button until text is entered
+863b7ea Proper check for label being a watchlist
+f0f64b6 Article Deletion handling
+aa775b8 Fixed API editlist incorrect new DB rows bug
+30ac2ad Prevent watchlist from becoming public
+bd04ba1 QA: Add edit collection browser tests
+56a589f Update gems and fix mediawiki-selenium version
+525fe09 Design tweaks for enter new collection
+6b27080 Fix api usage (was causing fetching a collection to fail)
+4fc6a89 Fix user passed to views\Collection
+3dd8f3d Return owner of collection in lstmode=allpublic
+d1ab195 Article reader sees guidance about creating a collection
+5d9ac6b Dont fight heading styles
+ebf3cfa Show collections menu item in beta
+d75e20e Design tweaks for watchstar overlay
+cf54e69 Center the page image thumbnail
+123d17d Add content class to error pages
+d7a5019 Only hit API once on special pages.
+285ed66 Hygiene: Remove inherited functions
+325309a Gather global collections page
+126a192 Remove traces of moderation name on files
+5c56d0f QA: Add browser test for anon user viewing a public collection
+b38a566 Extract WatchstarPageActionOverlay
+cf490d8 Use public not isPublic when rendering checkbox
+7da9680 Added gl_perm & gl_updated columns to gather_list
+13a79a3 Avoid flash of unstyled content
+7914b19 Up limit of collections shown to 50.
+f9adf68 API Unittests and bugfixes
+43a28bd Regression: address upstream change
+45b0c66 Add EventLogging to gather star workflow, error handling fixes
+c5bfd90 Address PHP notice due to use of this
+56bfdc6 Tweaks for Vector skin styling
+810874a Surface page images in collections
+9ffe01b Enable event logging on collections link
+47e38de API mode=hidelist & showlist for action=editlist
+f509f26 API added lists query mode=allhidden
+1b88bd4 Add a full stop to a message for consistency
+3a9a6d2 Admin can hide a public list in Special:GatherLists
+036453d Only init watchstar on a non special page
+3f7fe28 i18n: Add credits to i18n files
+108ae75 Run AbuseFilter filters against Gather titles and descriptions
+d534bf6 Inform the user when they are creating a public collection
+a9991f8 Surface last updated time in Special:GatherLists
+35aef28 Defer loading of collections till watchlist click
+9420e4a Resolve php and hhvm warnings on Special:GatherLists
+b9fa046 Kill PHP warning
+0ab9b08 Yuri's vanity + missing qqq for a rights msg
+b5ad08b Add Special:GatherLists/hidden
+44fe58b Update url schemas on Special:Gather
+3ffd833 Fixed lspnamespace param bug for list=listpages
+efc2274 Refactored abuse string testing code
+f75d422 Avoid fatal error when a collection has an image associated with it
+895160d Require gather-hidelist right for mode=allhidden
+e7563b3 Illustrate collections (suboptimal but good enough approach)
+a032418 Fix function on undefined when click "Add to collection"
+e17d56a Fix broken urls on Special:GatherLists
+786fa38 Register EL schema ResourceLoader module
+e7405c9 List creation and editing validation
+b89500d Fix actions on Special:Gather
+e80133e Regression: Fix typo, fix editing workflow
+7956418 Reworked database schema
+f87580f Don't show gather tutorial when showing edit tutorial overlay
+581820b Increase the description character limit to 280
+62099f5 Implemented length limitation for label & desc
+1213e2c QA: Browser test for edit workflow
+ab1f461 Don't call api on Gather watchstar load.
+2a68bfb Make collections overlay less glitchy
+5a2b791 i18n: Remove unnecessary quotes around user names
+24d6c70 Removed table autodrop if you have older schema
+596360b Only show tutorial on main namespace
+2dfcae0 Collection item cards are responsive (tablet)
+67ad30a Hide edit and delete buttons in Vector whilst they are broken
+37f228e Style: Spacing issue in vector styles
+1efc92a Fix spacing of content on tablet
+ad2953c Background size of collection images doesn't work properly.
+779db88 Log anon watchstar clicks to schema
+dae5a6d blocked users cannot manipulate collections
+aa4ef82 Fixing isBlocked() on ApiEditList
+23af469 lstprop=owner and a few bug fixes
+cbe27e1 Don't throw a plain \Exception
+0424819 Use User::equals()
+ccbd6b4 Don't access context in SpecialPage::__construct(), it's not set yet
+2b2be96 Rework init script for Special:Gather
+3b123ba Fix url schemas
+7961eed Use ResourceLoaderImageModule's CSS selector templates
+e950043 Get rid of 'type' stuff in ResourceLoaderImageModule
+9e4a4dc Fix special page names on Special:SpecialPages
+d05f375 Hygiene: Fix js linting, jsdocs and qunit
+d69e14b Add a link to Special:GatherLists to view hidden lists
+a8225a8 Always do an action if schema.log() finished
+277afc3 Prevent tutorial from showing if user clicks watchstar prior to load
+f213b31 Force labels to comply with the Title rules
+26a1bfe Don't let someone spoof another users collection
+3783915 Hygiene: Improve Collection::isOwner
+1b77e1d Add collections icon to menu
+1dbbc3a Collection::newFromApi Make user optional
+6ec45bc Add pagination to Special:GatherList
+a531f52 Add pagination on Special:Gather for list of collections
+bdf55e5 Pagination of collection itself
+0586c47 Fix PHP error for non-initialized variable
+48a6460 Fix meta tags for collections
+970aa47 Correct the title used in Special:CheckUser for abuse filter rule matches
+b52e084 paginate the content overlay list of collections
+9088ae6 Fix overriding of vector styles in resources definition
+dc42744 Hygiene: Remove empty anchor tag
+9750353 Add missing QQQ codes
+0a616ad Qunit core tests borked b/c missing resource dependency
+399a312 Abuse the hook to add all icons to Minerva
+eba9c97 Update watchstar correctly
+b80aa23 Fix error handling for edit workflow
+41f534f Swap ordering of columns in GatherList
+080340e Don't go flaking my heart on images
+0f9ba67 i18n: articles -> pages
+ce0919f Uppercase for proper noun in apihelp-gather-description
+5db8e52 Add gather-anon-view-lists to valid login-error messages
+edf700c Tablet styles for Special:Gather/by/User
+55321e9 Hygiene: Merge .collection-cards and .collection-items
+baf295b Up limit of collections listed in overlay
+a4897c6 Link tweakage - point name to user's collections
+417b35d Hygiene: Add support to Collection model for hidden status
+ebecf12 Hygiene: Consistent use of global php classes
+57295f7 Add ogimage tag
+dbad336 Special Edit feed
+75d3223 Hygiene: Remove dependency on mobile watchstar
+e08a8ae Redo watchstar creation so inside container
+948df66 Correction to ext.gather.api module
+87241d4 Hygiene: Create separate module for initialisation
+9760d69 Hygiene: Fancy string generation on collection tests
+447f51d Remove outline from collections watchstar
+d74ec56 Don't show collection tutorial on the main page
+93e7f15 Better explanations in error messages
+ae1af61 Hygiene: Introduce ReportTableRow view
+375f326 Make Special:GatherLists render through a view
+ec6b822 Change "feeds" to "Edits to pages in my collections"
+02decbf Fix long collection names without spaces breaking overlay
+d06bb34 Avoid fatals on Special:GatherEditFeed
+f962acf Don't load icons twice
+913c628 Edit collection overlay allows you to manage existing members
+67dda51 Tools: Don't force tests to validate to JSDoc rules
+227b452 Do not show title at top of Gather pages.
+6be22f8 Use button with spinner for create collection button
+8780a1d Add ability to remove/add new members to a collection via search
+dc17bb9 Add a tag showing privacy status
+3ed7017 Fix schema for GatherClicks
+00eaf9d Add description of Gather for Special:UserLogin
+3c55479 Hygiene: Correctly identify the RL module name for plus icon
+5e8f6b0 Point at hamburger icon when a collection has been setup.
+5c6a4f7 When a user clicks on hamburger after adding to a collection show new icon
+261ea67 Deal with inconsistent API response and infinite spinner
+4cbbec2 Apply security fix adding CheckUser support
+23b9165 Add i18n messages for login signup
+ed80eb9 Prevent auto-reopening of collection overlay
+7f9dc1c Fix jscs coding style issues
+50f5d47 Make search feel smoother
+92fef01 Fix scrolling of main page on iOS 8 modals
+87c3250 Remove privacy tag from public collection
+57009ca Truncate edit overlay title where necessary
+8eb78a0 Show pages outside main namespace
+f895848 Don't wipe out all the minerva specific styles
+c3eab1f Revert "Don't wipe out all the minerva specific styles"
+e3f3b4d Skin styles done the proper way
+15386ce Don't show Delete button on a collection page
+1913b1e Open search interface full screen when focused
+8ec6a16 Add clear button to search within editor overlay
+e23e2ae Add route for Special:Gather/by/
+a2ed219 Hygiene: Extract image to thumbnail to reusable method
+d181cee Add meta tags for when sharing /by/User
+cd23a6f Login messages: Add support for MobileFrontend loginpage
+a78fd39 Hygiene: Refactor JS code for hiding/showing collections
+8b268ea Error in regex broke User lists pages
+4b3f282 Differentiate between html <title> and page title on php views
+6f20a8b Make Special:Gather show pages for that user
+cc00118 Redirect to canonical url for Gather pages
+b2113ce Hygiene: Make it possible to edit a collection from any page
+89715d3 Hygiene: Split out dialog from collection delete overlay
+62e00eb Swap X button for arrow for editor overlay
+ae96178 Make the private checkbox to be a public checkbox
+31ceebc Return listpages results in query object
+4629970 Correct error handling for hide/show admin actions
+46cf90a Support making collections private
+1762e0a Add special page alias for Special:GatherEditFeed
+114ddb5 Adjust messages for empty collections based on user viewing it
+05bc165 Adjust input based on available size
+bc0c78f Update for core API change
+b982256 Correctly identify collections as hidden
+bedf8ef Add isset checks for array in CollectionsList
+73a252c Add url Special:Gather/id/{id} number
+f3f1e7f Make edits to title and description instanenous
+21c7ef1 Change button label for edit button in edit collection overlay
+0c10b49 Editing shouldn't make a collection private
+b8a1366 Add placeholder for admin moderation expectations to Special:GatherLists
+09a3142 New collection opens collection editor interface
+13aa0d6 Do not use a url for the "delete collection" confirmation dialog
+a4295e8 Notify user when their collection is hidden or unhidden
+1fb4946 Add flag collection button and confirm overlay
+d37de3c Don't surface 'public' property in addition to 'perm'
+236185e Hygiene: Fix jscs issues in Gather
+2f82e91 Always point to collections menu item when creating a collection
+fb82051 Deleting collection: hide dialog when finished, toast on refresh
+18812b0 Design: Improve spacing of content overlay on phones
+9205cd1 Fix flag button, stop unnecessary API request
+3013f4a Save changes to members of collection only when done clicked
+90e4d30 i18n: Tweaks
+1fcf3c5 i18n: Specify content language directions
+ca76faa Show hide button on collection itself
+d751269 Switch URL used for a collection
+901f954 Stop Gather from erroring
+840eb50 Prevent multiple clicks to flag and detach from dom on confirmation
+85339b8 hygiene: Consistent collection url generation
+fb67a12 Switch URL used for collection in moderation notification
+6724124 Making the Gather login and signup messages work in standard way
+c53a5c8 Update how deleted pages behave
+d5b7044 Write log entries for showlist and hidelist to Special:Log
+23b9539 When editing collection: Done -> Save
+f17a54d Hygiene: Remove outdated comment
+45e25ee Make it clearer collections are personal opinion
+de39c69 Hygiene: Remove the 'options' argument from preRender and postRender functions
+d84bfdc Render Collection list items with templates.
+a53dc39 Explicitly define module position
+5b25b90 Hygiene: make resource names consistent with their paths
+a91710a Hygiene: Correct API module name inconsistency
+897de81 QUnit tests: Don't hit the API
+9602af7 Reflect some upstream changes
+848407e Gather as desktop beta feature infrastructure
+b860ac9 Add missing images
+7175d3e Fix error in API request to hide
+ffdd05c Fix php fatal error on empty collection message
+19cb16f Hygiene: Remove erroneously added blank file
+e5f522b Add overlay class to confirm overlay
+9b3ddd6 Hygiene: Split SpecialGather resource loader modules
+5c6a2c2 Fully render collections list with templates
+b0224f1 Hygiene: Refactor collection flag button to be an actual view
+0b72414 Reveal flag icon on Vector
+24ab8dc i18n: Add a full stop to the end of a sentence
+cdccdb1 Hygiene: Simplify CollectionPageList
+5eee234 i18n: Consistent use of <br /> in en.json
+acd19c1 i18n: Fixes for the Gather-moderation-hidden-email-body message
+fc4655f Make Special:GatherLists responsive
+e23b4f8 Implements prop=listmembership
+efdfef1 Correct API inconsistency in response
+654e752 Unify collections url
+27da484 Search field with placeholder text when editing collection
+364c417 i18n: Update i18n message to link to collection
+17ff7e1 Add ToastPanel
+3947e76 Pagination of collections list with infinite scrolling
+d0e8aa7 Show loading screen while the collection editor loads
+15e1a8e Only reload page after CollectionEditOverlay if page is special.
+a2c5922 Re-add future toast to show when page reloads after editing collection
+d0db18c Fix re-enable form after save failed
+7cdd573 QA: Fix watchstar selector
+bc7bf6c Create collection button on Special:Gather
+9939e04 Ensure collection members can be removed
+941b40b Fix delete overlay
+978dd05 QA: Fix Gather edit test
+7437bc2 Allow editing of title/description of hidden collections
+7a65264 Use the CollectionsList model to generate Special:GatherLists
+e3828c6 Fix exception if image passed to models is a boolean
+8d77ca5 When creating a collection show CTA && toasts after edited
+136afaa Make dependencies explicit
+5bb423a Display a message for no search results
+96ec64f Migrate Special:GatherLists code to Special:Gather
+9646a4d Fix hidden collections view of Special:Gather/all/hidden
+f963211 Fix the create collection button
+aa2faa1 Improve star styles on phones
+cd74fab Improve spacing in the `add to collection` overlay.
+03ade5e Don't auto-zoom on input box in add collection
+03d03da Updates to editor search panel styling and behaviour
+32b6429 Add extension.json, empty PHP entry point
+7b531e8 QA: Fix failing browser tests
+d8fff3d Fix confirmation message styling inside overlay
+368b15f Fix duplicate 'new' tag and menu item CTA
+4256834 Go to main pane after selecting element on a search
+31c0c8b Get rid of MOBILEFRONTEND constant
+72d02ca Adjustments to how we load ext.gather.menu.icon
+940f3f3 Empty search suggests searching instead of /no results/
+efcfcb9 Add mediawiki.ui.checkbox module to style edit checkbox
+8acdd20 Change search input placeholder on editing collection
+36a20cc Make dependencies explicit
+2da3592 Invert placeholder text on create collection input
+05ff9e1 QA: Fixes to browser tests
+5f0734e Use MobileFrontend toast module to show toasts on page reload
+a5cfcca Fix floating border at the bottom of collections list column
+11200bb Update collection information when created and edited.
+41d551e UX changes to the collection editing overlay
+1c7ab8f Add GENDER support in gather-collection-owner-text
+ee1e690 Fix false input style for select field on Special:GatherEditFeed
+82ddc09 i18n: Reword message to remove "click here"
+6d7def1 QA: Use beta for Gather tests, make rule more generic
+bc205e8 Fix warnings in Gather due to non-explicit position
+6c25ddb Ensure collection items are rendered correctly in rtl languages
+3410302 Set manifest_version in extension.json
+4ed786e Reflect upstream infrastructure change
+df8070a Add UserMerge hooks for gather_list.gl_user
+0f4cadc Fix pagination on moderation view
+39aa968 QA: Support tag for temporarily skipping tests
+75809a9 Remove button with spinner to fix iOS tap not capturing
+9d1ab00 Update mediawiki/codesniffer to 0.2.0 and fix issues
+46ce84d Fix headers on desktop when editing a collection
+542473a Edit icon goes in title when description is empty.
+72f235b Add sort "namespace,title" sort option for listpages
+b50d73f Use mw-ui button with spinner for the create collection button
+c4e75bd Track collection item counts
+3ff3fd9 QA: Fix create collection selector
+3a23800 Add (gli_gl_id, gli_namespace, gli_title) index
+e416bb5 Filter lists by item count
+7698e9d Don't load Gather on all pages
+796051b Hygiene: Refactor how we generate collections from api
+0e9a2c5 build: Add explicit dependency upon grunt-cli
+85d8b01 Update MobilePersonalTools hook handler
+d8aae0e The random collection
+0150620 Make the tests run in Jenkins
+2072bb7 Show related pages when editing 1 to 3 items collections
+0305d23 i18n: Add gender support to no public view
+8506f99 Fix Gather editor interface
+681f298 Fix ios zoom issue when selecting member for collection
+629a00b Gather: message enhancement.
+7538c14 Hygiene: Separate watchstar from content overlay
+c44f1b4 Delegate watchstar loading to Gather
+2944763 Re-enable Gather on beta labs when experiment is not setup
+3780e40 Fix create collection workflow
+08fced8 Encapsulate list item count updates in a transaction
+3b409c5 Add the public collection
+af08a47 Collections link for anon takes user to public view.
+aca374f Hygiene: Add explore collections list page
+a7a86d8 Render tabs to my collections and active collections
+66ca5dd Add recently edited collection
+b6f4498 Revert "Collections link for anon takes user to public view."
+cda0b21 Revert "Render tabs to my collections and active collections"
+2320d22 Pass skin to PageActionsOverlay.
+1c1f658 Work around Mustache problems
+168b95c Correctly insert collections into the main menu
+4364d72 Extend the core TemplateParser
+a8c262e Collections link for anon takes user to public view.
+9844ae3 On bad /explore/ urls render page not found
+194da91 Fix collections list pagination
+863c1b0 build: Updating development dependencies
+ce2d1bf Add a wfWaitForSlaves call in the count update loop
+45d1b55 Render tabs to my collections and recent collections
+57e1553 Show correct label for the pagination button
+47b1655 Make sure mode is always set to avoid php warnings
+3f975b0 Fix horizontals scroll on collections
+554216e Make collections link show on special pages
+e95ecc2 Fix api call for recent/active collections
+0e3f141 Tools: Make it possible to generate qunit coverage report
+a598668 Ensure correct icon in used in edit collection overlay
+d16fbda Update dependency
+fe12277 Fix query-continue in Gather
+f214773 i18n: Use same title across all collections
+caa60d5 Fix Gather:Special/all/recent pagination
+21fdb8e QA: Disable onboarding code for all Gather tests
+ea41c6a Changes to collection edit interface
+79c0620 Onboarding tutorial for first time gatherers
+1da4bcd Delay tutorial so it is more noticeable to the user
+617c27a Don't show collections link in stable
+923c524 Fix broken pagination when JS is disabled
+f0e2894 Update to new mediawiki selenium gem
+ff02f00 QA: Add browser test for onboarding tutorial
+f818473 Add close icon to the collections content overlay
+352bbfb Add API help messages
+fcd672e Change "userright" to "user right"
+18930b1 Fix tooltip for hide button
+dfd993a Do not show hide button on hidden/private collections
+83b9f61 Introduce tests for pagination
+06ee1d8 Implement flagging backend
+28838a6 Fix some API doc problems
+5434499 "Owner" spelling in a message
+2e592b4 Add i18n linting
+dc43fe8 i18n: Definition list in apihelp using wiki markup
+7ebbdf9 i18n: Fix wording of Gather CTA tipsy
+3c0a1f3 Close tutorial when clicking in to search input * Includes upstream fixes for PointerOverlay in MF
+2122b83 Allow user to add to more than 50 collections from page
+18ddf3b Advertise the collections feature
+0e045f2 i18n: Add missing qqq code
+c2c8ec2 Make watchlist bold in first onboarding screen
+d84b0b1 Reload collection when exiting overlay after making changes.
+6f9a61a Regression: correctly position the .collection-confirmation-overlay
+804d06a [QA] Check for user's own lists in browser tests
+bedd3b6 QA: All public collection steps should use a brand new collection
+1821b3a QA: Add browser test for changing a collection name
+2810013 More padding to check icons in collection overlay
+8cfd0b4 QA: Fix menu browser test
+4fd8c8e Render collections via template
+77e4e32 Hygiene: Update module name usage
+36c1826 Avoid spamming mailing list by skipping
+bdd62de Avoid undefined index error
+0e78c61 Revert "Avoid spamming mailing list by skipping"
+f53ceef QA: Use the mobile-only host when testing beta
+d47ec4d Tweak versioning for jscs to avoid errors
+3bf6d73 Revert "Extend the core TemplateParser" and similar related workarounds
+28c6273 Remove useless "targets" parameter in module definitions
+2a0b033 Unhide the 'Collections' menu item
+b2289e6 QA: Tweak tests to work with user_factory
+c6f6ecc Fix template for collection item
+001c89d Run Gather browser tests on various commits
+2185b61 QA: More integration tests on each commit
+251c210 Correctly identify LocalSettings.php as php
+fde4d86 QA: Check login succeeded
+5ef2936 Add Persian special pages aliases
+ffa8dc1 QA: Avoid flakiness in various test steps due to race conditions
+2371119 Hygiene: Gather shouldn't use getCurrentPage
+962caa6 Follow up change in MobileFrontend
+4e3168e build: Updating development dependencies
+2e317f8 QA: Add sleep step to workaround test flakiness
+e7d58de Hygiene: Pass skin from initialisation script to things that need it
+d8ea711 Register schemas using hooks not via globals
+08efa3c Don't log events during unit tests
+f585cce RuboCop setup
+e784581 Fixed Style/TrailingBlankLines RuboCop offense
+0b1f454 Remove mobile.experiments in favor of mediawiki.experiments
+f1a6763 Update dependency and fix browser tests
+e4c5d63 Fixed Style/StringLiterals RuboCop offense
+78c47e1 Fixed Style/SpaceInsideParens RuboCop offense
+d7f5d82 Fixed Style/SpaceAroundOperator RuboCop offense
+53b7d0a Fixed Style/SpaceAfterColon RuboCop offense
+acd99b6 Fixed Style/RegexpLiteral RuboCop offense
+c41d00c Fixed Style/IndentationWidth RuboCop offense
+ea33031 Fixed Style/HashSyntax RuboCop offense
+b24a278 Fixed Style/AlignParameters RuboCop offense
+c8520ef Fixed Metrics/LineLength RuboCop offense
+69d7617 Get rid of deprecated module warnings
+b34b037 Hygiene: Gather should use SearchGateway
+671487e Update mediawiki-codesniffer and parallel-lint settings
+5fd7830 Remove bogus wfGetDB() param
+8b80cd8 build: Updating development dependencies
+3834b55 Switch default branch from 'master' to 'dev'
