@@ -1,6 +1,6 @@
 {
 	"name": "Gather",
-	"version": "0.5.0",
+	"version": "0.5.1",
 	"author": [
 		"Jon Robson",
 		"Joaquin Hernandez",
@@ -125,6 +125,7 @@
 			"class": "ResourceLoaderImageModule",
 			"selector": ".mw-ui-icon-{name}:before",
 			"images": {
+				"search": "resources/ext.gather.icons/magnifying-glass.svg",
 				"collections-read-more": "resources/ext.gather.icons/next.svg",
 				"collection-owner": "resources/ext.gather.icons/user.svg",
 				"collection-flag": "resources/ext.gather.icons/flag.svg",
@@ -286,7 +287,7 @@
 				"mobile.user",
 				"ext.gather.api",
 				"ext.gather.collection.base",
-				"mobile.settings",
+				"mediawiki.storage",
 				"skins.minerva.icons.variants.js",
 				"ext.gather.watchstar.icons",
 				"ext.gather.buttonspinner"
@@ -491,10 +492,9 @@
 				"mobile",
 				"desktop"
 			],
-			"@doc": "FIXME: skins.minerva.beta.images should not be a dependency",
 			"dependencies": [
+				"ext.gather.icons",
 				"ext.gather.api",
-				"skins.minerva.beta.images",
 				"mobile.pagelist",
 				"ext.gather.watchstar.icons",
 				"mobile.search.api"

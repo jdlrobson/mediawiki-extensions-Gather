@@ -1,3 +1,6 @@
+==Gather 0.5.1==
+543bd47 Use latest settings API. No longer depend on MobileFrontend
+f48afe7 Don't depend on skins minerva module referred to in FIXME
 ==Gather 0.5.0==
 174c07c Commit extension boilerplate and existing code from github
 81c4818 Fix ResourceLoader paths

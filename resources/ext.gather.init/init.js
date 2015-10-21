@@ -9,7 +9,6 @@
 		PageActionOverlay = M.require( 'mobile.contentOverlays/PointerOverlay' ),
 		WatchstarPageActionOverlay = M.require( 'ext.gather.watchstar/WatchstarPageActionOverlay' ),
 		Tag = M.require( 'ext.gather.watchstar/Tag' ),
-		settings = M.require( 'mobile.settings/settings' ),
 		settingOverlayWasDismissed = 'gather-has-dismissed-tutorial',
 		mainMenuPointerDismissed = 'gather-has-dismissed-mainmenu',
 		user = M.require( 'mobile.user/user' ),
@@ -42,7 +41,7 @@
 			// Don't show if the overlay is open as user could have clicked watchstar
 			!$( 'html' ).hasClass( 'gather-overlay-enabled' ) &&
 			// Tutorial has never been dismissed
-			!settings.get( settingOverlayWasDismissed ) &&
+			!mw.storage.get( settingOverlayWasDismissed ) &&
 			// Feature flag is enabled
 			mw.config.get( 'wgGatherShouldShowTutorial' )
 		) {
@@ -57,7 +56,7 @@
 	 * @ignore
 	 */
 	function overlayDismissed() {
-		settings.save( settingOverlayWasDismissed, true );
+		mw.storage.set( settingOverlayWasDismissed, true );
 	}
 
 	/**
@@ -98,11 +97,11 @@
 	 * @ignore
 	 */
 	function revealCollectionsInMainMenu() {
-		if ( !settings.get( mainMenuPointerDismissed ) ) {
+		if ( !mw.storage.get( mainMenuPointerDismissed ) ) {
 			mainMenu.advertiseNewFeature( '.collection-menu-item',
 				mw.msg( 'gather-main-menu-new-feature' ), skin ).done( function ( pointerOverlay ) {
 					pointerOverlay.on( 'hide', function () {
-						settings.save( mainMenuPointerDismissed, true );
+						mw.storage.set( mainMenuPointerDismissed, true );
 					} );
 				} );
 		}
