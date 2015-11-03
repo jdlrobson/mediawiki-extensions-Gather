@@ -1,10 +1,9 @@
 ( function ( M ) {
 
-	var CollectionsApi = M.require( 'ext.gather.api/CollectionsApi' ),
+	var CollectionsGateway = M.require( 'ext.gather.api/CollectionsGateway' ),
 		CollectionFlagOverlay = M.require( 'ext.gather.collection.flag/CollectionFlagOverlay' ),
 		Button = M.require( 'mobile.startup/Button' ),
 		Icon = M.require( 'mobile.startup/Icon' ),
-		api = new CollectionsApi(),
 		CollectionFlagButton;
 
 	/**
@@ -13,7 +12,11 @@
 	 * @extends Button
 	 */
 	CollectionFlagButton = Button.extend( {
-		/** @inheritdoc */
+		/**
+		 * @inheritdoc
+		 * @cfg {Object} defaults Default options hash.
+		 * @cfg {mw.Api} defaults.api
+		 */
 		defaults: {
 			tagName: 'div',
 			additionalClassNames: new Icon( {
@@ -36,6 +39,7 @@
 		 */
 		onCollectionFlagButtonClick: function ( ev ) {
 			var flagOverlay,
+				gateway = new CollectionsGateway( this.options.api ),
 				$flag = this.$el;
 			ev.stopPropagation();
 			ev.preventDefault();
@@ -43,7 +47,7 @@
 			if ( !$flag.hasClass( 'disabled' ) ) {
 				// Prevent multiple clicks
 				$flag.addClass( 'disabled' );
-				api.getCollection( this.options.collectionId ).done( function ( collection ) {
+				gateway.getCollection( this.options.collectionId ).done( function ( collection ) {
 					flagOverlay = new CollectionFlagOverlay( {
 						collection: collection
 					} );

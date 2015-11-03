@@ -3,7 +3,7 @@
 	var CollectionsList,
 		InfiniteScroll = M.require( 'mobile.infiniteScroll/InfiniteScroll' ),
 		icons = M.require( 'mobile.startup/icons' ),
-		CollectionsApi = M.require( 'ext.gather.api/CollectionsApi' ),
+		CollectionsGateway = M.require( 'ext.gather.api/CollectionsGateway' ),
 		toast = M.require( 'mobile.toast/toast' ),
 		View = M.require( 'mobile.view/View' ),
 		Icon = M.require( 'mobile.startup/Icon' ),
@@ -14,6 +14,8 @@
 		 * @inheritdoc
 		 * @cfg {Object} defaults Default options hash.
 		 * @cfg {Skin} defaults.skin the skin the overlay is operating in
+		 * @cfg {mw.Api} defaults.api
+		 * @cfg {String} defaults.userIconClass user profile icon
 		 */
 		defaults: {
 			skin: M.require( 'skins.minerva.scripts/skin' ),
@@ -30,13 +32,13 @@
 			image: mw.template.get( 'ext.gather.collections.list', 'CardImage.hogan' )
 		},
 		/** @inheritdoc */
-		initialize: function () {
+		initialize: function ( options ) {
 			View.prototype.initialize.apply( this, arguments );
 			// After the initial render initialize the infinite scrolling.
 			this.$pagination = this.$el.find( '.collections-pagination' );
 			if ( this.$pagination.length ) {
 				this._replacePaginationControls();
-				this.api = new CollectionsApi();
+				this.gateway = new CollectionsGateway( options.api );
 				this.infiniteScroll = new InfiniteScroll();
 				this.infiniteScroll.setElement( this.$el );
 				this.infiniteScroll.on( 'load', $.proxy( this, '_loadCollections' ) );
@@ -110,12 +112,12 @@
 		 */
 		_apiCallByMode: function () {
 			if ( this.options.mode === 'recent' ) {
-				return this.api.getCollections( null, $.extend( this.continueArgs, {
+				return this.gateway.getCollections( null, $.extend( this.continueArgs, {
 						lstminitems: 4,
 						lstmode: 'allpublic'
 					} ) );
 			} else {
-				return this.api.getCurrentUsersCollections( this.options.owner, null, this.continueArgs );
+				return this.gateway.getCurrentUsersCollections( this.options.owner, null, this.continueArgs );
 			}
 		},
 		/**

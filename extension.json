@@ -184,8 +184,8 @@
 				"mobile.startup"
 			],
 			"scripts": [
-				"resources/ext.gather.api/CollectionsApi.js",
-				"resources/ext.gather.api/RelatedPagesApi.js"
+				"resources/ext.gather.api/CollectionsGateway.js",
+				"resources/ext.gather.api/RelatedPagesGateway.js"
 			]
 		},
 		"ext.gather.collections.list": {

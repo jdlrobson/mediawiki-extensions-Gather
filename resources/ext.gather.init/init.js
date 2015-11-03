@@ -3,6 +3,7 @@
 
 	var $star, watchstar, pageActionPointer, actionOverlay,
 		bucket, useGatherStar,
+		CollectionsGateway = M.require( 'ext.gather.api/CollectionsGateway' ),
 		sampleRate = mw.config.get( 'wgGatherEnableSample' ),
 		CollectionsWatchstar = M.require( 'ext.gather.watchstar/CollectionsWatchstar' ),
 		Watchstar = M.require( 'mobile.watchstar/Watchstar' ),
@@ -128,6 +129,7 @@
 			$menuItem = revealCollectionsInMainMenu();
 
 		watchstar = new CollectionsWatchstar( {
+			gateway: new CollectionsGateway( new mw.Api() ),
 			page: page,
 			isAnon: user.isAnon(),
 			isWatched: $star.hasClass( 'watched' ),

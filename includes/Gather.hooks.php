@@ -285,7 +285,7 @@ class Hooks {
 
 		$modules['qunit']['ext.gather.api.tests'] = $boilerplate + array(
 			'scripts' => array(
-				'ext.gather.api/test_RelatedPagesApi.js',
+				'ext.gather.api/test_RelatedPagesGateway.js',
 			),
 			'dependencies' => array( 'ext.gather.api' ),
 		);

@@ -1,6 +1,5 @@
 ( function ( M, $ ) {
-	var Api = M.require( 'mobile.startup/api' ).Api,
-		RelatedPagesApi = M.require( 'ext.gather.api/RelatedPagesApi' ),
+	var RelatedPagesGateway = M.require( 'ext.gather.api/RelatedPagesGateway' ),
 		relatedPages = {
 			query: {
 				pages: {
@@ -29,18 +28,21 @@
 	} );
 
 	QUnit.test( 'Returns an array with the results when api responds', 2, function ( assert ) {
-		this.sandbox.stub( Api.prototype, 'get' ).returns( $.Deferred().resolve( relatedPages ) );
-		var api = new RelatedPagesApi();
-		api.getRelatedPages( 'Oh' ).then( function ( results ) {
+		var api = new mw.Api(),
+			gateway = new RelatedPagesGateway( api );
+		this.sandbox.stub( api, 'get' ).returns( $.Deferred().resolve( relatedPages ) );
+		gateway.getRelatedPages( 'Oh' ).then( function ( results ) {
 			assert.ok( $.isArray( results ), 'Results must be an array' );
 			assert.strictEqual( results[0].title, 'Oh noes' );
 		} );
 	} );
 
 	QUnit.test( 'Empty related pages is handled fine.', 2, function ( assert ) {
-		this.sandbox.stub( Api.prototype, 'get' ).returns( $.Deferred().resolve( emptyRelatedPages ) );
-		var api = new RelatedPagesApi();
-		api.getRelatedPages( 'Oh' ).then( function ( results ) {
+		var api = new mw.Api(),
+			gateway = new RelatedPagesGateway( api );
+
+		this.sandbox.stub( api, 'get' ).returns( $.Deferred().resolve( emptyRelatedPages ) );
+		gateway.getRelatedPages( 'Oh' ).then( function ( results ) {
 			assert.ok( $.isArray( results ), 'Results must be an array' );
 			assert.strictEqual( results.length, 0 );
 		} );
