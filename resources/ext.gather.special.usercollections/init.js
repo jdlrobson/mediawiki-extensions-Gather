@@ -6,7 +6,7 @@
 
 	$( function () {
 		new CollectionsList( {
-			skin: M.require( 'mobile.startup/skin' ),
+			skin: M.require( 'skins.minerva.scripts/skin' ),
 			el: $collectionsList,
 			enhance: true,
 			owner: owner,
