@@ -24,7 +24,7 @@
 					loadingOverlay.hide();
 					d.resolve(
 						new CollectionEditOverlay( {
-							skin: M.require( 'mobile.startup/skin' ),
+							skin: M.require( 'skins.minerva.scripts/skin' ),
 							collection: collection,
 							reloadOnSave: isSpecialPage,
 							showTutorial: showTutorial

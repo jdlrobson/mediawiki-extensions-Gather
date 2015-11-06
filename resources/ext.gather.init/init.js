@@ -13,8 +13,8 @@
 		mainMenuPointerDismissed = 'gather-has-dismissed-mainmenu',
 		user = M.require( 'mobile.user/user' ),
 		context = M.require( 'mobile.context/context' ),
-		skin = M.require( 'mobile.startup/skin' ),
-		mainMenu = M.require( 'mobile.head/mainMenu' ),
+		skin = M.require( 'skins.minerva.scripts/skin' ),
+		mainMenu = M.require( 'skins.minerva.scripts/mainMenu' ),
 		Page = M.require( 'mobile.startup/Page' ),
 		page = new Page( {
 			title: mw.config.get( 'wgPageName' ).replace( /_/g, ' ' ),
