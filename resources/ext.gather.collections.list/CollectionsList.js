@@ -16,7 +16,7 @@
 		 * @cfg {Skin} defaults.skin the skin the overlay is operating in
 		 */
 		defaults: {
-			skin: M.require( 'mobile.startup/skin' ),
+			skin: M.require( 'skins.minerva.scripts/skin' ),
 			collections: [],
 			// FIXME: Use the icon partials in server and client when supported in server templates.
 			userIconClass: new Icon( {
