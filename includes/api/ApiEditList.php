@@ -177,7 +177,8 @@ class ApiEditList extends ApiBase {
 
 					if ( $logEventName ) {
 						// do echo notification, unless the action was a noop
-						if ( class_exists( 'EchoEvent' ) && in_array( $mode, self::$permOverrideNotificationMap ) ) {
+						if ( class_exists( 'EchoEvent' )
+							&& array_key_exists( $mode, self::$permOverrideNotificationMap ) ) {
 							$eventType = self::$permOverrideNotificationMap[$mode];
 							// FIXME: better long term solution for generating collection urls needed
 							// Model currently handles it which is not accessible from here
