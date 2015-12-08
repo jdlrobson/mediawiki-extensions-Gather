@@ -1,3 +1,7 @@
+==Gather 0.6.0==
+e99c9ce build: Updating development dependencies
+0f9f4b4 Deprecation warnings in mobile beta
+6112cc5 Added Rakefile
 ==Gather 0.5.1==
 543bd47 Use latest settings API. No longer depend on MobileFrontend
 f48afe7 Don't depend on skins minerva module referred to in FIXME
