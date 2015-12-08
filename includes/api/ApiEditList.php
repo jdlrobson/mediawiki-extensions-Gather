@@ -164,7 +164,7 @@ class ApiEditList extends ApiBase {
 					$update['gl_perm_override'] = $permOverride;
 					$update = array_diff_assoc( $update, (array)$row ); // remove fields with no changes
 
-					$dbw->begin( __METHOD__ );
+					$dbw->startAtomic( __METHOD__ );
 					$this->updateRow( $dbw, $row, $update );
 					if ( $dbw->affectedRows() ) {
 						$logEventName = $mode;
@@ -173,7 +173,7 @@ class ApiEditList extends ApiBase {
 						array( 'glf_reviewed' => 1 ),
 						array( 'glf_gl_id' => $listId ),
 					__METHOD__ );
-					$dbw->commit( __METHOD__ );
+					$dbw->endAtomic( __METHOD__ );
 
 					if ( $logEventName ) {
 						// do echo notification, unless the action was a noop
@@ -198,10 +198,14 @@ class ApiEditList extends ApiBase {
 					}
 					break;
 				case 'flag':
-					$dbw->begin( __METHOD__ );
+					$dbw->startAtomic( __METHOD__ );
 					// lock list to avoid race condition with a show/hide/approve
-					$dbw->select( 'gather_list', 'gl_id', array( 'gl_id' => $listId ), __METHOD__,
-						array( 'FOR UPDATE' ) );
+					$dbw->select( 'gather_list',
+						'gl_id',
+						array( 'gl_id' => $listId ),
+						__METHOD__,
+						array( 'FOR UPDATE' )
+					);
 					$dbw->insert( 'gather_list_flag',
 						array(
 							'glf_user_id' => $user->getId(),
@@ -212,7 +216,7 @@ class ApiEditList extends ApiBase {
 						array( 'IGNORE' )
 					);
 					if ( !$dbw->affectedRows() ) {
-						$dbw->rollback( __METHOD__ );
+						$dbw->endAtomic( __METHOD__ ); // nothing changed
 						$this->dieUsage( "List already flagged by user",
 							'alreadyflagged' );
 					}
@@ -220,7 +224,7 @@ class ApiEditList extends ApiBase {
 						array( 'gl_flag_count = gl_flag_count + 1' ),
 						array( 'gl_id' => $listId ),
 						__METHOD__ );
-					$dbw->commit( __METHOD__ );
+					$dbw->endAtomic( __METHOD__ );
 					$this->setResultStatus( $row->gl_id, 'flagged' );
 					$logEventName = $mode;
 					break;
@@ -710,13 +714,13 @@ class ApiEditList extends ApiBase {
 				$res[] = $r;
 			}
 
-			$dbw->begin( __METHOD__ );
+			$dbw->startAtomic( __METHOD__ );
 			$dbw->insert( 'gather_list_item', $rows, __METHOD__, 'IGNORE' );
 			$dbw->update( 'gather_list',
 				array( 'gl_item_count = gl_item_count + ' . $dbw->affectedRows() ),
 				array( 'gl_id' => $listId ),
 				__METHOD__ );
-			$dbw->commit( __METHOD__ );
+			$dbw->endAtomic( __METHOD__ );
 		} else {
 			// Remove titles from the list
 			$linkBatch = new LinkBatch();
@@ -732,7 +736,7 @@ class ApiEditList extends ApiBase {
 			}
 			$set = $linkBatch->constructSet( 'gli', $dbw );
 			if ( $set ) {
-				$dbw->begin( __METHOD__ );
+				$dbw->startAtomic( __METHOD__ );
 				$dbw->delete( 'gather_list_item', array(
 					'gli_gl_id' => $listId,
 					$set
@@ -741,7 +745,7 @@ class ApiEditList extends ApiBase {
 					array( 'gl_item_count = gl_item_count - ' . $dbw->affectedRows() ),
 					array( 'gl_id' => $listId ),
 					__METHOD__ );
-				$dbw->commit( __METHOD__ );
+				$dbw->endAtomic( __METHOD__ );
 			}
 		}
 
