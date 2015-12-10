@@ -55,6 +55,8 @@
 		"GatherAlias": "Gather.alias.php"
 	},
 	"AutoloadClasses": {
+		"Gather\\EchoGatherModerationPresentationModel": "includes/EchoGatherModerationPresentationModel.php",
+		"Gather\\EchoGatherModerationHidePresentationModel": "includes/EchoGatherModerationHidePresentationModel.php",
 		"Gather\\Hooks": "includes/Gather.hooks.php",
 		"Gather\\UpdaterHooks": "schema/Updater.hooks.php",
 		"Gather\\models\\CollectionItem": "includes/models/CollectionItem.php",
