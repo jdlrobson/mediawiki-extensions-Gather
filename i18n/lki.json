@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lakzon"
+		]
+	},
+	"gather-lists-collection-description": "توضیحةل",
+	"gather-edit-collection-label-description": "توضیحةل",
+	"apihelp-editlist-param-description": "ثبت لیست توضیح"
+}
