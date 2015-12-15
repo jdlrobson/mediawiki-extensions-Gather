@@ -4,5 +4,6 @@
 			"Mirzali"
 		]
 	},
+	"gather-article-count": "$1 {{PLURAL:$1|pele|peli}}",
 	"apihelp-query+listpages-paramvalue-dir-ascending": "Normal."
 }

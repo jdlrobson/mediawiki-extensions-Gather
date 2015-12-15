@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Macofe"
+			"Macofe",
+			"Paucabot"
 		]
 	},
+	"gather-edit-collection-related-pages": "Pàgines relacionades",
 	"gather-watchlist-title": "Llista de seguiment",
 	"gather-lists-title": "Col·leccions",
 	"gather-read-more": "Llegir més",
