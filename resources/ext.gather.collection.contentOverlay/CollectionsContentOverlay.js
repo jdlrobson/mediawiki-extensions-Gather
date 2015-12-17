@@ -9,7 +9,6 @@
 		Button = M.require( 'mobile.startup/Button' ),
 		ToastPanel = M.require( 'ext.gather.toastpanel/ToastPanel' ),
 		toastPanel = new ToastPanel().appendTo( document.body ),
-		CollectionsApi = M.require( 'ext.gather.api/CollectionsApi' ),
 		CollectionsContentOverlayBase = M.require( 'ext.gather.collection.base/CollectionsContentOverlayBase' ),
 		ButtonWithSpinner = M.require( 'ext.gather.buttonspinner/ButtonWithSpinner' );
 
@@ -47,9 +46,10 @@
 		onExit: function () {
 			this.hide();
 		},
-		/** @inheritdoc */
-		hasFixedHeader: false,
-		/** @inheritdoc */
+		/**
+		 * @inheritdoc
+		 * @cfg {CollectionsGateway} defaults.gateway
+		 */
 		defaults: $.extend( {}, CollectionsContentOverlayBase.prototype.defaults, {
 			page: undefined,
 			/** @inheritdoc */
@@ -82,7 +82,7 @@
 		} ),
 		/** @inheritdoc */
 		initialize: function ( options ) {
-			this.api = new CollectionsApi();
+			this.gateway = options.gateway;
 			this.createButton = new ButtonWithSpinner( {
 				label: this.defaults.createButtonLabel,
 				additionalClassNames: 'create-collection',
@@ -159,7 +159,7 @@
 		_loadCollections: function ( username, page, qs ) {
 			var self = this;
 
-			return this.api.getCurrentUsersCollections( username, page, qs ).done(
+			return this.gateway.getCurrentUsersCollections( username, page, qs ).done(
 				function ( resp ) {
 					var reset,
 						s = self._scrollTop || 0,
@@ -343,7 +343,7 @@
 		 */
 		removeFromCollection: function ( collection, page ) {
 			var self = this;
-			return this.api.removePageFromCollection( collection.id, page ).done( function () {
+			return this.gateway.removePageFromCollection( collection.id, page ).done( function () {
 				self._collectionStateChange( collection, false );
 				self._notifyChanges( collection, false );
 			} ).fail( function ( errMsg ) {
@@ -362,7 +362,7 @@
 		 */
 		addToCollection: function ( collection, page ) {
 			var self = this;
-			return this.api.addPageToCollection( collection.id, page ).done( function () {
+			return this.gateway.addPageToCollection( collection.id, page ).done( function () {
 				self._collectionStateChange( collection, true );
 				self._notifyChanges( collection, true );
 			} ).fail( function () {
@@ -391,12 +391,12 @@
 		 */
 		addCollection: function ( title, page ) {
 			var self = this,
-				api = this.api;
+				gateway = this.gateway;
 
 			this.createButton.loading( true );
 			this.expandForm();
-			return api.addCollection( title ).done( function ( collection ) {
-				api.addPageToCollection( collection.id, page ).done( function () {
+			return gateway.addCollection( title ).done( function ( collection ) {
+				gateway.addPageToCollection( collection.id, page ).done( function () {
 					self._collectionStateChange( collection, true );
 					M.once( 'collection-edit-completed', function ( newCollection ) {
 						collection = $.extend( collection, newCollection );

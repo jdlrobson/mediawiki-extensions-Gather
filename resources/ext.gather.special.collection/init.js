@@ -7,6 +7,7 @@
 
 		if ( !$collection.data( 'is-owner' ) ) {
 			new CollectionFlagButton( {
+				api: new mw.Api(),
 				collectionId: $collection.data( 'id' )
 			} ).prependTo( '.collection-moderation' );
 		}

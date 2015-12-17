@@ -4,7 +4,7 @@
 // update state
 // mw.config.set( 'wgGatherCollections', state );
 ( function ( M, $ ) {
-	var CollectionsApi = M.require( 'ext.gather.api/CollectionsApi' ),
+	var CollectionsGateway = M.require( 'ext.gather.api/CollectionsGateway' ),
 		Page = M.require( 'mobile.startup/Page' ),
 		CollectionsContentOverlay = M.require( 'ext.gather.watchstar/CollectionsContentOverlay' ),
 		Schema = M.require( 'mobile.startup/Schema' );
@@ -20,8 +20,9 @@
 			this.page = new Page( {
 				title: 'Gather test'
 			} );
-			this.sandbox.stub( CollectionsApi.prototype, 'addCollection' ).returns( d );
-			this.sandbox.stub( CollectionsApi.prototype, 'addPageToCollection' ).returns( d2 );
+			this.gateway = new CollectionsGateway();
+			this.sandbox.stub( this.gateway, 'addCollection' ).returns( d );
+			this.sandbox.stub( this.gateway, 'addPageToCollection' ).returns( d2 );
 			this.sandbox.stub( CollectionsContentOverlay.prototype, 'loadEditor' );
 			this.watchlist = {
 				id: 0,
@@ -40,6 +41,7 @@
 
 	QUnit.test( 'Internal updates to overlay', 2, function ( assert ) {
 		var overlay = new CollectionsContentOverlay( {
+			gateway: this.gateway,
 			collections: [ this.watchlist, this.collection ]
 		} );
 		overlay.addToCollection( this.collection, this.page ).done( function () {
@@ -52,6 +54,7 @@
 
 	QUnit.test( 'Internal updates to overlay when new collection', 2, function ( assert ) {
 		var overlay = new CollectionsContentOverlay( {
+			gateway: this.gateway,
 			collections: [ this.watchlist ]
 		} );
 		assert.strictEqual( overlay.options.collections.length, 1,

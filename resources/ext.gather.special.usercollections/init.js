@@ -6,6 +6,7 @@
 
 	$( function () {
 		new CollectionsList( {
+			api: new mw.Api(),
 			skin: M.require( 'skins.minerva.scripts/skin' ),
 			el: $collectionsList,
 			enhance: true,

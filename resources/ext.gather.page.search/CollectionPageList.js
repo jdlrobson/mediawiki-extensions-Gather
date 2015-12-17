@@ -2,7 +2,6 @@
 
 	var PageList = M.require( 'mobile.pagelist/PageList' ),
 		Page = M.require( 'mobile.startup/Page' ),
-		CollectionsApi = M.require( 'ext.gather.api/CollectionsApi' ),
 		Icon = M.require( 'mobile.startup/Icon' ),
 		CollectionPageList;
 
@@ -17,6 +16,7 @@
 	CollectionPageList = PageList.extend( {
 		/**
 		 * @inheritdoc
+		 * @cfg {CollectionsGateway} defaults.collectionGateway
 		 */
 		defaults: {
 			pages: undefined,
@@ -41,11 +41,11 @@
 			item: mw.template.get( 'ext.gather.page.search', 'item.hogan' )
 		},
 		/** @inheritdoc */
-		initialize: function () {
+		initialize: function ( options ) {
 			this._removals = [];
 			this._additions = [];
 			PageList.prototype.initialize.apply( this, arguments );
-			this.api = new CollectionsApi();
+			this.collectionsGateway = options.collectionsGateway;
 		},
 		/**
 		 * Event handler for when a member changes status in the collection
@@ -104,10 +104,10 @@
 
 			if ( additions.length || removals.length ) {
 				if ( additions.length ) {
-					calls.push( this.api.addPagesToCollection( collection.id, additions ) );
+					calls.push( this.collectionGateway.addPagesToCollection( collection.id, additions ) );
 				}
 				if ( removals.length ) {
-					calls.push( this.api.removePagesFromCollection( collection.id, removals ) );
+					calls.push( this.collectionGateway.removePagesFromCollection( collection.id, removals ) );
 				}
 				return $.when.apply( $, calls );
 			} else {
