@@ -75,6 +75,7 @@ class Hooks {
 		$notifications['gather-hide'] = array(
 			'category' => 'gather',
 			'group' => 'negative',
+			'presentation-model' => 'Gather\EchoGatherModerationHidePresentationModel',
 			'title-message' => 'gather-moderation-hidden',
 			'title-params' => array( 'title' ),
 			'email-subject-message' => 'gather-moderation-hidden-email-subject',
@@ -86,6 +87,7 @@ class Hooks {
 		$notifications['gather-unhide'] = array(
 			'category' => 'gather',
 			'group' => 'positive',
+			'presentation-model' => 'Gather\EchoGatherModerationPresentationModel',
 			'title-message' => 'gather-moderation-unhidden',
 			'title-params' => array( 'title' ),
 			'email-subject-message' => 'gather-moderation-unhidden-email-subject',
@@ -97,6 +99,7 @@ class Hooks {
 		$notifications['gather-approve'] = array(
 			'category' => 'gather',
 			'group' => 'positive',
+			'presentation-model' => 'Gather\EchoGatherModerationPresentationModel',
 			'title-message' => 'gather-moderation-approved',
 			'title-params' => array( 'title' ),
 			'email-subject-message' => 'gather-moderation-approved-email-subject',
@@ -282,7 +285,7 @@ class Hooks {
 
 		$modules['qunit']['ext.gather.api.tests'] = $boilerplate + array(
 			'scripts' => array(
-				'ext.gather.api/test_RelatedPagesApi.js',
+				'ext.gather.api/test_RelatedPagesGateway.js',
 			),
 			'dependencies' => array( 'ext.gather.api' ),
 		);

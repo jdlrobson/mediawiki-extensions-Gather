@@ -4,7 +4,7 @@
 		SchemaGather = M.require( 'ext.gather.logging/SchemaGather' ),
 		schema = new SchemaGather(),
 		toast = M.require( 'mobile.toast/toast' ),
-		CollectionsApi = M.require( 'ext.gather.api/CollectionsApi' ),
+		CollectionsGateway = M.require( 'ext.gather.api/CollectionsGateway' ),
 		ConfirmationOverlay = M.require( 'ext.gather.collection.confirm/ConfirmationOverlay' );
 
 	/**
@@ -13,7 +13,11 @@
 	 * @class CollectionDeleteOverlay
 	 */
 	CollectionDeleteOverlay = ConfirmationOverlay.extend( {
-		/** @inheritdoc */
+		/**
+		 * @inheritdoc
+		 * @cfg {Object} defaults Default options hash.
+		 * @cfg {mw.Api} defaults.api
+		 */
 		defaults: $.extend( {}, ConfirmationOverlay.prototype.defaults, {
 			deleteSuccessMsg: mw.msg( 'gather-delete-collection-success' ),
 			deleteFailedError: mw.msg( 'gather-delete-collection-failed-error' ),
@@ -28,8 +32,8 @@
 			'click .confirm': 'onDeleteClick'
 		},
 		/** @inheritdoc */
-		initialize: function () {
-			this.api = new CollectionsApi();
+		initialize: function ( options ) {
+			this.gateway = new CollectionsGateway( options.api );
 			ConfirmationOverlay.prototype.initialize.apply( this, arguments );
 		},
 		/**
@@ -40,7 +44,7 @@
 			this.showSpinner();
 			// disable button and inputs
 			this.$( '.confirm, .cancel' ).prop( 'disabled', true );
-			this.api.removeCollection( this.id ).done( function () {
+			this.gateway.removeCollection( this.id ).done( function () {
 				schema.log( {
 					eventName: 'delete-collection'
 				} ).always( function () {

@@ -1,6 +1,6 @@
 {
 	"name": "Gather",
-	"version": "0.5.1",
+	"version": "0.7.0",
 	"author": [
 		"Jon Robson",
 		"Joaquin Hernandez",
@@ -55,6 +55,8 @@
 		"GatherAlias": "Gather.alias.php"
 	},
 	"AutoloadClasses": {
+		"Gather\\EchoGatherModerationPresentationModel": "includes/EchoGatherModerationPresentationModel.php",
+		"Gather\\EchoGatherModerationHidePresentationModel": "includes/EchoGatherModerationHidePresentationModel.php",
 		"Gather\\Hooks": "includes/Gather.hooks.php",
 		"Gather\\UpdaterHooks": "schema/Updater.hooks.php",
 		"Gather\\models\\CollectionItem": "includes/models/CollectionItem.php",
@@ -182,8 +184,8 @@
 				"mobile.startup"
 			],
 			"scripts": [
-				"resources/ext.gather.api/CollectionsApi.js",
-				"resources/ext.gather.api/RelatedPagesApi.js"
+				"resources/ext.gather.api/CollectionsGateway.js",
+				"resources/ext.gather.api/RelatedPagesGateway.js"
 			]
 		},
 		"ext.gather.collections.list": {

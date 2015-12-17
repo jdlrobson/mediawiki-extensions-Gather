@@ -1,6 +1,6 @@
 ( function ( M, $ ) {
 	var CollectionEditOverlay = M.require( 'ext.gather.collection.edit/CollectionEditOverlay' ),
-		CollectionsApi = M.require( 'ext.gather.api/CollectionsApi' );
+		CollectionsGateway = M.require( 'ext.gather.api/CollectionsGateway' );
 
 	QUnit.module( 'Gather: CollectionEditOverlay', {
 		setup: function () {
@@ -13,11 +13,11 @@
 				title: 'Cool title',
 				description: 'Hey, I\'m a collection description.'
 			};
-			this.sandbox.stub( CollectionsApi.prototype, 'getCollectionMembers' )
+			this.sandbox.stub( CollectionsGateway.prototype, 'getCollectionMembers' )
 				.returns(
 					$.Deferred().resolve( {} )
 				);
-			this.sandbox.stub( CollectionsApi.prototype, 'getCollection' )
+			this.sandbox.stub( CollectionsGateway.prototype, 'getCollection' )
 				.returns(
 					$.Deferred().resolve( {
 						query: {

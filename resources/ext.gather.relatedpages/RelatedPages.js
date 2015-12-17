@@ -1,6 +1,7 @@
 ( function ( M, $ ) {
 
-	var RelatedPagesApi = M.require( 'ext.gather.api/RelatedPagesApi' ),
+	var RelatedPagesGateway = M.require( 'ext.gather.api/RelatedPagesGateway' ),
+		CollectionsGateway = M.require( 'ext.gather.api/CollectionsGateway' ),
 		View = M.require( 'mobile.view/View' ),
 		Page = M.require( 'mobile.startup/Page' ),
 		CollectionPageList = M.require( 'ext.gather.page.search/CollectionPageList' ),
@@ -14,14 +15,21 @@
 	 */
 	RelatedPages = View.extend( {
 		className: 'related-pages',
+		/**
+		 * @inheritdoc
+		 * @cfg {mw.Api} defaults.api
+		 * @cfg {String} defaults.spinner HTML for a spinner element
+		 * @cfg {String} defaults.heading of related pages view.
+		 */
 		defaults: {
 			spinner: icons.spinner().toHtmlString(),
 			heading: mw.msg( 'gather-edit-collection-related-pages' )
 		},
 		template: mw.template.get( 'ext.gather.relatedpages', 'relatedpages.hogan' ),
 		/** @inheritdoc */
-		initialize: function () {
-			this.api = new RelatedPagesApi();
+		initialize: function ( options ) {
+			this.relatedGateway = new RelatedPagesGateway( options.api );
+			this.collectionGateway = new CollectionsGateway( options.api );
 			this.relatedPages = [];
 			this.pageList = null;
 			this._loading = true;
@@ -34,6 +42,8 @@
 				pages = this.relatedPages;
 			if ( !this.pageList ) {
 				this.pageList = new CollectionPageList( {
+					collectionGateway: this.collectionGateway,
+					relatedGateway: this.relatedGateway,
 					pages: pages,
 					collection: this.options.collection,
 					el: this.$( '.results' )
@@ -63,7 +73,7 @@
 				title = this.options.title;
 			if ( title ) {
 				this.loading( true );
-				return this.api.getRelatedPages( title ).always( function () {
+				return this.relatedGateway.getRelatedPages( title ).always( function () {
 					self.loading( false );
 				} ).then( function ( relatedPages ) {
 					if ( relatedPages ) {

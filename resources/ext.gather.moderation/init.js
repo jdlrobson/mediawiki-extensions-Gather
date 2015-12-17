@@ -1,8 +1,8 @@
 ( function ( M, $ ) {
-	var CollectionsApi = M.require( 'ext.gather.api/CollectionsApi' ),
+	var CollectionsGateway = M.require( 'ext.gather.api/CollectionsGateway' ),
 		toast = M.require( 'mobile.toast/toast' ),
 		Icon = M.require( 'mobile.startup/Icon' ),
-		api = new CollectionsApi();
+		gateway = new CollectionsGateway( new mw.Api() );
 
 	/**
 	 * Initialize the moderation buttons
@@ -41,7 +41,7 @@
 			key = 'gather-lists-' + data.action + '-collection';
 
 		if ( window.confirm( mw.msg( key, data.label, data.owner ) ) ) {
-			api.setVisible( data.id, data.action === 'show' ).done( function () {
+			gateway.setVisible( data.id, data.action === 'show' ).done( function () {
 				$button.closest( 'li' ).remove();
 				key = 'gather-lists-' + data.action + '-success-toast';
 				toast.show( mw.msg( key, data.label ), 'toast' );

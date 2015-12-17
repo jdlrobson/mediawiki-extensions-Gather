@@ -1,19 +1,22 @@
 /*jshint unused:vars */
 ( function ( M, $ ) {
 
-	var Api = M.require( 'mobile.startup/api' ).Api,
-		user = M.require( 'mobile.user/user' ),
-		Page = M.require( 'mobile.startup/Page' ),
-		CollectionsApi;
+	var user = M.require( 'mobile.user/user' ),
+		Page = M.require( 'mobile.startup/Page' );
 
 	/**
 	 * API for managing collection items
 	 *
-	 * @class CollectionApi
+	 * @class CollectionGateway
 	 * @extends Api
 	 * @uses Page
+	 * @param {mw.Api} api
 	 */
-	CollectionsApi = Api.extend( {
+	function CollectionsGateway( api ) {
+		this.api = api;
+	}
+
+	CollectionsGateway.prototype = {
 		boilerplate: {
 			id: 0,
 			title: 'Watchlist',
@@ -32,7 +35,7 @@
 		 * @return {jQuery.Deferred}
 		 */
 		addPagesToCollection: function ( id, titles ) {
-			return this.postWithToken( 'watch', {
+			return this.api.postWithToken( 'watch', {
 				action: 'editlist',
 				id: id,
 				titles: titles
@@ -56,7 +59,7 @@
 		 * @return {jQuery.Deferred}
 		 */
 		removePagesFromCollection: function ( id, titles ) {
-			return this.postWithToken( 'watch', {
+			return this.api.postWithToken( 'watch', {
 				action: 'editlist',
 				id: id,
 				mode: 'remove',
@@ -80,7 +83,7 @@
 		 */
 		addCollection: function ( title ) {
 			var self = this;
-			return this.postWithToken( 'watch', {
+			return this.api.postWithToken( 'watch', {
 				action: 'editlist',
 				perm: 'public',
 				label: title
@@ -103,7 +106,7 @@
 		 * @param {Number} id unique identifier of collection
 		 */
 		removeCollection: function ( id ) {
-			return this.postWithToken( 'watch', {
+			return this.api.postWithToken( 'watch', {
 				action: 'editlist',
 				mode: 'deletelist',
 				id: id
@@ -126,7 +129,7 @@
 				glsplimit: 50
 			};
 
-			return this.get( params ).then( function ( resp ) {
+			return this.api.get( params ).then( function ( resp ) {
 				// Workaround for https://phabricator.wikimedia.org/T95741
 				if ( !resp.query ) {
 					return [];
@@ -170,7 +173,7 @@
 					lstprop: 'label|description|public|image|count|owner'
 				};
 
-			return this.get( args ).then( function ( resp ) {
+			return this.api.get( args ).then( function ( resp ) {
 				if ( resp.query && resp.query.lists && resp.query.lists[0] ) {
 					collection = self._mapCollection( resp.query.lists[0] );
 				}
@@ -194,7 +197,7 @@
 			if ( page ) {
 				args.lsttitle = page.getTitle();
 			}
-			return this.get( args ).then( function ( resp ) {
+			return this.api.get( args ).then( function ( resp ) {
 				var result = {
 					continueArgs: resp.continue || resp['query-continue']
 				};
@@ -239,7 +242,7 @@
 			if ( id !== null ) {
 				params.id = id;
 			}
-			return this.postWithToken( 'watch', params );
+			return this.api.postWithToken( 'watch', params );
 		},
 		/**
 		 * Set collection privacy
@@ -249,7 +252,7 @@
 		 * @return {jQuery.Deferred}
 		 */
 		setPrivate: function ( id, isPrivate ) {
-			return this.postWithToken( 'watch', {
+			return this.api.postWithToken( 'watch', {
 				action: 'editlist',
 				id: id,
 				perm: isPrivate ? 'private' : 'public'
@@ -263,14 +266,13 @@
 		 * @return {jQuery.Deferred}
 		 */
 		setVisible: function ( id, isVisible ) {
-			return this.postWithToken( 'watch', {
+			return this.api.postWithToken( 'watch', {
 				action: 'editlist',
 				id: id,
 				mode: isVisible ? 'showlist' : 'hidelist'
 			} );
 		}
-	} );
+	};
 
-	M.define( 'ext.gather.api/CollectionsApi', CollectionsApi );
-
+	M.define( 'ext.gather.api/CollectionsGateway', CollectionsGateway );
 }( mw.mobileFrontend, jQuery ) );

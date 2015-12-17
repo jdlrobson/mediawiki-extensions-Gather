@@ -51,6 +51,7 @@
 		/**
 		 * @inheritdoc
 		 * @cfg {Object} defaults Default options hash.
+		 * @cfg {CollectionsGateway} defaults.gateway
 		 * @cfg {Number} defaults.inCollections number of collections the current page appears in
 		 * @cfg {Array} defaults.collections definitions of the users existing collections
 		 * @cfg {Boolean} defaults.wasUserPrompted a flag which identifies if the user was prompted
@@ -108,6 +109,7 @@
 			if ( !overlay ) {
 				// cache it so state changes internally for this session
 				this.overlay = overlay = new CollectionsContentOverlay( {
+					gateway: this.options.gateway,
 					page: options.page,
 					// FIXME: Should be retrievable from Page
 					description: mw.config.get( 'wgMFDescription' ),

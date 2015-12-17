@@ -1,6 +1,6 @@
 ( function ( M, $ ) {
 
-	var CollectionsApi = M.require( 'ext.gather.api/CollectionsApi' ),
+	var CollectionsGateway = M.require( 'ext.gather.api/CollectionsGateway' ),
 		toast = M.require( 'mobile.toast/toast' ),
 		overlayManager = M.require( 'mobile.startup/overlayManager' ),
 		loader = M.require( 'mobile.overlays/moduleLoader' );
@@ -13,10 +13,10 @@
 	 */
 	function renderCollectionEditOverlay( id, showTutorial ) {
 		var d = $.Deferred(),
-			api = new CollectionsApi();
+			gateway = new CollectionsGateway( new mw.Api() );
 
 		showTutorial = showTutorial || false;
-		api.getCollection( id ).done( function ( collection ) {
+		gateway.getCollection( id ).done( function ( collection ) {
 			if ( collection ) {
 				loader.loadModule( 'ext.gather.collection.editor', true ).done( function ( loadingOverlay ) {
 					var CollectionEditOverlay = M.require( 'ext.gather.collection.edit/CollectionEditOverlay' ),
@@ -25,6 +25,7 @@
 					d.resolve(
 						new CollectionEditOverlay( {
 							skin: M.require( 'skins.minerva.scripts/skin' ),
+							api: new mw.Api(),
 							collection: collection,
 							reloadOnSave: isSpecialPage,
 							showTutorial: showTutorial

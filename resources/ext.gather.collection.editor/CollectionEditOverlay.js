@@ -2,7 +2,7 @@
 
 	var CollectionEditOverlay,
 		toast = M.require( 'mobile.toast/toast' ),
-		CollectionsApi = M.require( 'ext.gather.api/CollectionsApi' ),
+		CollectionsGateway = M.require( 'ext.gather.api/CollectionsGateway' ),
 		CollectionSearchPanel = M.require( 'ext.gather.page.search/CollectionSearchPanel' ),
 		Overlay = M.require( 'mobile.overlays/Overlay' ),
 		Icon = M.require( 'mobile.startup/Icon' ),
@@ -39,6 +39,7 @@
 		/**
 		 * @inheritdoc
 		 * @cfg {Object} defaults Default options hash.
+		 * @cfg {mw.Api} defaults.api
 		 * @cfg {Skin} defaults.skin the skin the overlay is operating in
 		 */
 		defaults: $.extend( {}, Overlay.prototype.defaults, {
@@ -126,7 +127,8 @@
 				};
 			}
 			this.activePane = 'main';
-			this.api = new CollectionsApi();
+			this.api = options.api;
+			this.gateway = new CollectionsGateway( this.api );
 			Overlay.prototype.initialize.apply( this, arguments );
 			this.$clear = this.$( '.search-header .clear' );
 		},
@@ -163,8 +165,9 @@
 			var self = this;
 
 			this.$( '.manage-members-pane' ).removeClass( 'hidden' );
-			this.api.getCollectionMembers( this.id ).done( function ( pages ) {
+			this.gateway.getCollectionMembers( this.id ).done( function ( pages ) {
 				self.searchPanel = new CollectionSearchPanel( {
+					api: new mw.Api(),
 					collection: self.options.collection,
 					pages: pages,
 					el: self.$( '.panel' )
@@ -186,6 +189,7 @@
 				// If there is 1 to 3 elements set up related results
 				if ( pages.length > 0 && pages.length < 4 ) {
 					self.relatedPanel = new RelatedPages( {
+						api: self.api,
 						title: $.map( pages, function ( p ) {
 							return p.title;
 						} ).join( '|' ),
@@ -304,6 +308,7 @@
 		 */
 		onDeleteActionClick: function () {
 			var deleteOverlay = new CollectionDeleteOverlay( {
+				api: this.api,
 				collection: this.options.collection
 			} );
 			deleteOverlay.show();
@@ -395,7 +400,7 @@
 				// disable button and inputs
 				this.showSpinner();
 				this.$( '.mw-ui-input, .save-description' ).prop( 'disabled', true );
-				this.api.editCollection( this.id, title, description, isPrivate ).done( function ( data ) {
+				this.gateway.editCollection( this.id, title, description, isPrivate ).done( function ( data ) {
 					var eventParams = {
 						eventName: 'edit-collection'
 					};

@@ -2,6 +2,7 @@
 
 	var Panel = M.require( 'mobile.startup/Panel' ),
 		Icon = M.require( 'mobile.startup/Icon' ),
+		CollectionsGateway = M.require( 'ext.gather.api/CollectionsGateway' ),
 		SearchGateway = M.require( 'mobile.search.api/SearchGateway' ),
 		SEARCH_DELAY = 200,
 		CollectionPageList = M.require( 'ext.gather.page.search/CollectionPageList' ),
@@ -24,6 +25,7 @@
 		/**
 		 * @inheritdoc
 		 * @cfg {Array} defaults.pages a list of pages in the collection
+		 * @cfg {mw.Api} defaults.api
 		 * @cfg {Object} defaults.collection the collection being worked on
 		 */
 		className: 'panel visible collection-search-panel',
@@ -44,7 +46,8 @@
 			var self = this;
 			this.query = '';
 			// FIXME: In future we'll want to use CollectionApi for this
-			this.gateway = new SearchGateway( new mw.Api() );
+			this.searchGateway = new SearchGateway( options.api );
+			this.collectionGateway = new CollectionsGateway( options.api );
 			this._members = {};
 			$.each( options.pages, function ( i, page ) {
 				self._members[page.title] = true;
@@ -107,6 +110,7 @@
 			} else {
 				this.pageList = new CollectionPageList( {
 					pages: pages,
+					collectionGateway: this.collectionGateway,
 					collection: this.options.collection,
 					el: this.$( '.results' )
 				} );
@@ -171,7 +175,7 @@
 					this.$( '.spinner' ).show();
 
 					this.timer = setTimeout( function () {
-						self._request = self.gateway.search( query ).done( function ( data ) {
+						self._request = self.searchGateway.search( query ).done( function ( data ) {
 							// check if we're getting the rights response in case of out of
 							// order responses (need to get the current value of the input)
 							if ( data.query === query ) {
