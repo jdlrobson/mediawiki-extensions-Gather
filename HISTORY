@@ -1,3 +1,9 @@
+==Gather 0.7.0==
+225f593 Fix notifications
+fe02ab1 Replace DB begin()/commit() with startAtomic()/endAtomic() as needed
+a811c30 Change Echo notifications to use new formatter with presentation model
+ff4e187 Hygiene: Rewrite apis to gateways
+4a6185c Update mediawiki_selenium Ruby gem to the latest version
 ==Gather 0.6.0==
 e99c9ce build: Updating development dependencies
 0f9f4b4 Deprecation warnings in mobile beta
