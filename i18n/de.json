@@ -179,6 +179,7 @@
 	"apihelp-query+listpages-param-sort": "Gibt den zu verwendenden Sortiermechanismus an.",
 	"apihelp-query+listpages-param-dir": "Sortierrichtung festlegen.",
 	"apihelp-query+listpages-paramvalue-dir-ascending": "Normal.",
+	"apihelp-query+listpages-paramvalue-dir-descending": "Umgekehrt.",
 	"apihelp-query+listpages-paramvalue-sort-position": "Verwendet manuelle Sortierung.",
 	"apihelp-query+listpages-paramvalue-sort-namespace": "Sortieren nach Namensraum, Titel.",
 	"gather-main-menu-new-feature": "'''Neu!''' Teste die Lieblingsthemen von {{SITENAME}}-Lesern oder erstelle eine Sammlung deiner eigenen Themen."
