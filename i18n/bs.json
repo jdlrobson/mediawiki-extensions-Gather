@@ -10,8 +10,15 @@
 	"gather-flag-collection-confirm": "Da li ste sigurni da želite označiti ovu kolekciju za pregled?",
 	"gather-flag-collection-success": "Kolekcija je uspješno osnačena.",
 	"gather-add-new-placeholder": "Ime kolekcije",
+	"notification-header-gather-hide": "{{GENDER:$3|Vaša}} kolekcija je sakrivena. Ovo znači da ste Vi jedini koji je mogu vidjeti. Kolekcije se sakrivaju ako krše kriterij moderacije nekog wikija. Možete osporiti odluku skrivanja kolekcije.",
+	"notification-header-gather-unhide": "{{GENDER:$3|Vaša}} kolekcija je otkrivena. Ovo znači da se ponovo može javno vidjeti.",
 	"gather-moderation-unhidden-email-subject": "Vaša kolekcija $1 je bila neotkrivena.",
 	"gather-moderation-unhidden-email-body": "Vaša kolekcija $1 je bila neskrivena. To znači da se može ponovo javno pregledati.",
+	"notification-header-gather-approve": "{{GENDER:$3|Vaša}} kolekcija je odobrena. Ovo znači da se neće ponovo automatski sakriti.",
+	"gather-moderation-criteria-link-label": "Kriterij moderacije",
+	"gather-moderation-dispute-link-label": "Ospori",
+	"gather-moderation-dispute-link-description": "Ospori odluku moderacije",
+	"gather-moderation-notification-primary-link-text": "{{GENDER:$1|Vaša}} kolekcija",
 	"gather-echo-pref-tooltip": "Obavjesti me o promjenama na mojim kolekcijama.",
 	"gather-overlay-search-empty": "Pretraži na dodanim stranicama"
 }
