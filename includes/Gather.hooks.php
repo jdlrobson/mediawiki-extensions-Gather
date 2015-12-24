@@ -235,24 +235,22 @@ class Hooks {
 
 	/**
 	 * Add collections link in personal tools menu
-	 * @param array &$items Items array to be added to menu
+	 * @param string $name of menu
+	 * @param \MobileFrontend\MenuBuilder &$menu that can be altered
+	 * @return true
 	 */
-	public static function onMobilePersonalTools( &$items ) {
-		// Get an array with just watchlist in it.
-		$itemArray = array_slice( $items, 0, 1 );
-		// add collections after it.
-		$itemArray[] = array(
-			'name' => 'collections',
-			'components' => array(
-				'text' => wfMessage( 'gather-lists-title' )->escaped(),
-				'href' => SpecialPage::getTitleFor( 'Gather' )->getLocalURL(),
-				'class' => CSS::iconClass( 'collections-icon', 'before', 'collection-menu-item hidden' ),
-				'data-event-name' => 'collections',
-			)
-		);
-		// combine it with the rest of the array
-		$items = array_merge( $itemArray,
-			array_slice( $items, 1, count( $items ) - 1 ) );
+	public static function onMobileMenu( $name, &$menu ) {
+		if ( $name === 'personal' ) {
+			$item = $menu->insertAfter( 'watchlist', 'collections', false );
+			// Get an array with just watchlist in it.
+			$item->addComponent( wfMessage( 'gather-lists-title' )->escaped(),
+				SpecialPage::getTitleFor( 'Gather' )->getLocalURL(),
+				CSS::iconClass( 'collections-icon', 'before', 'collection-menu-item hidden' ),
+				array(
+					'data-event-name' => 'collections',
+				)
+			);
+		}
 		return true;
 	}
 
