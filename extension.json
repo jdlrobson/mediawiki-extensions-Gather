@@ -674,8 +674,8 @@
 		"EchoGetDefaultNotifiedUsers": [
 			"Gather\\Hooks::onEchoGetDefaultNotifiedUsers"
 		],
-		"MobilePersonalTools": [
-			"Gather\\Hooks::onMobilePersonalTools"
+		"MobileMenu": [
+			"Gather\\Hooks::onMobileMenu"
 		],
 		"UnitTestsList": [
 			"Gather\\Hooks::onUnitTestsList"

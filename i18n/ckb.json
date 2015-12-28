@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Pirehelokan"
+			"Pirehelokan",
+			"Asoxor"
 		]
 	},
+	"gather-editfeed-show": "نیشان بدە",
 	"apihelp-editlist-param-label": "سەردێڕی لیستەکە دابنێ.",
 	"apihelp-editlist-param-perm": "دیتنی لیستەکە ببینە.",
 	"apihelp-editlist-param-description": "پێناسەی لیستەکە دابنێ",

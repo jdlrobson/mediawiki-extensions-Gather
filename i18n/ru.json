@@ -8,7 +8,8 @@
 			"Okras",
 			"Дмитрий",
 			"WindEwriX",
-			"Kaganer"
+			"Kaganer",
+			"Metastasis"
 		]
 	},
 	"gather": "Собрать",
@@ -91,6 +92,8 @@
 	"gather-public": "Общедоступная",
 	"gather-hidden": "Скрытая",
 	"gather-moderation-hidden-email-subject": "Ваша коллекция $1 была скрыта.",
+	"gather-moderation-hidden-email-body": "Ваша коллекция $1 была скрыта. Это означает, что просматривать ее можете только Вы. Коллекции скрываются, если они не прошли проверки: https://en.wikipedia.org/wiki/Wikipedia:Gather/Moderation_Criteria",
+	"gather-moderation-criteria-link-label": "Критерий модерации",
 	"echo-category-title-gather": "Собрать",
 	"gather-echo-pref-tooltip": "Уведомлять меня об изменениях в моей коллекции.",
 	"gather-article-count": "$1 {{PLURAL:$1|страница|страниц|страницы}}",
