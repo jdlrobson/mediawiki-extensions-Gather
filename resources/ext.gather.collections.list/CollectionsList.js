@@ -18,7 +18,7 @@
 		 * @cfg {String} defaults.userIconClass user profile icon
 		 */
 		defaults: {
-			skin: M.require( 'skins.minerva.scripts/skin' ),
+			skin: undefined,
 			collections: [],
 			// FIXME: Use the icon partials in server and client when supported in server templates.
 			userIconClass: new Icon( {

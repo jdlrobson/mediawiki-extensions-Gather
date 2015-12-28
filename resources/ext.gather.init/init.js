@@ -1,7 +1,8 @@
 // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+// Note this code should only ever run in Minerva
 ( function ( M, $ ) {
 
-	var $star, watchstar, pageActionPointer, actionOverlay,
+	var skin, $star, watchstar, pageActionPointer, actionOverlay,
 		bucket, useGatherStar,
 		CollectionsGateway = M.require( 'ext.gather.api/CollectionsGateway' ),
 		sampleRate = mw.config.get( 'wgGatherEnableSample' ),
@@ -14,8 +15,7 @@
 		mainMenuPointerDismissed = 'gather-has-dismissed-mainmenu',
 		user = M.require( 'mobile.user/user' ),
 		context = M.require( 'mobile.context/context' ),
-		skin = M.require( 'skins.minerva.scripts/skin' ),
-		mainMenu = M.require( 'skins.minerva.scripts/mainMenu' ),
+		Skin = M.require( 'mobile.startup/Skin' ),
 		Page = M.require( 'mobile.startup/Page' ),
 		page = new Page( {
 			title: mw.config.get( 'wgPageName' ).replace( /_/g, ' ' ),
@@ -24,6 +24,29 @@
 			id: mw.config.get( 'wgArticleId' ),
 			namespaceNumber: mw.config.get( 'wgNamespaceNumber' )
 		} );
+
+	/**
+	 * Access the currently active skin
+	 *
+	 * @method
+	 * @ignore
+	 * @returns {Skin}
+	 */
+	function getSkin() {
+		if ( skin ) {
+			return skin;
+		} else {
+			try {
+				skin = M.require( 'skins.minerva.scripts/skin' );
+			} catch ( e ) {
+				skin = new Skin( {
+					tabletModules: [],
+					page: page
+				} );
+			}
+			return skin;
+		}
+	}
 
 	/**
 	 * Determines if collection tutorial should be shown
@@ -70,7 +93,7 @@
 		var $star = watchstar.$el;
 
 		actionOverlay = new WatchstarPageActionOverlay( {
-			skin: skin,
+			skin: getSkin(),
 			target: $star
 		} );
 
@@ -98,9 +121,16 @@
 	 * @ignore
 	 */
 	function revealCollectionsInMainMenu() {
+		var mainMenu;
+		try {
+			mainMenu = M.require( 'skins.minerva.scripts/mainMenu' );
+		} catch ( e ) {
+			// In desktop mode, nothing to do
+			return $();
+		}
 		if ( !mw.storage.get( mainMenuPointerDismissed ) ) {
 			mainMenu.advertiseNewFeature( '.collection-menu-item',
-				mw.msg( 'gather-main-menu-new-feature' ), skin ).done( function ( pointerOverlay ) {
+				mw.msg( 'gather-main-menu-new-feature' ), getSkin() ).done( function ( pointerOverlay ) {
 					pointerOverlay.on( 'hide', function () {
 						mw.storage.set( mainMenuPointerDismissed, true );
 					} );
@@ -153,7 +183,7 @@
 				// Only append the overlay if it is not there yet
 				if ( $( '#mw-mf-page-center .tutorial-overlay' ).length === 0 ) {
 					pageActionPointer = new PageActionOverlay( {
-						skin: skin,
+						skin: getSkin(),
 						target: $( '#mw-mf-main-menu-button' ),
 						summary: mw.msg( 'gather-menu-guider' ),
 						cancelMsg: mw.msg( 'gather-add-to-collection-cancel' )
@@ -198,9 +228,14 @@
 				isWatched: $star.hasClass( 'watched' )
 			} );
 		}
-		skin.emit( 'changed' );
+		getSkin().emit( 'changed' );
 	} else if ( useGatherStar ) {
 		revealCollectionsInMainMenu();
 	}
+
+	// FIXME: Use module loading (define/require when available in core)
+	mw.gather = {
+		getSkin: getSkin
+	};
 
 }( mw.mobileFrontend, jQuery ) );

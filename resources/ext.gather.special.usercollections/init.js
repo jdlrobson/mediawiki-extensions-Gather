@@ -7,7 +7,7 @@
 	$( function () {
 		new CollectionsList( {
 			api: new mw.Api(),
-			skin: M.require( 'skins.minerva.scripts/skin' ),
+			skin: mw.gather.getSkin(),
 			el: $collectionsList,
 			enhance: true,
 			owner: owner,
