@@ -23,7 +23,17 @@ class Image {
 	public function __construct( models\WithImage $item ) {
 		$this->item = $item;
 	}
-
+	/**
+	 * Strip special characters for use in CSS background image url
+	 * @param string $url the url to be sanitized
+	 * @return string
+	 */
+	public function sanitizeURL( $url ) {
+		$url = stripslashes( $url );
+		$url = str_replace( ")", "", $url );
+		$url = str_replace( "'", "", $url );
+		return $url;
+	}
 	/**
 	 * Get the view html
 	 */
@@ -40,7 +50,7 @@ class Image {
 			$thumb = models\Image::getThumbnail( $this->item->getFile(), $size );
 			if ( $thumb && $thumb->getUrl() ) {
 				$data = array(
-					'url' => wfExpandUrl( $thumb->getUrl(), PROTO_CURRENT ),
+					'url' => wfExpandUrl( $this->sanitizeURL( $thumb->getUrl() ), PROTO_CURRENT ),
 					'wide' => $thumb->getWidth() > $thumb->getHeight(),
 				);
 				return Template::render( 'CardImage', $data );

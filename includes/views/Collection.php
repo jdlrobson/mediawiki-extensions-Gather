@@ -121,7 +121,7 @@ class Collection extends View {
 	public function getEditButtonHtml() {
 		$id = $this->collection->getId();
 		// Do not edit watchlist
-		if ( $id !== 0 && $this->collection->isOwner( $this->user ) ) {
+		if ( $id !== 0 && is_numeric( $id ) && $this->collection->isOwner( $this->user ) ) {
 			return Html::element( 'a', array(
 				// FIXME: This should work without JavaScript
 				'href' => '#/edit-collection/' . $id,
