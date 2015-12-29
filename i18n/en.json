@@ -91,7 +91,7 @@
 	"gather-no-such-action": "Sorry, the requested action doesn't exist.",
 	"gather-unknown-error": "Sorry, there was an unknown error while processing your request.",
 	"gather-desc": "Component of Mobile Frontend allowing users to curate lists.",
-	"gather-loginpage-desc": "With Collections you can create and share lists of your favourite pages.",
+	"gather-loginpage-desc": "With Collections you can create and share lists of your favorite pages.",
 	"gather-no-public-lists-title": "No public collections",
 	"gather-no-public-lists-description": "There are no public collections for this {{GENDER:$1|user}}.",
 	"gather-page-not-found": "Page not found",
@@ -200,5 +200,5 @@
 	"apihelp-query+listpages-paramvalue-sort-position": "Use manual ordering.",
 	"apihelp-query+listpages-paramvalue-sort-namespace": "Sort by namespace, title.",
 	"apihelp-query+lists-param-minitems": "Show only lists which have at least this many items. (Ignored for watchlists.)",
-	"gather-main-menu-new-feature": "'''New!''' Check out the favourite topics of {{SITENAME}} readers or create a collection of your own."
+	"gather-main-menu-new-feature": "'''New!''' Check out the favorite topics of {{SITENAME}} readers or create a collection of your own."
 }
