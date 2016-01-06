@@ -5,15 +5,23 @@
 		View = M.require( 'mobile.view/View' ),
 		Page = M.require( 'mobile.startup/Page' ),
 		CollectionPageList = M.require( 'ext.gather.page.search/CollectionPageList' ),
-		icons = M.require( 'mobile.startup/icons' ),
-		RelatedPages;
+		icons = M.require( 'mobile.startup/icons' );
 
 	/**
 	 * @class RelatedPages
 	 * @extends View
 	 * @uses CollectionPageList
 	 */
-	RelatedPages = View.extend( {
+	function RelatedPages( options ) {
+		this.relatedGateway = new RelatedPagesGateway( options.api );
+		this.collectionGateway = new CollectionsGateway( options.api );
+		this.relatedPages = [];
+		this.pageList = null;
+		this._loading = true;
+		View.call( this, options );
+		this.search().then( $.proxy( this, 'postRender' ) );
+	}
+	OO.mfExtend( RelatedPages, View, {
 		className: 'related-pages',
 		/**
 		 * @inheritdoc
@@ -26,16 +34,6 @@
 			heading: mw.msg( 'gather-edit-collection-related-pages' )
 		},
 		template: mw.template.get( 'ext.gather.relatedpages', 'relatedpages.hogan' ),
-		/** @inheritdoc */
-		initialize: function ( options ) {
-			this.relatedGateway = new RelatedPagesGateway( options.api );
-			this.collectionGateway = new CollectionsGateway( options.api );
-			this.relatedPages = [];
-			this.pageList = null;
-			this._loading = true;
-			View.prototype.initialize.apply( this, arguments );
-			this.search().then( $.proxy( this, 'postRender' ) );
-		},
 		/** @inheritdoc */
 		postRender: function () {
 			var self = this,

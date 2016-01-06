@@ -1,15 +1,18 @@
 // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 ( function ( M ) {
 
-	var Tag,
-		View = M.require( 'mobile.view/View' );
+	var View = M.require( 'mobile.view/View' );
 
 	/**
 	 * A tag with a label
 	 * @class Tag
 	 * @extends View
 	 */
-	Tag = View.extend( {
+	function Tag() {
+		View.call( this );
+	}
+
+	OO.mfExtend( Tag, View, {
 		className: 'gather-tag',
 		template: mw.template.get( 'ext.gather.watchstar', 'Tag.hogan' )
 	} );

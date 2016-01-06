@@ -5,8 +5,7 @@
 		CollectionsGateway = M.require( 'ext.gather.api/CollectionsGateway' ),
 		SearchGateway = M.require( 'mobile.search.api/SearchGateway' ),
 		SEARCH_DELAY = 200,
-		CollectionPageList = M.require( 'ext.gather.page.search/CollectionPageList' ),
-		CollectionSearchPanel;
+		CollectionPageList = M.require( 'ext.gather.page.search/CollectionPageList' );
 
 	/**
 	 * Class for a showing page search results in a panel
@@ -14,7 +13,11 @@
 	 * @extends Panel
 	 * @uses CollectionPageList
 	 */
-	CollectionSearchPanel = Panel.extend( {
+	function CollectionSearchPanel() {
+		Panel.apply( this, arguments );
+	}
+
+	OO.mfExtend( CollectionSearchPanel, Panel, {
 		/** @inheritdoc */
 		template: mw.template.get( 'ext.gather.page.search', 'CollectionSearchPanel.hogan' ),
 		/** @inheritdoc */

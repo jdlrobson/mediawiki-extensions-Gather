@@ -1,7 +1,6 @@
 ( function ( M, $ ) {
 
-	var CollectionEditOverlay,
-		toast = M.require( 'mobile.toast/toast' ),
+	var toast = M.require( 'mobile.toast/toast' ),
 		CollectionsGateway = M.require( 'ext.gather.api/CollectionsGateway' ),
 		CollectionSearchPanel = M.require( 'ext.gather.page.search/CollectionSearchPanel' ),
 		Overlay = M.require( 'mobile.overlays/Overlay' ),
@@ -19,7 +18,28 @@
 	 * @class CollectionEditOverlay
 	 * @uses CollectionSearchPanel
 	 */
-	CollectionEditOverlay = Overlay.extend( {
+	function CollectionEditOverlay( options ) {
+		// Initial properties;
+		this.id = null;
+		this.originalTitle = '';
+
+		if ( options && options.collection ) {
+			this.id = options.collection.id;
+			this.originalTitle = options.collection.title;
+		} else {
+			options.collection = {
+				// New collection is public by default
+				isPublic: true
+			};
+		}
+		this.activePane = 'main';
+		this.api = options.api;
+		this.gateway = new CollectionsGateway( this.api );
+		Overlay.apply( this, arguments );
+		this.$clear = this.$( '.search-header .clear' );
+	}
+
+	OO.mfExtend( CollectionEditOverlay, Overlay, {
 		_selectors: {
 			edit: '.continue-header, .editor-pane',
 			manage: [
@@ -111,27 +131,6 @@
 			header: mw.template.get( 'ext.gather.collection.editor', 'header.hogan' ),
 			content: mw.template.get( 'ext.gather.collection.editor', 'content.hogan' )
 		} ),
-		/** @inheritdoc */
-		initialize: function ( options ) {
-			// Initial properties;
-			this.id = null;
-			this.originalTitle = '';
-
-			if ( options && options.collection ) {
-				this.id = options.collection.id;
-				this.originalTitle = options.collection.title;
-			} else {
-				options.collection = {
-					// New collection is public by default
-					isPublic: true
-				};
-			}
-			this.activePane = 'main';
-			this.api = options.api;
-			this.gateway = new CollectionsGateway( this.api );
-			Overlay.prototype.initialize.apply( this, arguments );
-			this.$clear = this.$( '.search-header .clear' );
-		},
 		/** @inheritdoc */
 		postRender: function () {
 			Overlay.prototype.postRender.apply( this, arguments );

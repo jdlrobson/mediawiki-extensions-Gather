@@ -1,8 +1,7 @@
 // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 ( function ( M ) {
 
-	var CollectionsWatchstar,
-		SchemaGather = M.require( 'ext.gather.logging/SchemaGather' ),
+	var SchemaGather = M.require( 'ext.gather.logging/SchemaGather' ),
 		schema = new SchemaGather(),
 		CtaDrawer = M.require( 'mobile.drawers/CtaDrawer' ),
 		CollectionsContentOverlay = M.require( 'ext.gather.watchstar/CollectionsContentOverlay' ),
@@ -24,7 +23,11 @@
 	 * @class CollectionsWatchstar
 	 * @extends View
 	 */
-	CollectionsWatchstar = View.extend( {
+	function CollectionsWatchstar( options ) {
+		View.call( this, options );
+	}
+
+	OO.mfExtend( CollectionsWatchstar, View, {
 		/**
 		 * @inheritdoc
 		 */

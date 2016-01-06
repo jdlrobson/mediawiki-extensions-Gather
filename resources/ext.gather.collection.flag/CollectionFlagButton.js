@@ -3,15 +3,17 @@
 	var CollectionsGateway = M.require( 'ext.gather.api/CollectionsGateway' ),
 		CollectionFlagOverlay = M.require( 'ext.gather.collection.flag/CollectionFlagOverlay' ),
 		Button = M.require( 'mobile.startup/Button' ),
-		Icon = M.require( 'mobile.startup/Icon' ),
-		CollectionFlagButton;
+		Icon = M.require( 'mobile.startup/Icon' );
 
 	/**
 	 * A button used to flag a collection
 	 * @class CollectionFlagButton
 	 * @extends Button
 	 */
-	CollectionFlagButton = Button.extend( {
+	function CollectionFlagButton() {
+		Button.apply( this, arguments );
+	}
+	OO.mfExtend( CollectionFlagButton, Button, {
 		/**
 		 * @inheritdoc
 		 * @cfg {Object} defaults Default options hash.

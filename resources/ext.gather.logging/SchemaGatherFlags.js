@@ -1,13 +1,16 @@
 ( function ( M, $ ) {
-	var SchemaGatherFlags,
-		Schema = M.require( 'mobile.startup/Schema' ),
+	var Schema = M.require( 'mobile.startup/Schema' ),
 		user = M.require( 'mobile.user/user' );
 
 	/**
 	 * @class SchemaGatherFlags
 	 * @extends Schema
 	 */
-	SchemaGatherFlags = Schema.extend( {
+	function SchemaGatherFlags( options ) {
+		Schema.call( this, options );
+	}
+
+	OO.mfExtend( SchemaGatherFlags, Schema, {
 		/**
 		 * @inheritdoc
 		 */

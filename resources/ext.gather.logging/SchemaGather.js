@@ -1,6 +1,5 @@
 ( function ( M, $ ) {
-	var SchemaGather,
-		skinName = mw.config.get( 'skin' ),
+	var skinName = mw.config.get( 'skin' ),
 		context = M.require( 'mobile.context/context' ),
 		mobileMode = context.getMode(),
 		Schema = M.require( 'mobile.startup/Schema' ),
@@ -13,7 +12,11 @@
 	 * @class SchemaGather
 	 * @extends Schema
 	 */
-	SchemaGather = Schema.extend( {
+	function SchemaGather( options ) {
+		Schema.call( this, options );
+	}
+
+	OO.mfExtend( SchemaGather, Schema, {
 		/**
 		 * @inheritdoc
 		 */

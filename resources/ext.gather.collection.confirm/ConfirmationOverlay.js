@@ -1,7 +1,6 @@
 ( function ( M, $ ) {
 
-	var ConfirmationOverlay,
-		toast = M.require( 'mobile.toast/toast' ),
+	var toast = M.require( 'mobile.toast/toast' ),
 		icons = M.require( 'mobile.startup/icons' ),
 		CollectionsContentOverlayBase = M.require( 'ext.gather.collection.base/CollectionsContentOverlayBase' );
 
@@ -10,7 +9,18 @@
 	 * @extends CollectionsContentOverlayBase
 	 * @class ConfirmationOverlay
 	 */
-	ConfirmationOverlay = CollectionsContentOverlayBase.extend( {
+	function ConfirmationOverlay( options ) {
+		var collection = options.collection;
+		CollectionsContentOverlayBase.apply( this, arguments );
+		if ( !collection ) {
+			// use toast
+			toast.show( options.unknownCollectionError, 'toast error' );
+		} else {
+			this.id = collection.id;
+		}
+	}
+
+	OO.mfExtend( ConfirmationOverlay, CollectionsContentOverlayBase, {
 		/** @inheritdoc */
 		className: 'collection-confirmation-overlay content-overlay position-fixed',
 		/** @inheritdoc */
@@ -30,17 +40,6 @@
 		templatePartials: $.extend( {}, CollectionsContentOverlayBase.prototype.templatePartials, {
 			content: mw.template.get( 'ext.gather.collection.confirm', 'confirmationOverlay.hogan' )
 		} ),
-		/** @inheritdoc */
-		initialize: function ( options ) {
-			var collection = options.collection;
-			if ( !collection ) {
-				// use toast
-				toast.show( options.unknownCollectionError, 'toast error' );
-			} else {
-				this.id = collection.id;
-				CollectionsContentOverlayBase.prototype.initialize.apply( this, arguments );
-			}
-		},
 		/**
 		 * Event handler when the cancel button is clicked.
 		 */
