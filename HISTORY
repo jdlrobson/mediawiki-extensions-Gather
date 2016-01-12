@@ -1,3 +1,5 @@
+==Gather 0.8.0==
+d1be781 Restore the collections link to the mobile personal menu
 ==Gather 0.7.0==
 225f593 Fix notifications
 fe02ab1 Replace DB begin()/commit() with startAtomic()/endAtomic() as needed

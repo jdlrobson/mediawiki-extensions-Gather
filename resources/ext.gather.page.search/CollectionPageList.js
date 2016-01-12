@@ -45,7 +45,7 @@
 			this._removals = [];
 			this._additions = [];
 			PageList.prototype.initialize.apply( this, arguments );
-			this.collectionsGateway = options.collectionsGateway;
+			this.collectionGateway = options.collectionGateway;
 		},
 		/**
 		 * Event handler for when a member changes status in the collection
