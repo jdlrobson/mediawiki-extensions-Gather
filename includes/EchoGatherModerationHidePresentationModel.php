@@ -26,7 +26,7 @@ class EchoGatherModerationHidePresentationModel extends EchoGatherModerationPres
 				'url' => $contestTitle->getFullURL(),
 				'label' => $this->msg( 'gather-moderation-dispute-link-label' )->text(),
 				'description' => $this->msg( 'gather-moderation-dispute-link-description' )->text(),
-				'icon' => false,
+				'icon' => 'speechBubbles',
 
 				// This could be made false, depending how much visibility this option requires.
 				// It could also be linked from the criteria page.
