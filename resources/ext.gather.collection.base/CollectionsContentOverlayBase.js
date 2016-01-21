@@ -1,14 +1,17 @@
 ( function ( M ) {
 
-	var CollectionsContentOverlayBase,
-		ContentOverlay = M.require( 'mobile.overlays/ContentOverlay' );
+	var ContentOverlay = M.require( 'mobile.overlays/ContentOverlay' );
 
 	/**
 	 * A clickable watchstar for managing collections
 	 * @class CollectionsContentOverlayBase
 	 * @extends ContentOverlay
 	 */
-	CollectionsContentOverlayBase = ContentOverlay.extend( {
+	function CollectionsContentOverlayBase() {
+		ContentOverlay.apply( this, arguments );
+	}
+
+	OO.mfExtend( CollectionsContentOverlayBase, ContentOverlay, {
 		/**
 		 * FIXME: re-evaluate content overlay default classes/css.
 		 * @inheritdoc

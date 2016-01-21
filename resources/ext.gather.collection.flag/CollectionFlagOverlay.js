@@ -1,7 +1,6 @@
 ( function ( M, $ ) {
 
-	var CollectionFlagOverlay,
-		ConfirmationOverlay = M.require( 'ext.gather.collection.confirm/ConfirmationOverlay' ),
+	var ConfirmationOverlay = M.require( 'ext.gather.collection.confirm/ConfirmationOverlay' ),
 		SchemaGatherFlags = M.require( 'ext.gather.logging/SchemaGatherFlags' ),
 		schema = new SchemaGatherFlags(),
 		toast = M.require( 'mobile.toast/toast' );
@@ -11,7 +10,11 @@
 	 * @extends ConfirmationOverlay
 	 * @class CollectionFlagOverlay
 	 */
-	CollectionFlagOverlay = ConfirmationOverlay.extend( {
+	function CollectionFlagOverlay() {
+		ConfirmationOverlay.apply( this, arguments );
+	}
+
+	OO.mfExtend( CollectionFlagOverlay, ConfirmationOverlay, {
 		/** @inheritdoc */
 		defaults: $.extend( {}, ConfirmationOverlay.prototype.defaults, {
 			flagSuccessMsg: mw.msg( 'gather-flag-collection-success' ),

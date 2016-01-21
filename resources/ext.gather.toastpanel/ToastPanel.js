@@ -1,8 +1,7 @@
 /*jshint unused:vars */
 ( function ( M, $ ) {
 
-	var ToastPanel,
-		Button = M.require( 'mobile.startup/Button' ),
+	var Button = M.require( 'mobile.startup/Button' ),
 		Panel = M.require( 'mobile.startup/Panel' );
 
 	/**
@@ -11,7 +10,11 @@
 	 * @class ToastPanel
 	 * @extends Panel
 	 */
-	ToastPanel = Panel.extend( {
+	function ToastPanel( options ) {
+		Panel.call( this, options );
+	}
+
+	OO.mfExtend( ToastPanel, Panel, {
 		className: 'panel view-border-box drawer position-fixed toast-panel',
 		template: mw.template.get( 'ext.gather.toastpanel', 'ToastPanel.hogan' ),
 		templatePartials: {

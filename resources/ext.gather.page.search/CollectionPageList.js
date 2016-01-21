@@ -2,8 +2,7 @@
 
 	var PageList = M.require( 'mobile.pagelist/PageList' ),
 		Page = M.require( 'mobile.startup/Page' ),
-		Icon = M.require( 'mobile.startup/Icon' ),
-		CollectionPageList;
+		Icon = M.require( 'mobile.startup/Icon' );
 
 	/**
 	 * List of items page view
@@ -13,7 +12,13 @@
 	 * @uses Watchstar
 	 * @extends View
 	 */
-	CollectionPageList = PageList.extend( {
+	function CollectionPageList( options ) {
+		this._removals = [];
+		this._additions = [];
+		PageList.call( this, options );
+		this.collectionGateway = options.collectionGateway;
+	}
+	OO.mfExtend( CollectionPageList, PageList, {
 		/**
 		 * @inheritdoc
 		 * @cfg {CollectionsGateway} defaults.collectionGateway
@@ -39,13 +44,6 @@
 		/** @inheritdoc */
 		templatePartials: {
 			item: mw.template.get( 'ext.gather.page.search', 'item.hogan' )
-		},
-		/** @inheritdoc */
-		initialize: function ( options ) {
-			this._removals = [];
-			this._additions = [];
-			PageList.prototype.initialize.apply( this, arguments );
-			this.collectionGateway = options.collectionGateway;
 		},
 		/**
 		 * Event handler for when a member changes status in the collection

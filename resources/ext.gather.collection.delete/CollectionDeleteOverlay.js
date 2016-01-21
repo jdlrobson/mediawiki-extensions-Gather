@@ -1,7 +1,6 @@
 ( function ( M, $ ) {
 
-	var CollectionDeleteOverlay,
-		SchemaGather = M.require( 'ext.gather.logging/SchemaGather' ),
+	var SchemaGather = M.require( 'ext.gather.logging/SchemaGather' ),
 		schema = new SchemaGather(),
 		toast = M.require( 'mobile.toast/toast' ),
 		CollectionsGateway = M.require( 'ext.gather.api/CollectionsGateway' ),
@@ -12,7 +11,12 @@
 	 * @extends ConfirmationOverlay
 	 * @class CollectionDeleteOverlay
 	 */
-	CollectionDeleteOverlay = ConfirmationOverlay.extend( {
+	function CollectionDeleteOverlay( options ) {
+		this.gateway = new CollectionsGateway( options.api );
+		ConfirmationOverlay.apply( this, arguments );
+	}
+
+	OO.mfExtend( CollectionDeleteOverlay, ConfirmationOverlay, {
 		/**
 		 * @inheritdoc
 		 * @cfg {Object} defaults Default options hash.
@@ -30,11 +34,6 @@
 		events: {
 			'click .cancel': 'onCancelClick',
 			'click .confirm': 'onDeleteClick'
-		},
-		/** @inheritdoc */
-		initialize: function ( options ) {
-			this.gateway = new CollectionsGateway( options.api );
-			ConfirmationOverlay.prototype.initialize.apply( this, arguments );
 		},
 		/**
 		 * Event handler when the delete button is clicked.

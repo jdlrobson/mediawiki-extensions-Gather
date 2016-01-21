@@ -2,15 +2,17 @@
 
 	var CollectionEditOverlay = M.require( 'ext.gather.collection.edit/CollectionEditOverlay' ),
 		Button = M.require( 'mobile.startup/Button' ),
-		Icon = M.require( 'mobile.startup/Icon' ),
-		CreateCollectionButton;
+		Icon = M.require( 'mobile.startup/Icon' );
 
 	/**
 	 * A button used to create a collection
 	 * @class CreateCollectionButton
 	 * @extends Button
 	 */
-	CreateCollectionButton = Button.extend( {
+	function CreateCollectionButton() {
+		Button.apply( this, arguments );
+	}
+	OO.mfExtend( CreateCollectionButton, Button, {
 		/**
 		 * @inheritdoc
 		 * @cfg {Object} defaults Default options hash.
