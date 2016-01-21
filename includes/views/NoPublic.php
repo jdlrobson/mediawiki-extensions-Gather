@@ -34,7 +34,7 @@ class NoPublic extends View {
 	public function getHtml( $data = array() ) {
 		$html = Html::openElement( 'div', array( 'class' => 'collection not-found content' ) );
 		$html .= Html::element( 'span', array( 'class' => 'mw-ui-anchor mw-ui-destructive' ),
-			wfMessage( 'gather-no-public-lists-description' )->text(), $this->user );
+			wfMessage( 'gather-no-public-lists-description' )->escaped(), $this->user );
 		$html .= Html::closeElement( 'div' );
 		return $html;
 	}

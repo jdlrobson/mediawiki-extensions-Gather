@@ -2,10 +2,17 @@
 	var
 		SchemaGather = M.require( 'ext.gather.logging/SchemaGather' ),
 		schema = new SchemaGather(),
-		PageActionOverlay = M.require( 'mobile.contentOverlays/PointerOverlay' ),
-		WatchstarPageActionOverlay;
+		PageActionOverlay = M.require( 'mobile.contentOverlays/PointerOverlay' );
 
-	WatchstarPageActionOverlay = PageActionOverlay.extend( {
+	/**
+	 * @class WatchstarPageActionOverlay
+	 * @extends PageActionOverlay
+	 */
+	function WatchstarPageActionOverlay() {
+		PageActionOverlay.call( this );
+	}
+
+	OO.mfExtend( WatchstarPageActionOverlay, PageActionOverlay, {
 		className: PageActionOverlay.prototype.className + ' slide active editing',
 		events: $.extend( {}, PageActionOverlay.prototype.events, {
 			'click .cancel': 'onCancelClick',

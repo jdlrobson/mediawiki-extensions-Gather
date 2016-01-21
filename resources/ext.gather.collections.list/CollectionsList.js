@@ -1,7 +1,6 @@
 ( function ( M, $ ) {
 
-	var CollectionsList,
-		InfiniteScroll = M.require( 'mobile.infiniteScroll/InfiniteScroll' ),
+	var InfiniteScroll = M.require( 'mobile.infiniteScroll/InfiniteScroll' ),
 		icons = M.require( 'mobile.startup/icons' ),
 		CollectionsGateway = M.require( 'ext.gather.api/CollectionsGateway' ),
 		toast = M.require( 'mobile.toast/toast' ),
@@ -9,7 +8,24 @@
 		Icon = M.require( 'mobile.startup/Icon' ),
 		CreateCollectionButton = M.require( 'ext.gather.collections.list/CreateCollectionButton' );
 
-	CollectionsList = View.extend( {
+	/**
+	 * @class CollectionsList
+	 * @extends View
+	 */
+	function CollectionsList( options ) {
+		View.call( this, options );
+		// After the initial render initialize the infinite scrolling.
+		this.$pagination = this.$el.find( '.collections-pagination' );
+		if ( this.$pagination.length ) {
+			this._replacePaginationControls();
+			this.gateway = new CollectionsGateway( options.api );
+			this.infiniteScroll = new InfiniteScroll();
+			this.infiniteScroll.setElement( this.$el );
+			this.infiniteScroll.on( 'load', $.proxy( this, '_loadCollections' ) );
+		}
+	}
+
+	OO.mfExtend( CollectionsList, View, {
 		/**
 		 * @inheritdoc
 		 * @cfg {Object} defaults Default options hash.
@@ -18,7 +34,7 @@
 		 * @cfg {String} defaults.userIconClass user profile icon
 		 */
 		defaults: {
-			skin: M.require( 'skins.minerva.scripts/skin' ),
+			skin: undefined,
 			collections: [],
 			// FIXME: Use the icon partials in server and client when supported in server templates.
 			userIconClass: new Icon( {
@@ -30,19 +46,6 @@
 		templatePartials: {
 			item: mw.template.get( 'ext.gather.collections.list', 'CollectionsListItemCard.hogan' ),
 			image: mw.template.get( 'ext.gather.collections.list', 'CardImage.hogan' )
-		},
-		/** @inheritdoc */
-		initialize: function ( options ) {
-			View.prototype.initialize.apply( this, arguments );
-			// After the initial render initialize the infinite scrolling.
-			this.$pagination = this.$el.find( '.collections-pagination' );
-			if ( this.$pagination.length ) {
-				this._replacePaginationControls();
-				this.gateway = new CollectionsGateway( options.api );
-				this.infiniteScroll = new InfiniteScroll();
-				this.infiniteScroll.setElement( this.$el );
-				this.infiniteScroll.on( 'load', $.proxy( this, '_loadCollections' ) );
-			}
 		},
 		/** @inheritdoc */
 		postRender: function () {

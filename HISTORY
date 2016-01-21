@@ -1,3 +1,14 @@
+==Gather 0.9.0==
+c7a8d88 Fix several escaping issues
+f304900 build: Updating development dependencies
+ff8a9ab build: Updating development dependencies
+a055916 Remove items from Gather collections
+2ea7144 Fix new collection creation
+a67ecfa Use Maintenance DB transaction methods
+917f885 Use speechBubbles icon for dispute action in gather-hide notification
+b5ae2a2 Avoid loading Minerva code in Vector
+f477db5 Gather should use OO.mfExtend for Views and Schemas
+2c17650 Clarify Gather system messages
 ==Gather 0.8.0==
 d1be781 Restore the collections link to the mobile personal menu
 ==Gather 0.7.0==

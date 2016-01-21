@@ -36,7 +36,7 @@ class UpdateCounts extends Maintenance {
 
 		$maxGlId = 0;
 		do {
-			$dbw->begin( __METHOD__ );
+			$this->beginTransaction( $dbw, __METHOD__ );
 
 			// This locks the list record. All operations which can add/remove list items (apart
 			// from full list deletion) lock the record as well, so there cannot be race conditions.
@@ -57,7 +57,7 @@ class UpdateCounts extends Maintenance {
 			}
 
 			if ( !$ids ) {
-				$dbw->rollback( __METHOD__ );
+				$this->rollbackTransaction( $dbw, __METHOD__ );
 				continue;
 			}
 
@@ -66,7 +66,7 @@ class UpdateCounts extends Maintenance {
 				array( 'gl_id' => $ids ),
 			__METHOD__ );
 
-			$dbw->commit( __METHOD__ );
+			$this->commitTransaction( $dbw, __METHOD__ );
 			$maxGlId = max( $ids );
 
 			wfWaitForSlaves();

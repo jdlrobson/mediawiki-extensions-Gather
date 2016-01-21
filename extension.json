@@ -1,6 +1,6 @@
 {
 	"name": "Gather",
-	"version": "0.8.0",
+	"version": "0.9.0",
 	"author": [
 		"Jon Robson",
 		"Joaquin Hernandez",
@@ -197,9 +197,8 @@
 				"mobile.infiniteScroll",
 				"mobile.toast",
 				"ext.gather.api",
-				"ext.gather.menu.icon",
 				"ext.gather.collection.editor",
-				"skins.minerva.scripts",
+				"ext.gather.init",
 				"mobile.startup"
 			],
 			"styles": [],
@@ -385,23 +384,31 @@
 				"resources/ext.gather.desktop/init.js"
 			]
 		},
-		"ext.gather.init": {
+		"ext.gather.init.minerva": {
 			"class": "MFResourceLoaderParsedMessageModule",
 			"targets": [
-				"mobile",
-				"desktop"
-			],
-			"dependencies": [
-				"ext.gather.menu.icon",
-				"mediawiki.experiments",
-				"mobile.watchstar",
-				"ext.gather.watchstar",
-				"skins.minerva.scripts"
+				"mobile"
 			],
 			"messages": {
 				"gather-main-menu-new-feature": [ "parse" ],
 				"gather-menu-guider": "gather-menu-guider"
 			},
+			"dependencies": [
+				"ext.gather.init",
+				"ext.gather.menu.icon",
+				"skins.minerva.scripts"
+			]
+		},
+		"ext.gather.init": {
+			"targets": [
+				"mobile",
+				"desktop"
+			],
+			"dependencies": [
+				"mediawiki.experiments",
+				"mobile.watchstar",
+				"ext.gather.watchstar"
+			],
 			"scripts": [
 				"resources/ext.gather.init/init.js"
 			],
@@ -576,8 +583,7 @@
 			"dependencies": [
 				"ext.gather.api",
 				"mobile.toast",
-				"mobile.overlays",
-				"skins.minerva.scripts"
+				"mobile.overlays"
 			],
 			"scripts": [
 				"resources/ext.gather.routes/routes.js"
@@ -608,7 +614,7 @@
 			"dependencies": [
 				"ext.gather.special.base",
 				"ext.gather.collections.list",
-				"skins.minerva.scripts"
+				"ext.gather.init"
 			],
 			"scripts": [
 				"resources/ext.gather.special.usercollections/init.js"

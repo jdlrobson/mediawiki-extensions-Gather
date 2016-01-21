@@ -1,8 +1,15 @@
 ( function ( M, $ ) {
-	var PointerOverlay = M.require( 'mobile.contentOverlays/PointerOverlay' ),
-		SearchTutorialOverlay;
+	var PointerOverlay = M.require( 'mobile.contentOverlays/PointerOverlay' );
 
-	SearchTutorialOverlay = PointerOverlay.extend( {
+	/**
+	 * @class SearchTutorialOverlay
+	 * @extends PointerOverlay
+	 */
+	function SearchTutorialOverlay() {
+		PointerOverlay.apply( this, arguments );
+	}
+
+	OO.mfExtend( SearchTutorialOverlay, PointerOverlay, {
 		template: mw.template.get( 'ext.gather.collection.editor', 'SearchTutorialOverlay.hogan' ),
 		className: 'overlay pointer-overlay search-tutorial-overlay',
 		events: $.extend( {}, PointerOverlay.prototype.events, {

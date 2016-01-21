@@ -1,6 +1,5 @@
 ( function ( M, $ ) {
-	var CollectionsContentOverlay,
-		SchemaGather = M.require( 'ext.gather.logging/SchemaGather' ),
+	var SchemaGather = M.require( 'ext.gather.logging/SchemaGather' ),
 		schema = new SchemaGather(),
 		icons = M.require( 'mobile.startup/icons' ),
 		toast = M.require( 'mobile.toast/toast' ),
@@ -17,7 +16,29 @@
 	 * @class CollectionsContentOverlay
 	 * @extends CollectionsContentOverlayBase
 	 */
-	CollectionsContentOverlay = CollectionsContentOverlayBase.extend( {
+	function CollectionsContentOverlay( options ) {
+		this.gateway = options.gateway;
+		this.createButton = new ButtonWithSpinner( {
+			label: this.defaults.createButtonLabel,
+			additionalClassNames: 'create-collection',
+			constructive: true,
+			disabled: true,
+			loading: false
+		} );
+		if ( options.collections === undefined ) {
+			options.collections = [];
+			CollectionsContentOverlayBase.call( this, options );
+			// load the collections.
+			this.showSpinner();
+			this._loadCollections( user.getName(), options.page );
+		} else {
+			CollectionsContentOverlayBase.call( this, options );
+		}
+		// This should be an event on the view itself.
+		M.on( 'resize', $.proxy( this, 'expandForm' ) );
+	}
+
+	OO.mfExtend( CollectionsContentOverlay, CollectionsContentOverlayBase, {
 		/**
 		 * FIXME: re-evaluate content overlay default classes/css.
 		 * @inheritdoc
@@ -80,28 +101,6 @@
 			showTutorial: false,
 			collections: undefined
 		} ),
-		/** @inheritdoc */
-		initialize: function ( options ) {
-			this.gateway = options.gateway;
-			this.createButton = new ButtonWithSpinner( {
-				label: this.defaults.createButtonLabel,
-				additionalClassNames: 'create-collection',
-				constructive: true,
-				disabled: true,
-				loading: false
-			} );
-			if ( options.collections === undefined ) {
-				options.collections = [];
-				CollectionsContentOverlayBase.prototype.initialize.call( this, options );
-				// load the collections.
-				this.showSpinner();
-				this._loadCollections( user.getName(), options.page );
-			} else {
-				CollectionsContentOverlayBase.prototype.initialize.call( this, options );
-			}
-			// This should be an event on the view itself.
-			M.on( 'resize', $.proxy( this, 'expandForm' ) );
-		},
 		/** @inheritdoc */
 		show: function () {
 			CollectionsContentOverlayBase.prototype.show.apply( this, arguments );

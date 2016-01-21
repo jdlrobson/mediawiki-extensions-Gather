@@ -1,8 +1,7 @@
 ( function ( M ) {
 
 	var Button = M.require( 'mobile.startup/Button' ),
-		icons = M.require( 'mobile.startup/icons' ),
-		ButtonWithSpinner;
+		icons = M.require( 'mobile.startup/icons' );
 
 	/**
 	 * @class ButtonWithSpinner
@@ -22,7 +21,10 @@
 	 *			button.loading( true );
 	 *		</code>
 	 */
-	ButtonWithSpinner = Button.extend( {
+	function ButtonWithSpinner() {
+		Button.apply( this, arguments );
+	}
+	OO.mfExtend( ButtonWithSpinner, Button, {
 		defaults: {
 			tagName: 'button',
 			disabled: false,

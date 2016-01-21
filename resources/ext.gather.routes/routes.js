@@ -24,7 +24,7 @@
 					loadingOverlay.hide();
 					d.resolve(
 						new CollectionEditOverlay( {
-							skin: M.require( 'skins.minerva.scripts/skin' ),
+							skin: mw.gather.getSkin(),
 							api: new mw.Api(),
 							collection: collection,
 							reloadOnSave: isSpecialPage,
