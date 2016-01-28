@@ -34,6 +34,8 @@
 	"gather-overlay-search-tutorial-heading": "Successivamente, aggiungere una seconda pagina al vostro insieme cercando un articolo simile.",
 	"gather-overlay-search-tutorial-text": "o scegli dalle pagine suggerite.",
 	"apihelp-editlist-param-description": "Imposta la descrizione dell'elenco.",
+	"apihelp-editlist-paramvalue-perm-public": "Rendi l'elenco visibile a tutti (moderatori possono sovrascrivere questo)",
+	"apihelp-editlist-paramvalue-perm-private": "Rende l'elenco visibile solo al suo proprietario",
 	"apihelp-editlist-paramvalue-mode-remove": "Cancella pagine da un elenco.",
 	"apihelp-editlist-paramvalue-mode-deletelist": "Cancella tutta la lista.",
 	"apihelp-query+lists-param-prop": "Ulteriori informazioni da mostrare.",
