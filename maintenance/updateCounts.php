@@ -40,8 +40,9 @@ class UpdateCounts extends Maintenance {
 
 			// This locks the list record. All operations which can add/remove list items (apart
 			// from full list deletion) lock the record as well, so there cannot be race conditions.
-			$res = $dbw->select( 'gather_list',
-				array( 'gl_id' ),
+			$ids = $dbw->selectFieldValues(
+				'gather_list',
+				'gl_id',
 				array( 'gl_id > ' . $maxGlId ),
 				__METHOD__,
 				array(
@@ -51,26 +52,19 @@ class UpdateCounts extends Maintenance {
 				)
 			);
 
-			$ids = array();
-			foreach ( $res as $row ) {
-				$ids[] = $row->gl_id;
+			if ( $ids ) {
+				$dbw->update(
+					'gather_list',
+					array( 'gl_item_count = ' .
+						'(SELECT COUNT(*) FROM gather_list_item WHERE gli_gl_id = gl_id)' ),
+					array( 'gl_id' => $ids ),
+					__METHOD__
+				);
+				$maxGlId = max( $ids );
 			}
-
-			if ( !$ids ) {
-				$this->rollbackTransaction( $dbw, __METHOD__ );
-				continue;
-			}
-
-			$dbw->update( 'gather_list',
-				array( 'gl_item_count = (SELECT COUNT(*) FROM gather_list_item WHERE gli_gl_id = gl_id)' ),
-				array( 'gl_id' => $ids ),
-			__METHOD__ );
 
 			$this->commitTransaction( $dbw, __METHOD__ );
-			$maxGlId = max( $ids );
-
-			wfWaitForSlaves();
-		} while ( $res->numRows() );
+		} while ( $ids );
 	}
 }
 
