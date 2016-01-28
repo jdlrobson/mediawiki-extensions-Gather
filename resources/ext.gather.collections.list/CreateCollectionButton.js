@@ -40,7 +40,8 @@
 			ev.preventDefault();
 			editOverlay = new CollectionEditOverlay( {
 				skin: this.options.skin,
-				reloadOnSave: true
+				reloadOnSave: true,
+				api: new mw.Api()
 			} );
 			editOverlay.show();
 		}
