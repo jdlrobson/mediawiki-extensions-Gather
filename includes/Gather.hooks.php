@@ -155,10 +155,7 @@ class Hooks {
 	}
 
 	public static function onExtensionSetup() {
-		// FIXME: This doesn't do anything as if mobilefrontend is not present
-		// The reported error is "This requires Gather."
 		if (
-			!defined( 'MOBILEFRONTEND' ) &&
 			!\ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' )
 		) {
 			echo "Gather extension requires MobileFrontend.\n";
