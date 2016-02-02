@@ -289,7 +289,6 @@
 				"ext.gather.api",
 				"ext.gather.collection.base",
 				"mediawiki.storage",
-				"skins.minerva.icons.variants.js",
 				"ext.gather.watchstar.icons",
 				"ext.gather.buttonspinner"
 			],
