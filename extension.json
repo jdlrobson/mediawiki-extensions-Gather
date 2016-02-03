@@ -384,14 +384,9 @@
 			]
 		},
 		"ext.gather.init.minerva": {
-			"class": "MFResourceLoaderParsedMessageModule",
 			"targets": [
 				"mobile"
 			],
-			"messages": {
-				"gather-main-menu-new-feature": [ "parse" ],
-				"gather-menu-guider": "gather-menu-guider"
-			},
 			"dependencies": [
 				"ext.gather.init",
 				"ext.gather.menu.icon",
@@ -399,10 +394,15 @@
 			]
 		},
 		"ext.gather.init": {
+			"class": "MFResourceLoaderParsedMessageModule",
 			"targets": [
 				"mobile",
 				"desktop"
 			],
+			"messages": {
+				"gather-main-menu-new-feature": [ "parse" ],
+				"gather-menu-guider": "gather-menu-guider"
+			},
 			"dependencies": [
 				"mediawiki.experiments",
 				"mobile.watchstar",

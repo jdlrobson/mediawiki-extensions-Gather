@@ -7,9 +7,10 @@
 	/**
 	 * @class WatchstarPageActionOverlay
 	 * @extends PageActionOverlay
+	 * @param {Object} options
 	 */
-	function WatchstarPageActionOverlay() {
-		PageActionOverlay.call( this );
+	function WatchstarPageActionOverlay( options ) {
+		PageActionOverlay.call( this, options );
 	}
 
 	OO.mfExtend( WatchstarPageActionOverlay, PageActionOverlay, {
