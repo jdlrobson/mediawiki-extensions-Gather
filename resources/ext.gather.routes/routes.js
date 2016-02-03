@@ -24,7 +24,6 @@
 					loadingOverlay.hide();
 					d.resolve(
 						new CollectionEditOverlay( {
-							skin: mw.gather.getSkin(),
 							api: new mw.Api(),
 							collection: collection,
 							reloadOnSave: isSpecialPage,
