@@ -29,12 +29,10 @@
 		/**
 		 * @inheritdoc
 		 * @cfg {Object} defaults Default options hash.
-		 * @cfg {Skin} defaults.skin the skin the overlay is operating in
 		 * @cfg {mw.Api} defaults.api
 		 * @cfg {String} defaults.userIconClass user profile icon
 		 */
 		defaults: {
-			skin: undefined,
 			collections: [],
 			// FIXME: Use the icon partials in server and client when supported in server templates.
 			userIconClass: new Icon( {
@@ -53,9 +51,7 @@
 			var $collectionsList = $( '.collections-list' );
 			// Add a create button at the bottom if the list owner is viewing in minerva skin
 			if ( $collectionsList.data( 'is-owner' ) && mw.config.get( 'skin' ) === 'minerva' ) {
-				new CreateCollectionButton( {
-					skin: this.options.skin
-				} )
+				new CreateCollectionButton( {} )
 					.appendTo( $collectionsList.find( '.collection-actions' ) );
 			}
 			View.prototype.postRender.apply( this, arguments );

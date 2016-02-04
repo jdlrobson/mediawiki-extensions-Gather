@@ -60,10 +60,8 @@
 		 * @inheritdoc
 		 * @cfg {Object} defaults Default options hash.
 		 * @cfg {mw.Api} defaults.api
-		 * @cfg {Skin} defaults.skin the skin the overlay is operating in
 		 */
 		defaults: $.extend( {}, Overlay.prototype.defaults, {
-			skin: undefined,
 			clearIcon: new Icon( {
 				name: 'clear',
 				label: mw.msg( 'gather-edit-collection-clear-label' ),
@@ -176,8 +174,7 @@
 				if ( self.options.showTutorial ) {
 					self.searchTutorialOverlay = new SearchTutorialOverlay( {
 						appendToElement: self.$el,
-						target: self.$( '.mw-ui-icon-search' ),
-						skin: self.options.skin
+						target: self.$( '.mw-ui-icon-search' )
 					} );
 					self.searchTutorialOverlay.show();
 					// Refresh pointer otherwise it is not positioned
