@@ -125,7 +125,7 @@
 	"apihelp-editlist-param-image": "Don et Houpbelld faßlähje.",
 	"apihelp-editlist-param-mode": "Wat met dä Leß jedonn wähde sull.",
 	"apihelp-editlist-paramvalue-perm-public": "Maach seeschbaar för jehder_ein. De  moderation kann sesch doh drövver override.",
-	"apihelp-editlist-paramvalue-perm-private": "Maach seeschbaar alleijns för der Ehavver. <!--  https://translatewiki.net/wiki/Thread:Support/About_MediaWiki:Apihelp-editlist-paramvalue-perm-private/ksh -->",
+	"apihelp-editlist-paramvalue-perm-private": "Maach de Leß seeschbaar alleijns för der Besezer.",
 	"apihelp-editlist-paramvalue-mode-update": "Donn Sigge en en Leß, udder donn eijn aanläje, wann kein Kännong aanjejovve wood.",
 	"apihelp-editlist-paramvalue-mode-remove": "Donn Sigge uß dä Leß eruß nämme.",
 	"apihelp-editlist-paramvalue-mode-deletelist": "Schmiiß de jannze Leß fott.",
