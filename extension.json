@@ -115,7 +115,7 @@
 			]
 		},
 		"ext.gather.menu.icon": {
-			"position": "top",
+			"position": "bottom",
 			"class": "ResourceLoaderImageModule",
 			"selector": ".mw-ui-icon-{name}:before",
 			"images": {

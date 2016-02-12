@@ -225,8 +225,6 @@ class Hooks {
 	public static function onSkinMinervaDefaultModules( $skin, &$modules ) {
 		// Gather code should be loaded unconditionally since it also controls revealing the menu item.
 		$modules['watch'] = array( 'ext.gather.init.minerva' );
-		// FIXME: abuse of the hook.
-		$skin->getOutput()->addModuleStyles( 'ext.gather.menu.icon' );
 		return true;
 	}
 
