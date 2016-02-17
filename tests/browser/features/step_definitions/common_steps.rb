@@ -17,7 +17,7 @@ end
 
 Given(/^I am logged into the mobile website$/) do
   step 'I am using the mobile site'
-  visit(LoginPage).login_with(user, password, false)
+  log_in
   expect(on(ArticlePage).is_authenticated_element.when_present(20)).to exist
 end
 
