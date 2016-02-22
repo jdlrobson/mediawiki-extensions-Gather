@@ -101,7 +101,7 @@
 	"gather-private": "Приватна",
 	"gather-public": "Публічна",
 	"gather-hidden": "Прихована",
-	"gather-moderation-hidden": "[[$1|Вашу колекцію]] було приховано. Це означає, що лише Ви можете її бачити. Колекції приховують, якщо вони суперечать нашим [[Project:Gather/Критерії модерування|критеріям модерування]]. Ви можете [[Project:Gather/Відгуки користувачів|оскаржити це]].",
+	"gather-moderation-hidden": "[[$1|Вашу колекцію]] було приховано. Це означає, що лише Ви можете її бачити. Колекції приховують, якщо вони суперечать нашим [[Project:Gather/Moderation_Criteria|критеріям модерування]]. Ви можете [[Project:Gather/User_Feedback|оскаржити це]].",
 	"notification-header-gather-hide": "{{GENDER:$3|Вашу}} колекцію приховано. Це означає, що лише Ви можете її бачити. Колекції приховують, якщо вони суперечать нашим критеріям модерування. Ви можете оскаржити рішення приховати Вашу колекцію.",
 	"gather-moderation-hidden-email-subject": "Вашу колекцію $1 було приховано.",
 	"gather-moderation-hidden-email-body": "Вашу колекцію $1 було приховано. Це означає, що лише Ви можете її бачити. Колекції приховують, якщо вони суперечать критеріям модерування у вікі: https://en.wikipedia.org/wiki/Wikipedia:Gather/Moderation_Criteria\n\nВи можете оскаржити це рішення на цій сторінці:\nhttps://en.wikipedia.org/wiki/Wikipedia:Gather/User_Feedback",
