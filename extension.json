@@ -94,6 +94,7 @@
 		"Gather\\api\\ApiQueryListMembership": "includes/api/ApiQueryListMembership.php",
 		"Gather\\api\\ApiQueryListPages": "includes/api/ApiQueryListPages.php"
 	},
+	"@doc": "FIXME: ext.gather.styles gets loaded twice. See https://phabricator.wikimedia.org/T87871",
 	"ResourceModules": {
 		"ext.gather.toastpanel": {
 			"targets": [
@@ -444,7 +445,6 @@
 				"mobile",
 				"desktop"
 			],
-			"@doc": "FIXME: ext.gather.styles gets loaded twice. See https://phabricator.wikimedia.org/T87871",
 			"dependencies": [
 				"ext.gather.page.search",
 				"ext.gather.relatedpages",
