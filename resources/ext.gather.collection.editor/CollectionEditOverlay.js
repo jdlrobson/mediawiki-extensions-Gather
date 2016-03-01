@@ -5,8 +5,6 @@
 		CollectionSearchPanel = M.require( 'ext.gather.page.search/CollectionSearchPanel' ),
 		Overlay = M.require( 'mobile.overlays/Overlay' ),
 		Icon = M.require( 'mobile.startup/Icon' ),
-		SchemaGather = M.require( 'ext.gather.logging/SchemaGather' ),
-		schema = new SchemaGather(),
 		router = M.require( 'mobile.startup/router' ),
 		CollectionDeleteOverlay = M.require( 'ext.gather.collection.delete/CollectionDeleteOverlay' ),
 		RelatedPages = M.require( 'ext.gather.relatedpages/RelatedPages' ),
@@ -421,16 +419,15 @@
 						} );
 					}
 					self._populateTitleAndDescription();
-					schema.log( eventParams ).always( function () {
-						self._switchToFirstPane();
-						// Make sure when the user leaves the overlay the page gets refreshed
-						self._stateChanged = true;
-					} );
+					mw.track( 'gather.schemaGatherClicks', eventParams );
+					self._switchToFirstPane();
+					// Make sure when the user leaves the overlay the page gets refreshed
+					self._stateChanged = true;
 				} ).fail( function ( errMsg ) {
 					toast.show( self.options.editFailedError, 'toast error' );
 					// Make it possible to try again.
 					self.$( '.mw-ui-input, .save-description' ).prop( 'disabled', false );
-					schema.log( {
+					mw.track( 'gather.schemaGatherClicks', {
 						eventName: 'edit-collection-error',
 						errorMessage: errMsg
 					} );

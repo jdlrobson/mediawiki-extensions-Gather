@@ -1,9 +1,7 @@
 // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 ( function ( M ) {
 
-	var SchemaGather = M.require( 'ext.gather.logging/SchemaGather' ),
-		schema = new SchemaGather(),
-		CtaDrawer = M.require( 'mobile.drawers/CtaDrawer' ),
+	var CtaDrawer = M.require( 'mobile.drawers/CtaDrawer' ),
 		CollectionsContentOverlay = M.require( 'ext.gather.watchstar/CollectionsContentOverlay' ),
 		Icon = M.require( 'mobile.startup/Icon' ),
 		// FIXME: MobileFrontend code duplication
@@ -151,7 +149,7 @@
 			} else {
 				this.onStatusToggleUser.apply( this, arguments );
 			}
-			schema.log( {
+			mw.track( 'gather.schemaGatherClicks', {
 				eventName: 'click',
 				source: this.options.wasUserPrompted ? 'onboarding' : 'unknown'
 			} );

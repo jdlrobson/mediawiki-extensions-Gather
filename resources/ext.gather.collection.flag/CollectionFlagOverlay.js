@@ -1,8 +1,6 @@
 ( function ( M, $ ) {
 
 	var ConfirmationOverlay = M.require( 'ext.gather.collection.confirm/ConfirmationOverlay' ),
-		SchemaGatherFlags = M.require( 'ext.gather.logging/SchemaGatherFlags' ),
-		schema = new SchemaGatherFlags(),
 		toast = M.require( 'mobile.toast/toast' );
 
 	/**
@@ -35,13 +33,12 @@
 			this.showSpinner();
 			// disable buttons
 			this.$( '.confirm, .cancel' ).prop( 'disabled', true );
-			schema.log( {
+			mw.track( 'gather.schemaGatherFlags', {
 				collectionId: self.id
-			} ).always( function () {
-				toast.show( self.options.flagSuccessMsg, 'toast' );
-				self.emit( 'collection-flagged' );
-				self.hide();
 			} );
+			toast.show( self.options.flagSuccessMsg, 'toast' );
+			self.emit( 'collection-flagged' );
+			self.hide();
 		},
 		/**
 		* Override Overlay:onExit function as this overlay is not controlled by OverlayManager
