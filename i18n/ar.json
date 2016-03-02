@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"محمد أحمد عبد الفتاح",
-			"Moushira"
+			"Moushira",
+			"Maroen1990"
 		]
 	},
 	"gather": "تجميع",
@@ -63,7 +64,7 @@
 	"gather-new-collection-failed-toast": "حدث خطأ أثناء إنشاء المجموعة \"$1\"",
 	"gather-add-failed-toast": "حدث خطأ إثناء إضافة الصفحة لمجموعتك \"$1\"",
 	"gather-add-title-invalid-toast": "هناك خطأ بالعنوان الذي تم إضافته، برجاء اختيار أسم آخر.",
-	"gather-add-to-collection-confirm": "أضف إلى مجموعة",
+	"gather-add-to-collection-confirm": "ابدا مجموعة",
 	"gather-add-to-collection-cancel": "لا شكرا",
 	"gather-update-collection-success": "تم التحديث بنجاح",
 	"gather-edit-collection-confirm": "لقد تم تغير المجموعة. هل تود تجاهل الحفظ؟",
@@ -85,8 +86,8 @@
 	"gather-delete-button": "احذف",
 	"gather-overlay-edit-button": "عدل العنوان والوصف",
 	"gather-overlay-continue": "التالي",
-	"gather-overlay-search-empty": "ابحث عن مقالات أخرى لإضافتها للمجموعة.",
-	"gather-overlay-search-new": "جرب بحثاً أخر",
+	"gather-overlay-search-empty": "ابحث عن مقالات أخرى .",
+	"gather-overlay-search-new": "ابدا بحثاً أخر",
 	"right-gather-hidelist": "اخف مجموعة علنية",
 	"gather-watchstar-button-label": "أضف إلى مجموعة"
 }
