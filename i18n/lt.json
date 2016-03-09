@@ -19,6 +19,7 @@
 	"gather-delete-collection-delete-label": "Ištrinti",
 	"gather-delete-collection-success": "Kolekcija buvo sėkmingai ištrinta.",
 	"gather-delete-collection-failed-error": "Ištrinant kolekciją įvyko klaida.",
+	"gather-flag-collection-success": "Kolekcija buvo pažymėtas.",
 	"gather-confirmation-cancel-button-label": "Atšaukti",
 	"gather-error-unknown-collection": "Norimos redaguoti kolekcijos rasti nepavyko.",
 	"gather-collection-member": "Yra kolekcijos dalis.",

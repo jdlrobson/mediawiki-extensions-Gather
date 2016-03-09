@@ -43,7 +43,7 @@
 	"gather-delete-collection-confirm": "تأكيد الحذف؟",
 	"gather-delete-collection-heading": "حذف المجموعة؟",
 	"gather-delete-collection-delete-label": "حذف؟",
-	"gather-delete-collection-success": "تم الحذف بنجاح.",
+	"gather-delete-collection-success": "حذفت المجموعة.",
 	"gather-delete-collection-failed-error": "لم يتم حذف المجموعة نتيجة لخطأ ما.",
 	"gather-flag-collection-heading": "ابلغ عن هذه المجموعة؟",
 	"gather-flag-collection-confirm": "تأكيد الإبلاغ عن القائمة للمراجعة؟",

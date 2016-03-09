@@ -18,7 +18,7 @@
 	"gather-lists-collection-count": "Aanzahl",
 	"gather-lists-hide-collection-label": "Verschteihsche",
 	"gather-lists-hide-collection": "Do wells {{GENDER:$2|däm|däm|dämm Metmaacher|dä|däm}} „$2“ {{GENDER:$2|sing|sing|sing|ier|sing}} Sammlong „$1“ verschteijsche?",
-	"gather-lists-hide-success-toast": "De Sammlong „$1“ es verschtoche woode.",
+	"gather-lists-hide-success-toast": "De Sammlong „$1“ es verschtoche.",
 	"gather-lists-hide-failure-toast": "Kunnt di Sammlong „$1“ nit verschteijsche.",
 	"gather-lists-show-collection-label": "Opzeije",
 	"gather-lists-show-collection": "Wells De di Sammlong „$1“ {{GENDER:$2|vum|vum|vumm Metmaacher|vun dä|vum}} „$2“ widder öffentlesch maache?",
