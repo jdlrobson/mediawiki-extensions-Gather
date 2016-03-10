@@ -303,7 +303,7 @@
 				"gather-collection-content-tutorial-heading": "gather-collection-content-tutorial-heading",
 				"gather-collection-content-tutorial-subheading": ["parse"],
 				"gather-tutorial-dismiss-button-label": "gather-tutorial-dismiss-button-label",
-				"gather-remove-from-failed-collection-toast": "gather-remove-from-failed-collection-toast",
+				"gather-remove-from-collection-failed-toast": "gather-remove-from-collection-failed-toast",
 				"gather-add-to-collection-failed-toast": "gather-add-to-collection-failed-toast",
 				"gather-new-collection-failed-toast": "gather-new-collection-failed-toast",
 				"gather-add-to-existing": "gather-add-to-existing",
