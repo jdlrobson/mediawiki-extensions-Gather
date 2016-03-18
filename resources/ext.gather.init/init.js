@@ -197,6 +197,7 @@
 			watchstar = new Watchstar( {
 				el: $star,
 				page: page,
+				api: new mw.Api(),
 				funnel: 'page',
 				isAnon: user.isAnon(),
 				isWatched: $star.hasClass( 'watched' )
