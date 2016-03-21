@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Айсар"
+		]
+	},
+	"gather-delete-collection-success": "Коллекция юйылған.",
+	"gather-flag-collection-success": "Коллекция тамғаланған.",
+	"gather-update-collection-success": "Коллекция яңыртылған."
+}
