@@ -4,6 +4,8 @@
 			"Айсар"
 		]
 	},
+	"gather-lists-hide-success-toast": "«$1» исемлеге ябылған.",
+	"gather-lists-show-success-toast": "«$1» исемлеге тағы асылған.",
 	"gather-delete-collection-success": "Коллекция юйылған.",
 	"gather-flag-collection-success": "Коллекция тамғаланған.",
 	"gather-update-collection-success": "Коллекция яңыртылған."
