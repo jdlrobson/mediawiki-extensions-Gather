@@ -111,6 +111,8 @@
 	"gather-moderation-approved": "[[$1|Tu colección]] se ha aprobado. Esto significa que no se ocultará automáticamente de nuevo.",
 	"gather-moderation-approved-email-subject": "Tu colección $1 se ha aprobado.",
 	"gather-moderation-approved-email-body": "Tu colección $1 se ha aprobado. Esto significa que no se ocultará automáticamente de nuevo.",
+	"gather-moderation-criteria-link-label": "Criterios de moderación",
+	"gather-moderation-notification-primary-link-text": "{{GENDER:$1|Tu}} colección",
 	"echo-category-title-gather": "Recopilar",
 	"gather-echo-pref-tooltip": "Notificarme acerca de los cambios en mis colecciones.",
 	"gather-article-count": "$1 {{PLURAL:$1|página|páginas}}",
