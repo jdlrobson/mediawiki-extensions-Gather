@@ -1,13 +1,7 @@
 {
-  "name": "Gather-dependencies",
-  "description": "Node.js dependencies used in Gather",
-  "version": "0.0.1",
+  "private": true,
   "scripts": {
     "test": "grunt test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://git.wikimedia.org/git/mediawiki/extensions/Gather.git"
   },
   "dependencies": {
     "grunt": "0.4.5",
@@ -19,8 +13,6 @@
     "svgo": ">=0.4.4"
   },
   "devDependencies": {
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-mkdir": "^0.1.2",
     "grunt-svg2png": "0.2.5",
     "grunt-contrib-jshint": "0.11.3",
     "grunt-jscs": "1.8.0",
@@ -29,8 +21,6 @@
     "grunt-jsduck": "^1.0.1",
     "js-beautify": "^1.5.4",
     "grunt-notify": "^0.3.1",
-    "grunt-contrib-watch": "0.6.1",
-    "grunt-lib-phantomjs-istanbul": "0.6.0",
-    "grunt-qunit-istanbul": "git+https://github.com/joakin/grunt-qunit-istanbul.git#prefix-url"
+    "grunt-contrib-watch": "0.6.1"
   }
 }
