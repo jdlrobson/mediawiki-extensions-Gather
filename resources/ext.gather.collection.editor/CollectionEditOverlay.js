@@ -11,7 +11,6 @@
 		CollectionDeleteOverlay = M.require( 'ext.gather.collection.delete/CollectionDeleteOverlay' ),
 		RelatedPages = M.require( 'ext.gather.relatedpages/RelatedPages' ),
 		SearchTutorialOverlay = M.require( 'ext.gather.collection.edit/SearchTutorialOverlay' );
-
 	/**
 	 * Overlay for editing a collection
 	 * @extends Overlay
@@ -37,6 +36,7 @@
 		this.gateway = new CollectionsGateway( this.api );
 		Overlay.apply( this, arguments );
 		this.$clear = this.$( '.search-header .clear' );
+		this.edited = false;
 	}
 
 	OO.mfExtend( CollectionEditOverlay, Overlay, {
@@ -119,6 +119,7 @@
 			'click .search-header .back': 'onExitSearch',
 			'click .save-description': 'onSaveDescriptionClick',
 			'click .back': 'onSettingsBackClick',
+			'change input.title, .description': 'onEditOfInputBoxes',
 			'click .cancel': 'onCancelClick',
 			'click .save': 'onFirstPaneSaveClick',
 			'click .collection-privacy': 'onToggleCollectionPrivacy'
@@ -319,15 +320,26 @@
 			}
 		},
 		/**
+		 * set a variable on change of input boxes
+		 */
+		onEditOfInputBoxes: function () {
+			this.edited = true;
+		},
+		/**
 		 * Event handler when the back button is clicked on the title/edit description pane.
 		 */
 		onSettingsBackClick: function () {
 			if ( this.id ) {
-				// reset the values to their original values.
-				this.$( 'input.title' ).val( this.options.collection.title );
-				this.$( '.description' ).val( this.options.collection.description );
-				// Note: we will need to reset checkbox when enabling private/public toggle.
-				this._switchToFirstPane();
+				if ( this.edited )   {
+					if ( window.confirm( this.options.confirmExitMessage ) ) {
+						this.$( 'input.title', '.description' ).val( this.options.collection.title );
+						this.$( '.collection-privacy' ).toggleClass( 'private' );
+						this._switchToFirstPane();
+						this.edited = false;
+					}
+				} else {
+					this._switchToFirstPane();
+				}
 			} else {
 				Overlay.prototype.hide.apply( this, arguments );
 			}
@@ -445,6 +457,7 @@
 		 */
 		onToggleCollectionPrivacy: function () {
 			this.$( '.collection-privacy' ).toggleClass( 'private' );
+			this.onEditOfInputBoxes();
 		},
 		/** @inheritdoc */
 		hide: function () {
