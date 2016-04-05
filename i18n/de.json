@@ -149,6 +149,7 @@
 	"apihelp-editlist-paramvalue-mode-deletelist": "Löscht die ganze Liste.",
 	"apihelp-query+lists-description": "Listet Sammlungen eines angegebenen Benutzers auf.",
 	"apihelp-query+lists-param-ids": "Kennungen der zurückzugebenden Listen. <kbd>0</kbd> für die Beobachtungsliste verwenden.",
+	"apihelp-query+lists-param-title": "Zeigt nur Listen an, die diese Seite enthalten.",
 	"apihelp-query+lists-param-owner": "Nach Sammlungen dieses Benutzers suchen. Wird durch den aktuellen Benutzer ersetzt, wenn leer.",
 	"apihelp-query+lists-param-limit": "Beschränkt die Anzahl zurückgegebener Listen.",
 	"apihelp-query+lists-paramvalue-mode-allpublic": "Zeigt alle (öffentliche) Listen",
