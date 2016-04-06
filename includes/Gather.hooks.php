@@ -36,22 +36,26 @@ class Hooks {
 	 * @return bool Always true
 	 */
 	public static function onResourceLoaderRegisterModules( ResourceLoader &$resourceLoader ) {
-		$dependencies = array();
+		$schema = array(
+			'localBasePath' => dirname( __DIR__ ),
+			'remoteExtPath' => 'Gather',
+			'targets' => array( 'mobile', 'desktop' ),
+		);
 
 		if ( is_callable( 'EventLogging::logEvent' ) ) {
-			$dependencies = array(
-				'schema.GatherClicks',
-				'schema.GatherFlags',
+			$schema += array(
+				'dependencies' => array(
+					'schema.GatherClicks',
+					'schema.GatherFlags',
+				),
+				'scripts' => array(
+					"resources/ext.gather.schema/schemaGatherClicks.js",
+					"resources/ext.gather.schema/schemaGatherFlags.js"
+				)
 			);
 		}
 
-		$resourceLoader->register( 'ext.gather.schema', array(
-			'dependencies' => $dependencies,
-			'targets' => array(
-				'desktop',
-				'mobile'
-			),
-		) );
+		$resourceLoader->register( 'ext.gather.schema', $schema );
 
 		return true;
 	}

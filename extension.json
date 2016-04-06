@@ -170,10 +170,6 @@
 				"mobile.startup",
 				"mobile.user",
 				"ext.gather.schema"
-			],
-			"scripts": [
-				"resources/ext.gather.logging/SchemaGather.js",
-				"resources/ext.gather.logging/SchemaGatherFlags.js"
 			]
 		},
 		"ext.gather.api": {

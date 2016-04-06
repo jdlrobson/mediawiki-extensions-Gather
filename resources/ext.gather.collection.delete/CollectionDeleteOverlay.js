@@ -1,8 +1,6 @@
 ( function ( M, $ ) {
 
-	var SchemaGather = M.require( 'ext.gather.logging/SchemaGather' ),
-		schema = new SchemaGather(),
-		toast = M.require( 'mobile.toast/toast' ),
+	var toast = M.require( 'mobile.toast/toast' ),
 		CollectionsGateway = M.require( 'ext.gather.api/CollectionsGateway' ),
 		ConfirmationOverlay = M.require( 'ext.gather.collection.confirm/ConfirmationOverlay' );
 
@@ -44,22 +42,21 @@
 			// disable button and inputs
 			this.$( '.confirm, .cancel' ).prop( 'disabled', true );
 			this.gateway.removeCollection( this.id ).done( function () {
-				schema.log( {
+				mw.track( 'gather.schemaGatherClicks', {
 					eventName: 'delete-collection'
-				} ).always( function () {
-					self.$( '.spinner' ).hide();
-					// Show toast after reloading
-					toast.showOnPageReload( self.options.deleteSuccessMsg, 'toast' );
-					self.hide();
-					// Go to the collections list page as collection will no longer exist
-					window.location.href = mw.util.getUrl( 'Special:Gather' );
 				} );
+				self.$( '.spinner' ).hide();
+				// Show toast after reloading
+				toast.showOnPageReload( self.options.deleteSuccessMsg, 'toast' );
+				self.hide();
+				// Go to the collections list page as collection will no longer exist
+				window.location.href = mw.util.getUrl( 'Special:Gather' );
 			} ).fail( function ( errMsg ) {
 				toast.show( self.options.deleteFailedError, 'toast error' );
 				self.hide();
 				// Make it possible to try again.
 				self.$( '.confirm, .cancel' ).prop( 'disabled', false );
-				schema.log( {
+				mw.track( 'gather.schemaGatherClicks', {
 					eventName: 'delete-collection-error',
 					errorText: errMsg
 				} );

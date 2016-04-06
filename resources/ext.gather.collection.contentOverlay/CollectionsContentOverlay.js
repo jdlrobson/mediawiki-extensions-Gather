@@ -1,7 +1,5 @@
 ( function ( M, $ ) {
-	var SchemaGather = M.require( 'ext.gather.logging/SchemaGather' ),
-		schema = new SchemaGather(),
-		icons = M.require( 'mobile.startup/icons' ),
+	var icons = M.require( 'mobile.startup/icons' ),
 		toast = M.require( 'mobile.toast/toast' ),
 		user = M.require( 'mobile.user/user' ),
 		Icon = M.require( 'mobile.startup/Icon' ),
@@ -109,7 +107,7 @@
 		/** @inheritdoc */
 		hide: function () {
 			$( 'html' ).removeClass( 'gather-overlay-enabled' );
-			schema.log( {
+			mw.track( 'gather.schemaGatherClicks', {
 				eventName: 'hide'
 			} );
 			return CollectionsContentOverlayBase.prototype.hide.apply( this, arguments );
@@ -239,7 +237,7 @@
 			ev.preventDefault();
 			if ( this.isTitleValid( title ) ) {
 				this.addCollection( title, page );
-				schema.log( {
+				mw.track( 'gather.schemaGatherClicks', {
 					eventName: 'new-collection'
 				} );
 			} else {
@@ -274,7 +272,7 @@
 				this.addToCollection( collection, page );
 			}
 			ev.stopPropagation();
-			schema.log( {
+			mw.track( 'gather.schemaGatherClicks', {
 				eventName: 'select-collection'
 			} );
 		},
@@ -346,7 +344,7 @@
 				self._collectionStateChange( collection, false );
 				self._notifyChanges( collection, false );
 			} ).fail( function ( errMsg ) {
-				schema.log( {
+				mw.track( 'gather.schemaGatherClicks', {
 					eventName: 'remove-collection-error',
 					errorText: errMsg
 				} );
@@ -365,7 +363,7 @@
 				self._collectionStateChange( collection, true );
 				self._notifyChanges( collection, true );
 			} ).fail( function () {
-				schema.log( {
+				mw.track( 'gather.schemaGatherClicks', {
 					eventName: 'add-collection-error'
 				} );
 				self.hideSpinner();
@@ -409,7 +407,7 @@
 					self.hide();
 				} );
 			} ).fail( function ( errMsg ) {
-				schema.log( {
+				mw.track( 'gather.schemaGatherClicks', {
 					eventName: 'create-collection-error',
 					errorText: errMsg
 				} );

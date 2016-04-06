@@ -1,8 +1,5 @@
 ( function ( M, $ ) {
-	var
-		SchemaGather = M.require( 'ext.gather.logging/SchemaGather' ),
-		schema = new SchemaGather(),
-		PageActionOverlay = M.require( 'mobile.contentOverlays/PointerOverlay' );
+	var PageActionOverlay = M.require( 'mobile.contentOverlays/PointerOverlay' );
 
 	/**
 	 * @class WatchstarPageActionOverlay
@@ -34,7 +31,7 @@
 			 * @event cancel
 			 */
 			this.emit( 'cancel' );
-			schema.log( {
+			mw.track( 'gather.schemaGatherClicks', {
 				eventName: 'dismiss-onboarding'
 			} );
 		},
