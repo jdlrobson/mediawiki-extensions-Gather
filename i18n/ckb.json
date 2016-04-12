@@ -2,10 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Pirehelokan",
-			"Asoxor"
+			"Asoxor",
+			"Sarchia"
 		]
 	},
 	"gather-editfeed-show": "نیشان بدە",
+	"gather-edit-collection-related-pages": "پەڕە ھاوپەیوەندەکان",
 	"apihelp-editlist-param-label": "سەردێڕی لیستەکە دابنێ.",
 	"apihelp-editlist-param-perm": "دیتنی لیستەکە ببینە.",
 	"apihelp-editlist-param-description": "پێناسەی لیستەکە دابنێ",
