@@ -55,20 +55,18 @@ class GatherTests extends ApiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		if ( !self::$wlUsers ) {
-			foreach ( array(
-				'GatherML',
-				'GatherML2',
-				'GatherWML',
-				'GatherWML2',
-				'GatherWlOnly',
-				'GatherWlOnly2',
-				'GatherE1',
-				'GatherE2',
-				'GatherE3',
-			) as $name ) {
-				self::$wlUsers[$name] = new TestUser( $name );
-			}
+		foreach ( array(
+			'GatherML',
+			'GatherML2',
+			'GatherWML',
+			'GatherWML2',
+			'GatherWlOnly',
+			'GatherWlOnly2',
+			'GatherE1',
+			'GatherE2',
+			'GatherE3',
+		) as $name ) {
+			self::$wlUsers[$name] = new TestUser( $name );
 		}
 		self::$users = array_merge( self::$users, self::$wlUsers );
 		global $wgGatherAllowPublicWatchlist;
