@@ -34,6 +34,16 @@ class GatherTests extends ApiTestCase {
 	/** @var TestUser[] */
 	private static $wlUsers = null;
 
+	public function __construct( $name = null, array $data = [], $dataName = '' ) {
+		parent::__construct( $name, $data, $dataName );
+		$this->tablesUsed = array_merge( $this->tablesUsed, [
+			'watchlist',
+			'gather_list_flag',
+			'gather_list_item',
+			'gather_list',
+		] );
+	}
+
 	/**
 	 * Create a set of pages. These must not change, otherwise the tests might give wrong results.
 	 * @see MediaWikiTestCase::addDBData()
