@@ -45,6 +45,7 @@ class Hooks {
 		if ( is_callable( 'EventLogging::logEvent' ) ) {
 			$schema += array(
 				'dependencies' => array(
+					'mobile.context',
 					'schema.GatherClicks',
 					'schema.GatherFlags',
 				),
