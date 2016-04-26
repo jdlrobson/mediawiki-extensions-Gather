@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Fasouzafreitas",
-			"Araceletorres"
+			"Araceletorres",
+			"Dianakc"
 		]
 	},
 	"gather": "Reunir",
@@ -65,9 +66,9 @@
 	"gather-add-failed-toast": "Ocorreu um problema ao adicionar o item à sua coleção \"$1\".",
 	"gather-add-title-invalid-toast": "Ocorreu um problema com o título que inseriu. Por favor, tente outro",
 	"gather-add-to-collection-summary": "{{GENDER:$2|Adicione}} $1 a uma coleção de páginas que você pode compartilhar com o mundo!",
-	"gather-add-to-collection-confirm": "Adicionar à coleção",
+	"gather-add-to-collection-confirm": "Iniciar uma coleção",
 	"gather-add-to-collection-cancel": "Não, obrigado",
-	"gather-update-collection-success": "A coleção foi atualizada com sucesso.",
+	"gather-update-collection-success": "A coleção foi atualizada.",
 	"gather-edit-collection-confirm": "Você fez alterações à sua coleção. Deseja sair sem salvar as mudanças?",
 	"gather-remove-toast": "A página foi removida da sua coleção \"$1\".",
 	"gather-no-such-action": "Desculpe, a ação solicitada não existe.",
