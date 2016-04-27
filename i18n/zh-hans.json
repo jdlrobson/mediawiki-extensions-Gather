@@ -80,7 +80,7 @@
 	"gather-collection-content-tutorial-subheading": "或将此添加至您的'''监视列表'''以关注对条目的更改。",
 	"gather-add-to-collection-summary": "将$1{{GENDER:$2|添加}}至页面收藏，一个您可以添加书签并分享它的页面列表！",
 	"gather-add-to-collection-confirm": "开始一个收藏",
-	"gather-add-to-collection-cancel": "不，谢谢",
+	"gather-add-to-collection-cancel": "不用了，谢谢",
 	"gather-update-collection-success": "收藏已更新。",
 	"gather-edit-collection-confirm": "您对您的收藏做出了更新。您是否希望离开而不保存它们？",
 	"gather-remove-toast": "页面已从您的“$1”收藏中移除。",
