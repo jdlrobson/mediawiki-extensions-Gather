@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mads Haupt"
+			"Mads Haupt",
+			"Sarrus"
 		]
 	},
+	"gather-editfeed-show": "Vis",
 	"gather-add-to-collection-cancel": "Nej tak"
 }
