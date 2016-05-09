@@ -22,9 +22,9 @@ class ReportTableRow extends View {
 	 * @return string
 	 */
 	private function userLink( $user ) {
-		return Html::element( 'a', array(
+		return Html::element( 'a', [
 			'href' => SpecialPage::getTitleFor( 'Gather', 'by/' . $user )->getLocalUrl()
-		), $user );
+		], $user );
 	}
 
 	/**
@@ -33,9 +33,9 @@ class ReportTableRow extends View {
 	 * @return string
 	 */
 	private function collectionLink( $collection ) {
-		return Html::element( 'a', array(
+		return Html::element( 'a', [
 			'href' => $collection->getUrl()
-		), $collection->getTitle() );
+		], $collection->getTitle() );
 	}
 
 	/**
@@ -54,7 +54,7 @@ class ReportTableRow extends View {
 	 * @param array $data
 	 * @return string Html
 	 */
-	public function getHtml( $data = array() ) {
+	public function getHtml( $data = [] ) {
 		$lang = $this->language;
 		$user = $this->user;
 		$collection = $this->collection;
@@ -68,10 +68,10 @@ class ReportTableRow extends View {
 
 		$html = Html::openElement( 'li' )
 			. $this->collectionLink( $collection )
-			. Html::element( 'span', $desc ? array() : array( 'class' => 'empty' ), $desc )
-			. Html::element( 'span', array(), $collection->getCount() )
+			. Html::element( 'span', $desc ? [] : [ 'class' => 'empty' ], $desc )
+			. Html::element( 'span', [], $collection->getCount() )
 			. $this->userLink( $owner )
-			. Html::element( 'span', array(), $ts );
+			. Html::element( 'span', [], $ts );
 
 		if ( $data['canHide'] ) {
 			$className = CSS::buttonClass(
@@ -82,14 +82,14 @@ class ReportTableRow extends View {
 			$label = $action === 'hide' ? wfMessage( 'gather-lists-hide-collection-label' )->text() :
 				wfMessage( 'gather-lists-show-collection-label' )->text();
 
-			$html .= Html::openElement( 'span', array() )
-				. Html::element( 'button', array(
+			$html .= Html::openElement( 'span', [] )
+				. Html::element( 'button', [
 					'class' => $className,
 					'data-id' => $id,
 					'data-action' => $action,
 					'data-label' => $title,
 					'data-owner' => $owner->getName(),
-				), $label )
+				], $label )
 				. Html::closeElement( 'span' );
 		}
 		$html .= Html::closeElement( 'li' );

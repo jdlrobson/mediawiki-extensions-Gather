@@ -45,7 +45,7 @@ class ApiQueryListPages extends ApiQueryGeneratorBase {
 
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'lsp' );
-		$this->modulePath = array( 'query', $this->getModuleName() );
+		$this->modulePath = [ 'query', $this->getModuleName() ];
 	}
 
 	public function execute() {
@@ -86,14 +86,14 @@ class ApiQueryListPages extends ApiQueryGeneratorBase {
 	 */
 	private function queryListItems( array $params, $isGenerator ) {
 		$this->addTables( 'gather_list_item' );
-		$this->addFields( array( 'gli_namespace', 'gli_title', 'gli_order' ) );
+		$this->addFields( [ 'gli_namespace', 'gli_title', 'gli_order' ] );
 		$this->addWhereFld( 'gli_gl_id', $params['id'] );
 		$this->addWhereFld( 'gli_namespace', $params['namespace'] );
 
 		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		$sortField = 'gli_order' . $sort;
 		if ( $params['sort'] === 'namespace' ) {
-			$sortField = array( 'gli_namespace' . $sort, 'gli_title' . $sort );
+			$sortField = [ 'gli_namespace' . $sort, 'gli_title' . $sort ];
 		}
 		$this->addOption( 'ORDER BY', $sortField );
 
@@ -123,7 +123,7 @@ class ApiQueryListPages extends ApiQueryGeneratorBase {
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$res = $this->select( __METHOD__ );
 
-		$titles = array();
+		$titles = [];
 		$count = 0;
 		$needContinue = false;
 		foreach ( $res as $row ) {
@@ -135,7 +135,7 @@ class ApiQueryListPages extends ApiQueryGeneratorBase {
 			}
 			$t = Title::makeTitle( $row->gli_namespace, $row->gli_title );
 			if ( !$isGenerator ) {
-				$vals = array();
+				$vals = [];
 				ApiQueryBase::addTitleInfo( $vals, $t );
 				$fit = $this->getResult()->addValue( $this->modulePath, null, $vals );
 				if ( !$fit ) {
@@ -167,7 +167,7 @@ class ApiQueryListPages extends ApiQueryGeneratorBase {
 	private function queryLegacyWatchlist( array $params, $isGenerator, $userId ) {
 		$this->selectNamedDB( 'watchlist', DB_SLAVE, 'watchlist' );
 		$this->addTables( 'watchlist' );
-		$this->addFields( array( 'wl_namespace', 'wl_title' ) );
+		$this->addFields( [ 'wl_namespace', 'wl_title' ] );
 		$this->addWhereFld( 'wl_user', $userId );
 		$this->addWhereFld( 'wl_namespace', $params['namespace'] );
 
@@ -189,16 +189,16 @@ class ApiQueryListPages extends ApiQueryGeneratorBase {
 		if ( count( $params['namespace'] ) == 1 ) {
 			$this->addOption( 'ORDER BY', 'wl_title' . $sort );
 		} else {
-			$this->addOption( 'ORDER BY', array(
+			$this->addOption( 'ORDER BY', [
 				'wl_namespace' . $sort,
 				'wl_title' . $sort
-			) );
+			] );
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$res = $this->select( __METHOD__ );
 
-		$titles = array();
+		$titles = [];
 		$count = 0;
 		$needContinue = false;
 		foreach ( $res as $row ) {
@@ -210,7 +210,7 @@ class ApiQueryListPages extends ApiQueryGeneratorBase {
 			}
 			$t = Title::makeTitle( $row->wl_namespace, $row->wl_title );
 			if ( !$isGenerator ) {
-				$vals = array();
+				$vals = [];
 				ApiQueryBase::addTitleInfo( $vals, $t );
 				$fit = $this->getResult()->addValue( $this->modulePath, null, $vals );
 				if ( !$fit ) {
@@ -233,45 +233,45 @@ class ApiQueryListPages extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return array_merge( ApiMixinListAccess::getListAccessParams(), array(
-			'continue' => array(
+		return array_merge( ApiMixinListAccess::getListAccessParams(), [
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-			'namespace' => array(
+			],
+			'namespace' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => 'namespace',
-			),
-			'sort' => array(
+			],
+			'sort' => [
 				ApiBase::PARAM_DFLT => 'position',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'position',
 					'namespace',
-				),
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
-			),
-			'dir' => array(
+				],
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+			],
+			'dir' => [
 				ApiBase::PARAM_DFLT => 'ascending',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'ascending',
 					'descending',
-				),
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
-			),
-			'limit' => array(
+				],
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+			],
+			'limit' => [
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2,
-			),
-		) );
+			],
+		] );
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&list=listpages' => 'apihelp-query+listpages-example-1',
 			'action=query&list=listpages&lspid=2' => 'apihelp-query+listpages-example-2',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

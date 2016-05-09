@@ -43,11 +43,11 @@ class ApiQueryLists extends ApiQueryBase {
 	 * Maps DB values to API property values
 	 * @var array
 	 */
-	public static $permOverrideApiMap = array(
+	public static $permOverrideApiMap = [
 		ApiEditList::PERM_OVERRIDE_NONE => '',
 		ApiEditList::PERM_OVERRIDE_HIDDEN => 'hidden',
 		ApiEditList::PERM_OVERRIDE_APPROVED => 'approved',
-	);
+	];
 
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'lst' );
@@ -120,7 +120,7 @@ class ApiQueryLists extends ApiQueryBase {
 		if ( $fld_label || !$mode ) {
 			$this->addFields( 'gl_label' );
 		} else {
-			$this->addFields( array( 'isWl' => "gl_label=''" ) );
+			$this->addFields( [ 'isWl' => "gl_label=''" ] );
 		}
 		$this->addFieldsIf( 'gl_updated', $fld_updated || $mode );
 		$this->addFieldsIf( 'gl_perm', $fld_public );
@@ -132,7 +132,7 @@ class ApiQueryLists extends ApiQueryBase {
 			// Join user table to get user name
 			// else - we already know the user to return, no need to join tables
 			$this->addTables( 'user' );
-			$this->addJoinConds( array( 'user' => array( 'INNER JOIN', 'user_id=gl_user' ) ) );
+			$this->addJoinConds( [ 'user' => [ 'INNER JOIN', 'user_id=gl_user' ] ] );
 			$this->addFields( 'user_name' );
 		}
 
@@ -145,7 +145,7 @@ class ApiQueryLists extends ApiQueryBase {
 		}
 
 		if ( $ids || $findWatchlist ) {
-			$cond = array();
+			$cond = [];
 			if ( $ids ) {
 				$cond['gl_id'] = $ids;
 			}
@@ -154,7 +154,7 @@ class ApiQueryLists extends ApiQueryBase {
 					$cond['gl_label'] = '';
 				} else {
 					$cond[] =
-						$db->makeList( array( 'gl_label' => '', 'gl_user' => $owner->getId() ),
+						$db->makeList( [ 'gl_label' => '', 'gl_user' => $owner->getId() ],
 							LIST_AND );
 					if ( !$ids ) {
 						$singleUser = true;
@@ -167,31 +167,31 @@ class ApiQueryLists extends ApiQueryBase {
 		if ( $mode === 'allhidden' ) {
 			// lists made private by their owners are not considered hidden
 			$this->addWhereFld( 'gl_perm', ApiEditList::PERM_PUBLIC );
-			$this->addWhere( $db->makeList( array(
+			$this->addWhere( $db->makeList( [
 				'gl_perm_override' => ApiEditList::PERM_OVERRIDE_HIDDEN,
-				$db->makeList( array(
+				$db->makeList( [
 					'gl_flag_count >= ' . $wgGatherAutohideFlagLimit,
 					'gl_perm_override != ' . ApiEditList::PERM_OVERRIDE_APPROVED,
-				), LIST_AND ),
-			), LIST_OR ) );
+				], LIST_AND ),
+			], LIST_OR ) );
 		} elseif ( $mode === 'review' ) {
 			$this->addWhereFld( 'gl_perm', ApiEditList::PERM_PUBLIC );
-			$this->addWhere( $db->makeList( array(
+			$this->addWhere( $db->makeList( [
 				'gl_needs_review' => 1,
 				'gl_flag_count >= ' . $wgGatherAutohideFlagLimit,
-			), LIST_OR ) );
+			], LIST_OR ) );
 
 		} elseif ( $showPrivate !== true ) {
-			$cond = array();
-			$cond[] = $db->makeList( array(
+			$cond = [];
+			$cond[] = $db->makeList( [
 				'gl_perm' => ApiEditList::PERM_PUBLIC,
 				'gl_perm_override' => ApiEditList::PERM_OVERRIDE_APPROVED,
-			), LIST_AND );
-			$cond[] = $db->makeList( array(
+			], LIST_AND );
+			$cond[] = $db->makeList( [
 				'gl_perm' => ApiEditList::PERM_PUBLIC,
 				'gl_perm_override != ' . ApiEditList::PERM_OVERRIDE_HIDDEN,
 				'gl_flag_count < ' . $wgGatherAutohideFlagLimit,
-			), LIST_AND );
+			], LIST_AND );
 			if ( $showPrivate === null ) {
 				$cond['gl_user'] = $this->getUser()->getId();
 			}
@@ -256,14 +256,14 @@ class ApiQueryLists extends ApiQueryBase {
 			}
 
 			if ( $ids || !$findWatchlist ) {
-				$cond = array(
+				$cond = [
 					'gli_namespace' => $title->getNamespace(),
 					'gli_title' => $title->getDBkey(),
 					'gl_id = gli_gl_id',
-				);
+				];
 				$subsql = $db->selectSQLText( 'gather_list_item', 'gli_gl_id', $cond, __METHOD__ );
 				$subsql = "($subsql)";
-				$this->addFields( array( 'isIn' => $subsql ) );
+				$this->addFields( [ 'isIn' => $subsql ] );
 			}
 			// else - avoid subquery because there would be no results - searching for watchlist
 		}
@@ -275,7 +275,7 @@ class ApiQueryLists extends ApiQueryBase {
 		$this->addOption( 'LIMIT', $limit + 1 );
 
 		$count = 0;
-		$path = array( 'query', $this->getModuleName() );
+		$path = [ 'query', $this->getModuleName() ];
 
 		foreach ( $this->select( __METHOD__ ) as $row ) {
 			if ( $injectWatchlist ) {
@@ -321,19 +321,19 @@ class ApiQueryLists extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'mode' => array(
-				ApiBase::PARAM_TYPE => array(
+		return [
+			'mode' => [
+				ApiBase::PARAM_TYPE => [
 					'allpublic',
 					'allhidden',
 					'review',
-				),
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
-			),
-			'prop' => array(
+				],
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+			],
+			'prop' => [
 				ApiBase::PARAM_DFLT => 'label',
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'label',
 					'description',
 					'public',
@@ -342,43 +342,43 @@ class ApiQueryLists extends ApiQueryBase {
 					'count',
 					'updated',
 					'owner',
-				),
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
-			),
-			'minitems' => array(
+				],
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+			],
+			'minitems' => [
 				ApiBase::PARAM_TYPE => 'integer',
-			),
-			'ids' => array(
+			],
+			'ids' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => 'integer',
-			),
-			'title' => array(
+			],
+			'title' => [
 				ApiBase::PARAM_TYPE => 'string',
-			),
-			'owner' => array(
+			],
+			'owner' => [
 				ApiBase::PARAM_TYPE => 'user',
-			),
-			'token' => array(
+			],
+			'token' => [
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_HELP_MSG => 'gather-api-help-param-listtoken',
-			),
-			'limit' => array(
+			],
+			'limit' => [
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2,
-			),
-			'continue' => array(
+			],
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-		);
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&list=lists&lstowner=john' => 'apihelp-query+lists-example-1',
-		);
+		];
 	}
 
 	public function getHelpUrls() {
@@ -415,7 +415,7 @@ class ApiQueryLists extends ApiQueryBase {
 
 		if ( $row === null ) {
 			// Fake watchlist row
-			$row = (object) array(
+			$row = (object) [
 				'gl_id' => 0,
 				'gl_label' => '',
 				'gl_perm' => ApiEditList::PERM_PRIVATE,
@@ -424,7 +424,7 @@ class ApiQueryLists extends ApiQueryBase {
 				'gl_flag_count' => 0,
 				'gl_updated' => '',
 				'gl_info' => '',
-			);
+			];
 		} else {
 			$row = ApiEditList::normalizeRow( $row );
 		}
@@ -439,7 +439,7 @@ class ApiQueryLists extends ApiQueryBase {
 
 		$isWatchlist = property_exists( $row, 'isWl' ) ? $row->isWl : $row->gl_label === '';
 
-		$data = array( 'id' => $row->gl_id );
+		$data = [ 'id' => $row->gl_id ];
 		if ( $isWatchlist ) {
 			$data['watchlist'] = true;
 		}
@@ -535,7 +535,7 @@ class ApiQueryLists extends ApiQueryBase {
 	private function calcPermissions( array $params, $ids ) {
 		if ( $params['owner'] !== null && $params['token'] !== null ) {
 			// Caller supplied token - treat them as trusted, someone who could see even private
-			return array( $this->getWatchlistUser( $params ), true );
+			return [ $this->getWatchlistUser( $params ), true ];
 		}
 
 		if ( $params['owner'] !== null ) {
@@ -571,7 +571,7 @@ class ApiQueryLists extends ApiQueryBase {
 				$showPrivate = false;
 			}
 		}
-		return array( $owner, $showPrivate );
+		return [ $owner, $showPrivate ];
 	}
 
 	/**
@@ -580,12 +580,12 @@ class ApiQueryLists extends ApiQueryBase {
 	 */
 	private function updateCounts( User $wlOwner ) {
 		$result = $this->getResult();
-		$data = $result->getResultData( array( 'query', $this->getModuleName() ) );
+		$data = $result->getResultData( [ 'query', $this->getModuleName() ] );
 		if ( $data === null ) {
 			return;
 		}
 
-		$ids = array();
+		$ids = [];
 		$wlListId = false;
 		foreach ( $data as $key => $page ) {
 			if ( !ApiResult::isMetadataKey( $key ) ) {
@@ -597,22 +597,22 @@ class ApiQueryLists extends ApiQueryBase {
 			}
 		}
 
-		$counts = array();
+		$counts = [];
 		if ( $wlListId !== false ) {
 			// TODO: estimateRowCount() might be much faster, TBD if ok
 			$db = $this->getQuery()->getNamedDB( 'watchlist', DB_SLAVE, 'watchlist' );
 			// Must divide in two because of duplicate talk pages (same as the special page)
 			$counts[$wlListId] = intval( floor(
-				$db->selectRowCount( 'watchlist', '*', array( 'wl_user' => $wlOwner->getId() ),
+				$db->selectRowCount( 'watchlist', '*', [ 'wl_user' => $wlOwner->getId() ],
 					__METHOD__ ) / 2 ) );
 		}
 		if ( count( $ids ) > 0 ) {
 			$db = $this->getDB();
 			$sql =
 				$db->select( 'gather_list_item',
-					array( 'id' => 'gli_gl_id', 'cnt' => 'COUNT(*)' ),
-					array( 'gli_gl_id' => $ids ), __METHOD__,
-					array( 'GROUP BY' => 'gli_gl_id' ) );
+					[ 'id' => 'gli_gl_id', 'cnt' => 'COUNT(*)' ],
+					[ 'gli_gl_id' => $ids ], __METHOD__,
+					[ 'GROUP BY' => 'gli_gl_id' ] );
 
 			foreach ( $sql as $row ) {
 				$counts[intval( $row->id )] = intval( $row->cnt );
@@ -626,7 +626,7 @@ class ApiQueryLists extends ApiQueryBase {
 				// This really shouldn't be using ApiResult::NO_SIZE_CHECK, but
 				// there's no sane way to handle failure without rewriting a
 				// bunch of other code.
-				$result->addValue( array( 'query', $this->getModuleName(), $key ), 'count',
+				$result->addValue( [ 'query', $this->getModuleName(), $key ], 'count',
 					isset( $counts[$id] ) ? $counts[$id] : 0, ApiResult::NO_SIZE_CHECK );
 			}
 		}
@@ -640,10 +640,10 @@ class ApiQueryLists extends ApiQueryBase {
 	 */
 	private function isTitleInWatchlist( User $user, Title $title ) {
 		$db = $this->getQuery()->getNamedDB( 'watchlist', DB_SLAVE, 'watchlist' );
-		return (bool)$db->selectField( 'watchlist', '1', array(
+		return (bool)$db->selectField( 'watchlist', '1', [
 			'wl_user' => $user->getId(),
 			'wl_namespace' => $title->getNamespace(),
 			'wl_title' => $title->getDBkey(),
-		), __METHOD__ );
+		], __METHOD__ );
 	}
 }

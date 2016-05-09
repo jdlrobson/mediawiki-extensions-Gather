@@ -67,31 +67,30 @@ class ApiEditList extends ApiBase {
 	 * also DB values to lists API properties
 	 * @var array
 	 */
-	public static $permMap = array(
+	public static $permMap = [
 		'public' => self::PERM_PUBLIC,
 		'private' => self::PERM_PRIVATE,
-	);
+	];
 
 	/**
 	 * Maps API actions (mode parameter values) to PERM_OVERRIDE_* constants (DB values)
 	 * @var array
 	 */
-	public static $permOverrideMap = array(
+	public static $permOverrideMap = [
 		'hidelist' => self::PERM_OVERRIDE_HIDDEN,
 		'showlist' => self::PERM_OVERRIDE_NONE,
 		'approve' => self::PERM_OVERRIDE_APPROVED,
-	);
+	];
 
 	/**
 	 * Maps API actions (mode parameter values) to Echo notification types
 	 * @var array
 	 */
-	public static $permOverrideNotificationMap = array(
+	public static $permOverrideNotificationMap = [
 		'hidelist' => 'gather-hide',
 		'showlist' => 'gather-unhide',
 		'approve' => 'gather-approve',
-	);
-
+	];
 
 	/**
 	 * @param string $type Log type
@@ -136,7 +135,7 @@ class ApiEditList extends ApiBase {
 			$logEventName = 'new';
 		} else {
 			// Find existing list
-			$row = $this->getListRow( $params, $dbw, array( 'gl_id' => $listId ) );
+			$row = $this->getListRow( $params, $dbw, [ 'gl_id' => $listId ] );
 			if ( !$row ) {
 				$this->dieUsage( "List {$p}id was not found", 'badid' );
 			}
@@ -150,16 +149,16 @@ class ApiEditList extends ApiBase {
 					break;
 				case 'deletelist':
 					// ACTION: delete list (items + list itself)
-					$dbw->delete( 'gather_list_item', array( 'gli_gl_id' => $listId ), __METHOD__ );
-					$dbw->delete( 'gather_list_flag', array( 'glf_gl_id' => $listId ), __METHOD__ );
-					$dbw->delete( 'gather_list', array( 'gl_id' => $listId ), __METHOD__ );
+					$dbw->delete( 'gather_list_item', [ 'gli_gl_id' => $listId ], __METHOD__ );
+					$dbw->delete( 'gather_list_flag', [ 'glf_gl_id' => $listId ], __METHOD__ );
+					$dbw->delete( 'gather_list', [ 'gl_id' => $listId ], __METHOD__ );
 					$this->setResultStatus( $listId, 'deleted' );
 					$logEventName = $mode;
 					break;
 				case 'hidelist':
 				case 'showlist':
 				case 'approve':
-					$update = array( 'gl_flag_count' => 0, 'gl_needs_review' => 0 );
+					$update = [ 'gl_flag_count' => 0, 'gl_needs_review' => 0 ];
 					$permOverride = self::$permOverrideMap[$mode];
 					$update['gl_perm_override'] = $permOverride;
 					$update = array_diff_assoc( $update, (array)$row ); // remove fields with no changes
@@ -170,8 +169,8 @@ class ApiEditList extends ApiBase {
 						$logEventName = $mode;
 					}
 					$dbw->update( 'gather_list_flag',
-						array( 'glf_reviewed' => 1 ),
-						array( 'glf_gl_id' => $listId ),
+						[ 'glf_reviewed' => 1 ],
+						[ 'glf_gl_id' => $listId ],
 					__METHOD__ );
 					$dbw->endAtomic( __METHOD__ );
 
@@ -187,14 +186,14 @@ class ApiEditList extends ApiBase {
 								->getSubpage( $row->gl_id )
 								->getSubpage( $row->gl_label );
 
-							EchoEvent::create( array(
+							EchoEvent::create( [
 								'type' => $eventType,
 								'title' => $collectionTitle,
-								'extra' => array(
+								'extra' => [
 									'collection-owner-id' => $row->gl_user,
-								),
+								],
 								'agent' => $user,
-							) );
+							] );
 						}
 					}
 					break;
@@ -203,18 +202,18 @@ class ApiEditList extends ApiBase {
 					// lock list to avoid race condition with a show/hide/approve
 					$dbw->select( 'gather_list',
 						'gl_id',
-						array( 'gl_id' => $listId ),
+						[ 'gl_id' => $listId ],
 						__METHOD__,
-						array( 'FOR UPDATE' )
+						[ 'FOR UPDATE' ]
 					);
 					$dbw->insert( 'gather_list_flag',
-						array(
+						[
 							'glf_user_id' => $user->getId(),
 							'glf_user_ip' => $user->getId() ? '' : $this->getRequest()->getIP(),
 							'glf_gl_id' => $listId,
-						),
+						],
 						__METHOD__,
-						array( 'IGNORE' )
+						[ 'IGNORE' ]
 					);
 					if ( !$dbw->affectedRows() ) {
 						$dbw->endAtomic( __METHOD__ ); // nothing changed
@@ -222,8 +221,8 @@ class ApiEditList extends ApiBase {
 							'alreadyflagged' );
 					}
 					$dbw->update( 'gather_list',
-						array( 'gl_flag_count = gl_flag_count + 1' ),
-						array( 'gl_id' => $listId ),
+						[ 'gl_flag_count = gl_flag_count + 1' ],
+						[ 'gl_id' => $listId ],
 						__METHOD__ );
 					$dbw->endAtomic( __METHOD__ );
 					$this->setResultStatus( $row->gl_id, 'flagged' );
@@ -256,9 +255,9 @@ class ApiEditList extends ApiBase {
 		$entry = new ManualLogEntry( 'gather', 'action' );
 		$entry->setPerformer( $user );
 		$entry->setTarget( $target );
-		$params = array(
+		$params = [
 			'action' => $action,
-		);
+		];
 		$entry->setParameters( $params );
 		$rc = $entry->getRecentChange();
 
@@ -331,7 +330,7 @@ class ApiEditList extends ApiBase {
 		// These modes cannot change list items or change other params like label/description/...
 		// Incidentally, these are also modes that cannot be applied to the watchlist
 		$isNoUpdatesMode = in_array( $mode,
-			array( 'showlist', 'hidelist', 'deletelist', 'approve', 'flag' ) );
+			[ 'showlist', 'hidelist', 'deletelist', 'approve', 'flag' ] );
 
 		if ( !$user->isLoggedIn() && $mode !== 'flag' ) {
 			$this->dieUsage( 'You must be logged-in to edit a list', 'notloggedin' );
@@ -458,29 +457,29 @@ class ApiEditList extends ApiBase {
 	}
 
 	public function getAllowedParams( $flags = 0 ) {
-		$result = array(
-			'id' => array(
+		$result = [
+			'id' => [
 				ApiBase::PARAM_TYPE => 'integer',
-			),
-			'label' => array(
+			],
+			'label' => [
 				ApiBase::PARAM_TYPE => 'string',
-			),
-			'perm' => array(
-				ApiBase::PARAM_TYPE => array(
+			],
+			'perm' => [
+				ApiBase::PARAM_TYPE => [
 					'public',
 					'private',
-				),
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
-			),
-			'description' => array(
+				],
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+			],
+			'description' => [
 				ApiBase::PARAM_TYPE => 'string',
-			),
-			'image' => array(
+			],
+			'image' => [
 				ApiBase::PARAM_TYPE => 'string',
-			),
-			'mode' => array(
+			],
+			'mode' => [
 				ApiBase::PARAM_DFLT => 'update',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'update',
 					'remove',
 					'deletelist',
@@ -488,13 +487,13 @@ class ApiEditList extends ApiBase {
 					'showlist',
 					'flag',
 					'approve',
-				),
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
-			),
-			'continue' => array(
+				],
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+			],
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-		);
+			],
+		];
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
 		}
@@ -579,14 +578,14 @@ class ApiEditList extends ApiBase {
 
 		if ( $createRow ) {
 			$id = $dbw->nextSequenceValue( 'gather_list_gl_id_seq' );
-			$dbw->insert( 'gather_list', array(
+			$dbw->insert( 'gather_list', [
 				'gl_id' => $id,
 				'gl_user' => $user->getId(),
 				'gl_label' => $label,
 				'gl_info' => $info,
 				'gl_perm' => $perm,
 				'gl_updated' => $dbw->timestamp( wfTimestampNow() ),
-			), __METHOD__, 'IGNORE' );
+			], __METHOD__, 'IGNORE' );
 			$id = $dbw->insertId();
 		} else {
 			$id = 0;
@@ -594,9 +593,9 @@ class ApiEditList extends ApiBase {
 
 		if ( $id === 0 ) {
 			// List already exists, update instead, or might not need it
-			$row = $this->getListRow( $params, $dbw, array(
+			$row = $this->getListRow( $params, $dbw, [
 				'gl_user' => $user->getId(), 'gl_label' => $label
-			) );
+			] );
 			if ( $row !== false ) {
 				$id = $row->gl_id;
 				$isWatchlist = $row->gl_label === '';
@@ -622,7 +621,7 @@ class ApiEditList extends ApiBase {
 	 * @throws MWException
 	 */
 	private function updateListDb( DatabaseBase $dbw, array $params, $row ) {
-		$update = array();
+		$update = [];
 		$info = self::parseListInfo( $row->gl_info, $row->gl_id, true );
 		$info = $this->updateInfo( $info, $params, $resetPermission );
 		if ( $info ) {
@@ -662,18 +661,18 @@ class ApiEditList extends ApiBase {
 	private function processTitles( array $params, User $user, $listId, DatabaseBase $dbw,
 		$isWatchlist ) {
 
-		$continuationManager = new ApiContinuationManager( $this, array(), array() );
+		$continuationManager = new ApiContinuationManager( $this, [], [] );
 		$this->setContinuationManager( $continuationManager );
 
 		$pageSet = $this->getPageSet();
 		$pageSet->execute();
-		$res = $pageSet->getInvalidTitlesAndRevisions( array(
+		$res = $pageSet->getInvalidTitlesAndRevisions( [
 			'invalidTitles',
 			'special',
 			'missingIds',
 			'missingRevIds',
 			'interwikiTitles'
-		) );
+		] );
 
 		$titles = new AppendIterator();
 		$titles->append( new ArrayIterator( $pageSet->getGoodTitles() ) );
@@ -691,25 +690,25 @@ class ApiEditList extends ApiBase {
 			// TODO: support "insertafter=title" parameter
 			$order =
 				$dbw->selectField( 'gather_list_item', 'max(gli_order)',
-					array( 'gli_gl_id' => $listId ), __METHOD__ );
+					[ 'gli_gl_id' => $listId ], __METHOD__ );
 			if ( $order === false ) {
 				$this->dieDebug( __METHOD__, "max(gli_order) failed for id $listId" );
 			}
 			$order = !$order ? 1 : $order + 1;
 
-			$rows = array();
+			$rows = [];
 			foreach ( $titles as $title ) {
-				$r = array( 'title' => $title->getPrefixedText() );
+				$r = [ 'title' => $title->getPrefixedText() ];
 				if ( !$title->isWatchable() ) {
 					$r['watchable'] = 0;
 				} else {
 					$r['added'] = '';
-					$rows[] = array(
+					$rows[] = [
 						'gli_gl_id' => $listId,
 						'gli_namespace' => $title->getNamespace(),
 						'gli_title' => $title->getDBkey(),
 						'gli_order' => $order,
-					);
+					];
 					$order += 1;
 				}
 				$res[] = $r;
@@ -718,15 +717,15 @@ class ApiEditList extends ApiBase {
 			$dbw->startAtomic( __METHOD__ );
 			$dbw->insert( 'gather_list_item', $rows, __METHOD__, 'IGNORE' );
 			$dbw->update( 'gather_list',
-				array( 'gl_item_count = gl_item_count + ' . $dbw->affectedRows() ),
-				array( 'gl_id' => $listId ),
+				[ 'gl_item_count = gl_item_count + ' . $dbw->affectedRows() ],
+				[ 'gl_id' => $listId ],
 				__METHOD__ );
 			$dbw->endAtomic( __METHOD__ );
 		} else {
 			// Remove titles from the list
 			$linkBatch = new LinkBatch();
 			foreach ( $titles as $title ) {
-				$r = array( 'title' => $title->getPrefixedText() );
+				$r = [ 'title' => $title->getPrefixedText() ];
 				if ( !$title->isWatchable() ) {
 					$r['watchable'] = 0;
 				} else {
@@ -738,13 +737,13 @@ class ApiEditList extends ApiBase {
 			$set = $linkBatch->constructSet( 'gli', $dbw );
 			if ( $set ) {
 				$dbw->startAtomic( __METHOD__ );
-				$dbw->delete( 'gather_list_item', array(
+				$dbw->delete( 'gather_list_item', [
 					'gli_gl_id' => $listId,
 					$set
-				), __METHOD__ );
+				], __METHOD__ );
 				$dbw->update( 'gather_list',
-					array( 'gl_item_count = gl_item_count - ' . $dbw->affectedRows() ),
-					array( 'gl_id' => $listId ),
+					[ 'gl_item_count = gl_item_count - ' . $dbw->affectedRows() ],
+					[ 'gl_id' => $listId ],
 					__METHOD__ );
 				$dbw->endAtomic( __METHOD__ );
 			}
@@ -766,7 +765,7 @@ class ApiEditList extends ApiBase {
 	 */
 	private function watchTitle( Title $title, User $user, $remove ) {
 		$prefixedText = $title->getPrefixedText();
-		$res = array( 'title' => $prefixedText );
+		$res = [ 'title' => $prefixedText ];
 
 		if ( !$title->isWatchable() ) {
 			$res['watchable'] = 0;
@@ -820,8 +819,8 @@ class ApiEditList extends ApiBase {
 	 */
 	private function getListRow( array $params, DatabaseBase $dbw, array $conds ) {
 		$row = self::normalizeRow( $dbw->selectRow( 'gather_list',
-			array( 'gl_id', 'gl_user', 'gl_label', 'gl_perm', 'gl_perm_override', 'gl_item_count',
-				   'gl_flag_count', 'gl_needs_review', 'gl_info' ), $conds, __METHOD__ ) );
+			[ 'gl_id', 'gl_user', 'gl_label', 'gl_perm', 'gl_perm_override', 'gl_item_count',
+				   'gl_flag_count', 'gl_needs_review', 'gl_info' ], $conds, __METHOD__ ) );
 		if ( $row ) {
 			$this->checkPermissions( $params, $row );
 		}
@@ -868,7 +867,7 @@ class ApiEditList extends ApiBase {
 		if ( $update ) {
 			// ACTION: update list record
 			$update['gl_updated'] = $dbw->timestamp( wfTimestampNow() );
-			$dbw->update( 'gather_list', $update, array( 'gl_id' => $row->gl_id ), __METHOD__,
+			$dbw->update( 'gather_list', $update, [ 'gl_id' => $row->gl_id ], __METHOD__,
 				'IGNORE' );
 			if ( $dbw->affectedRows() === 0 ) {
 				// update failed due to the duplicate label restriction. Report
@@ -886,9 +885,9 @@ class ApiEditList extends ApiBase {
 	 * @param string $status
 	 */
 	private function setResultStatus( $id, $status ) {
-		$this->getResult()->addValue( null, $this->getModuleName(), array(
+		$this->getResult()->addValue( null, $this->getModuleName(), [
 			'status' => $status,
 			'id' => $id,
-		) );
+		] );
 	}
 }

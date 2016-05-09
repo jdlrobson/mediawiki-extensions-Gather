@@ -25,29 +25,29 @@ class SpecialGather extends SpecialPage {
 
 	public function __construct() {
 		parent::__construct( 'Gather' );
-		$this->specialCollections = array(
-				'random' => array(
+		$this->specialCollections = [
+				'random' => [
 					'title' => wfMessage( 'gather-collection-random-title' ),
 					'description' => wfMessage( 'gather-collection-random-description' ),
-					'params' => array(
+					'params' => [
 						'generator' => 'random',
 						'grnnamespace' => 0,
 						'grnlimit' => 10,
-					),
+					],
 					'limit' => 10,
-					'continue' => array( 'r' => 4 ),
-				),
-				'edited' => array(
+					'continue' => [ 'r' => 4 ],
+				],
+				'edited' => [
 					'title' => wfMessage( 'gather-collection-edited-title' ),
 					'description' => wfMessage( 'gather-collection-edited-description' ),
-					'params' => array(
+					'params' => [
 						'generator' => 'recentchanges',
 						'grcnamespace' => 0,
 						'grclimit' => 20,
-					),
+					],
 					'limit' => 10,
-				),
-			);
+				],
+			];
 	}
 
 	/**
@@ -68,11 +68,11 @@ class SpecialGather extends SpecialPage {
 	 */
 	public function execute( $subpage ) {
 		$out = $this->getOutput();
-		$out->addModules( array(
+		$out->addModules( [
 			'ext.gather.special',
 			'ext.gather.moderation',
-		) );
-		$out->addModuleStyles( array(
+		] );
+		$out->addModuleStyles( [
 			// FIXME: This is needed only for the tabs at the top of the page.
 			'mobile.special.pagefeed.styles',
 			'mediawiki.ui.anchor',
@@ -80,7 +80,7 @@ class SpecialGather extends SpecialPage {
 			'ext.gather.icons',
 			'ext.gather.styles',
 			'ext.gather.menu.icon',
-		) );
+		] );
 		if ( !isset( $subpage ) || $subpage === '' ) {
 			// Root subpage. For anons will be active collections, for logged in,
 			// their own.
@@ -111,7 +111,7 @@ class SpecialGather extends SpecialPage {
 					$args = $this->specialCollections[$key];
 					$c = new models\Collection( 0, null, $args['title'], $args['description'] );
 					$c = models\Collection::newFromApi( $c, $args['params'], $args['limit'],
-						( isset( $args['continue'] ) ? $args['continue'] : array() ) );
+						( isset( $args['continue'] ) ? $args['continue'] : [] ) );
 					$c->setUrl( SpecialPage::getTitleFor( 'Gather' )
 						->getSubpage( 'explore' )
 						->getSubpage( $key )->getLocalUrl() );
@@ -162,11 +162,11 @@ class SpecialGather extends SpecialPage {
 			// /all/recent = /all/recent/
 			// /all/review = /all/review/
 
-			$apiParams = array();
+			$apiParams = [];
 			$displayAsTable = true;
 
 			// Mode defaults to public
-			$allowedModes = array( 'public', 'hidden', 'recent', 'review' );
+			$allowedModes = [ 'public', 'hidden', 'recent', 'review' ];
 			if ( !isset( $matches['cond'] ) ) {
 				$mode = 'public';
 			} elseif ( in_array( $matches['cond'], $allowedModes ) ) {
@@ -180,9 +180,9 @@ class SpecialGather extends SpecialPage {
 				// Fancy list of collections with a certain amount of items.
 
 				$displayAsTable = false;
-				$apiParams = array(
+				$apiParams = [
 					'lstminitems' => 4
-				);
+				];
 				// Active is a concrete view of public with different params.
 				$mode = 'public';
 
@@ -237,29 +237,29 @@ class SpecialGather extends SpecialPage {
 		if ( $currentUser->isAnon() ) {
 			$myUrl = SpecialPage::getTitleFor( 'Userlogin' )
 				->getLocalUrl(
-					array(
+					[
 						'returnto' => 'Special:Gather',
 						'warning' => 'gather-anon-view-lists',
-					)
+					]
 				);
 		} else {
 			$myUrl = SpecialPage::getTitleFor( 'Gather' )->getSubPage( 'by' )
 				->getSubPage( $this->getUser()->getName() )
 				->getLocalUrl();
 		}
-		$data = array(
-			'tabs' =>array(
-				array(
+		$data = [
+			'tabs' =>[
+				[
 					'label' => wfMessage( 'gather-all-collections' )->text(),
 					'href' => SpecialPage::getTitleFor( 'Gather' )->getSubPage( 'all/recent' )
 						->getLocalUrl(),
-				),
-				array(
+				],
+				[
 					'label' => wfMessage( 'gather-my-collections' )->text(),
 					'href' => $myUrl,
-				),
-			),
-		);
+				],
+			],
+		];
 		$data['tabs'][$activeTab]["isCurrentTab"] = true;
 		$this->render( new views\Tabs(), $data );
 	}
@@ -285,11 +285,11 @@ class SpecialGather extends SpecialPage {
 	public function renderRows( $cList, $action ) {
 		$out = $this->getOutput();
 		$out->setPageTitle( wfMessage( 'gather-lists-title' ) );
-		$data = array(
+		$data = [
 			'canHide' => $this->canHideLists(),
 			'action' => $action,
 			'nextPageUrl' => $cList->getContinueUrl(),
-		);
+		];
 
 		$view = new views\ReportTable( $this->getUser(), $this->getLanguage(), $cList );
 		$view->render( $this->getOutput(), $data );
@@ -358,10 +358,10 @@ class SpecialGather extends SpecialPage {
 		$out = $this->getOutput();
 		$out->addHeadItem( 'description',
 			Html::element(
-				'meta', array(
+				'meta', [
 					'name' => 'description',
 					'content' => $description,
-				)
+				]
 			)
 		);
 		if ( $thumb ) {
@@ -369,10 +369,10 @@ class SpecialGather extends SpecialPage {
 				'ogimage',
 				Html::element(
 					'meta',
-					array(
+					[
 						'property' => 'og:image',
 						'content' => wfExpandUrl( $thumb->getUrl(), PROTO_CURRENT ),
-					)
+					]
 				)
 			);
 		}
@@ -417,7 +417,7 @@ class SpecialGather extends SpecialPage {
 	 *
 	 * @param views\View $view
 	 */
-	public function render( $view, $data = array() ) {
+	public function render( $view, $data = [] ) {
 		$out = $this->getOutput();
 		$this->setHeaders();
 		$out->setProperty( 'unstyledContent', true );
@@ -440,12 +440,12 @@ class SpecialGather extends SpecialPage {
 			try {
 				$api = new ApiMain( new DerivativeRequest(
 					$this->getRequest(),
-					array(
+					[
 						'action' => 'editlist',
 						'id' => $collection->getId(),
 						'image' => $suggestedImage,
 						'token' => $collection->getOwner()->getEditToken( 'watch' ),
-					),
+					],
 					true
 				), true );
 				$api->execute();

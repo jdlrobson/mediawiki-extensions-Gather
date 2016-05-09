@@ -54,12 +54,12 @@ class CollectionsList extends View {
 	/**
 	 * @inheritdoc
 	 */
-	public function getHtml( $data = array() ) {
+	public function getHtml( $data = [] ) {
 		$cList = $this->collectionsList;
-		$defaults = array(
+		$defaults = [
 			'mode' => $cList->getMode(),
 			'items' => $this->getListItemsHtml( $cList ),
-		);
+		];
 		if ( $cList->getOwner() ) {
 			$defaults['owner'] = $cList->getOwner()->getName();
 			$defaults['isOwner'] = $cList->isOwner( $this->user ) ? true : false;

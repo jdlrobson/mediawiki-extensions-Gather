@@ -12,7 +12,7 @@ class Template {
 	/**
 	 * Easy helper for rendering a template from the Gather extension
 	 */
-	public static function render( $template, $data=array() ) {
+	public static function render( $template, $data=[] ) {
 		$templateParser = new TemplateParser( __DIR__ . '/../../../templates' );
 		return $templateParser->processTemplate( $template, $data );
 	}

@@ -65,7 +65,7 @@ class GatherTests extends ApiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		foreach ( array(
+		foreach ( [
 			'GatherML',
 			'GatherML2',
 			'GatherWML',
@@ -75,7 +75,7 @@ class GatherTests extends ApiTestCase {
 			'GatherE1',
 			'GatherE2',
 			'GatherE3',
-		) as $name ) {
+		] as $name ) {
 			self::$wlUsers[$name] = new TestUser( $name );
 		}
 		self::$users = array_merge( self::$users, self::$wlUsers );
@@ -90,7 +90,6 @@ class GatherTests extends ApiTestCase {
 		$this->db->delete( 'gather_list', '*' );
 		parent::tearDown();
 	}
-
 
 	public function testMultiUser() {
 		$usrA = User::newFromId( 0 ); // Anonymous user
@@ -123,25 +122,25 @@ class GatherTests extends ApiTestCase {
 		$id3Wl = $this->getVal( 'mu-a3', '"id"', $res );
 		$this->assertNotEquals( 0, $id3Wl, 'mu-a1' );
 
-		$pS = array( 'watchlist' => true, 'label' => 'Watchlist' );
-		$p1 = (object) array_merge( array( 'id' => $idWl ), $pS );
-		$p2 = (object) array_merge( array( 'id' => $id2Wl ), $pS );
-		$p3 = (object) array_merge( array( 'id' => $id3Wl ), $pS );
-		$pS = (object) array_merge( array( 'id' => 0 ), $pS );
+		$pS = [ 'watchlist' => true, 'label' => 'Watchlist' ];
+		$p1 = (object) array_merge( [ 'id' => $idWl ], $pS );
+		$p2 = (object) array_merge( [ 'id' => $id2Wl ], $pS );
+		$p3 = (object) array_merge( [ 'id' => $id3Wl ], $pS );
+		$pS = (object) array_merge( [ 'id' => 0 ], $pS );
 
 		$this->assertLists( 'mu-b1', $usr, 0, $p1 );
 		$this->assertLists( 'mu-b2', $usr2, 0, $p2 );
 		$this->assertLists( 'mu-b2', $usr3, 0, $p3 );
 		$this->assertLists( 'mu-b3', $usrS, 0, $pS );
 		$this->assertLists( 'mu-b4', $usr3,
-			'"lstids":"' . $idWl . '|' . $id2Wl . '"', array( $p1, $p2 ) );
+			'"lstids":"' . $idWl . '|' . $id2Wl . '"', [ $p1, $p2 ] );
 		$this->assertLists( 'mu-b5', $usr2,
-			'"lstids":"' . $idWl . '|' . 0 . '"', array( $p1, $p2 ) );
+			'"lstids":"' . $idWl . '|' . 0 . '"', [ $p1, $p2 ] );
 		$this->assertLists( 'mu-b6', $usr3,
-			'"lstids":"' . $idWl . '|' . 0 . '"', array( $p1, $p3 ) );
+			'"lstids":"' . $idWl . '|' . 0 . '"', [ $p1, $p3 ] );
 		$this->assertLists( 'mu-b7', $usrA,
-			'"lstids":"' . $idWl . '|' . 0 . '"', array( $p1 ) );
-		$this->assertLists( 'mu-b8', $usr3, '"lstmode":"allpublic"', array( $p2, $p1 ) );
+			'"lstids":"' . $idWl . '|' . 0 . '"', [ $p1 ] );
+		$this->assertLists( 'mu-b8', $usr3, '"lstmode":"allpublic"', [ $p2, $p1 ] );
 		$this->assertLists( 'mu-b9', $usrS, '"lstmode":"allhidden"', null );
 	}
 
@@ -156,16 +155,16 @@ class GatherTests extends ApiTestCase {
 		$usrS = self::$users[$nS]->getUser();
 		$usrA = User::newFromId( 0 ); // Anonymous user
 
-		$pageW = array( 'ns' => 0, 'title' => 'Gather-ListW' );
-		$pageTW = array( 'ns' => 1, 'title' => 'Talk:Gather-ListW' );
-		$pageWA = array( 'ns' => 0, 'title' => 'Gather-ListWA' );
-		$pageTWA = array( 'ns' => 1, 'title' => 'Talk:Gather-ListWA' );
-		$pageWAB = array( 'ns' => 0, 'title' => 'Gather-ListWAB' );
-		$pageTWAB = array( 'ns' => 1, 'title' => 'Talk:Gather-ListWAB' );
-		$pageAB = array( 'ns' => 0, 'title' => 'Gather-ListAB' );
-		$pageTAB = array( 'ns' => 1, 'title' => 'Talk:Gather-ListAB' );
-		$pageB = array( 'ns' => 0, 'title' => 'Gather-ListB' );
-		$pageTB = array( 'ns' => 1, 'title' => 'Talk:Gather-ListB' );
+		$pageW = [ 'ns' => 0, 'title' => 'Gather-ListW' ];
+		$pageTW = [ 'ns' => 1, 'title' => 'Talk:Gather-ListW' ];
+		$pageWA = [ 'ns' => 0, 'title' => 'Gather-ListWA' ];
+		$pageTWA = [ 'ns' => 1, 'title' => 'Talk:Gather-ListWA' ];
+		$pageWAB = [ 'ns' => 0, 'title' => 'Gather-ListWAB' ];
+		$pageTWAB = [ 'ns' => 1, 'title' => 'Talk:Gather-ListWAB' ];
+		$pageAB = [ 'ns' => 0, 'title' => 'Gather-ListAB' ];
+		$pageTAB = [ 'ns' => 1, 'title' => 'Talk:Gather-ListAB' ];
+		$pageB = [ 'ns' => 0, 'title' => 'Gather-ListB' ];
+		$pageTB = [ 'ns' => 1, 'title' => 'Talk:Gather-ListB' ];
 
 		$usr = self::$users[$n]->getUser();
 		$usr2 = self::$users[$n2]->getUser();
@@ -180,10 +179,10 @@ class GatherTests extends ApiTestCase {
 		$tokenA = $this->getToken( $usrA );
 
 		// Make sure there are no watchlists yet for these users (starting from clean slate)
-		foreach ( array( $usr, $usr2 ) as $user ) {
+		foreach ( [ $usr, $usr2 ] as $user ) {
 			$this->assertLists( 'ed-a0', $user, '{}',
 				'[{"id":0, "watchlist":true, "label":"Watchlist"}]' );
-			$this->assertPages( 'ed-a1', $user, null, array() );
+			$this->assertPages( 'ed-a1', $user, null, [] );
 		}
 
 		$this->badUsePage( 'ed-a2', $usr, '"lspid": 9999999' );
@@ -228,13 +227,13 @@ class GatherTests extends ApiTestCase {
 		$this->badUseLists( 'ed-bb5', $usrA, '"lstmode":"allhidden"' );
 		$this->assertLists( 'ed-bb6', $usrS, '"lstmode":"allhidden"', null );
 
-		$expListsW = (object) array( 'id' => 0, 'watchlist' => true, 'label' => 'Watchlist' );
-		$expListsW2 = (object) array_merge( (array) $expListsW, array(
+		$expListsW = (object) [ 'id' => 0, 'watchlist' => true, 'label' => 'Watchlist' ];
+		$expListsW2 = (object) array_merge( (array) $expListsW, [
 			'perm' => 'private',
 			'description' => '',
 			'image' => false,
 			'count' => 0,
-		) );
+		] );
 		$this->assertLists( 'ed-bb1', $usr, 0, $expListsW, $expListsW2 );
 
 		// Add one page to the non-created watchlist
@@ -245,8 +244,8 @@ class GatherTests extends ApiTestCase {
 		$this->getVal( 'ed-c1', '"pages", 0, "added"', $res, '' );
 
 		$expListsW2->count = 1;
-		$expPagesW = array( $pageW, $pageTW );
-		$expPagesIn = array( 'Gather-ListW' );
+		$expPagesW = [ $pageW, $pageTW ];
+		$expPagesIn = [ 'Gather-ListW' ];
 
 		$this->assertPages( 'ed-c2', $usr, null, $expPagesW );
 		$this->assertPages( 'ed-c3', $usr, 0, $expPagesW );
@@ -312,8 +311,8 @@ class GatherTests extends ApiTestCase {
 		$this->getVal( 'ed-e1', '"pages", 0, "added"', $res, '' );
 
 		$expListsW2->count = 2;
-		$expPagesW = array( $pageW, $pageWA, $pageTW, $pageTWA );
-		$expPagesIn = array( 'Gather-ListW', 'Gather-ListWA' );
+		$expPagesW = [ $pageW, $pageWA, $pageTW, $pageTWA ];
+		$expPagesIn = [ 'Gather-ListW', 'Gather-ListWA' ];
 
 		$this->assertPages( 'ed-e2', $usr, null, $expPagesW );
 		$this->assertPages( 'ed-e3', $usr, 0, $expPagesW );
@@ -333,8 +332,8 @@ class GatherTests extends ApiTestCase {
 
 		$expListsW2->count = 3;
 		$expListsW2->description = 'y';
-		$expPagesW = array( $pageW, $pageWA, $pageWAB, $pageTW, $pageTWA, $pageTWAB );
-		$expPagesIn = array( 'Gather-ListW', 'Gather-ListWA', 'Gather-ListWAB' );
+		$expPagesW = [ $pageW, $pageWA, $pageWAB, $pageTW, $pageTWA, $pageTWAB ];
+		$expPagesIn = [ 'Gather-ListW', 'Gather-ListWA', 'Gather-ListWAB' ];
 
 		$this->assertPages( 'ed-f2', $usr, null, $expPagesW );
 		$this->assertPages( 'ed-f3', $usr, 0, $expPagesW );
@@ -349,15 +348,15 @@ class GatherTests extends ApiTestCase {
 		$this->getVal( 'ed-i1', '"status"', $res, 'created' );
 		$idA = $this->getVal( 'ed-i1', '"id"', $res );
 		$idAs = '"id":' . $idA;
-		$expListsA = (object) array( 'id' => $idA, 'label' => 'A' );
-		$expListsA2 = (object) array_merge( (array) $expListsA, array(
+		$expListsA = (object) [ 'id' => $idA, 'label' => 'A' ];
+		$expListsA2 = (object) array_merge( (array) $expListsA, [
 			'perm' => 'private',
 			'description' => '',
 			'image' => false,
 			'count' => 0,
-		) );
-		$expPagesA = array();
-		$expPagesIn = array();
+		] );
+		$expPagesA = [];
+		$expPagesIn = [];
 
 		$this->assertPages( 'ed-i2', $usr, $idA, $expPagesA );
 		$this->assertLists( 'ed-i3', $usr, $idA, $expListsA, $expListsA2 );
@@ -497,16 +496,16 @@ class GatherTests extends ApiTestCase {
 		$idB = $this->getVal( 'ed-n1', '"id"', $res );
 		$idBs = '"id":' . $idB;
 
-		$expListsB = (object) array( 'id' => $idB, 'label' => 'B' );
-		$expListsB2 = (object) array_merge( (array) $expListsB, array(
+		$expListsB = (object) [ 'id' => $idB, 'label' => 'B' ];
+		$expListsB2 = (object) array_merge( (array) $expListsB, [
 			'perm' => 'public',
 			'description' => '',
 			'image' => false,
 			'count' => 3,
-		) );
+		] );
 		// Non-alphabetic order should be preserved
-		$expPagesB = array( $pageB, $pageAB, $pageWAB );
-		$expPagesIn = array( 'Gather-ListB', 'Gather-ListAB', 'Gather-ListWAB' );
+		$expPagesB = [ $pageB, $pageAB, $pageWAB ];
+		$expPagesIn = [ 'Gather-ListB', 'Gather-ListAB', 'Gather-ListWAB' ];
 
 		// FIXME failing test disabled in gerrit 209032
 		// $this->assertPages( 'ed-n2', $usr, $idB, $expPagesB );
@@ -550,8 +549,8 @@ class GatherTests extends ApiTestCase {
 
 		$this->assertPages( 'ed-o3', $usr, $idB, $expPagesB );
 		$this->assertLists( 'ed-o4', $usr, $idB, $expListsB, $expListsB2 );
-		$this->assertLists( 'ed-o4a', $usr, '{}', array( $expListsW, $expListsB ),
-			array( $expListsW2, $expListsB2 ) );
+		$this->assertLists( 'ed-o4a', $usr, '{}', [ $expListsW, $expListsB ],
+			[ $expListsW2, $expListsB2 ] );
 		$this->assertIsIn( 'ed-o4b', $usr, $idB, $expPagesIn );
 		$this->assertLists( 'ed-o5', $usrA, $idB, null );
 		$this->assertIsIn( 'ed-o5a', $usrA, $idB, null );
@@ -810,7 +809,7 @@ class GatherTests extends ApiTestCase {
 		$id = $this->getVal( 'nc-f0', '"id"', $res );
 		$this->assertNotEquals( 0, $id );
 
-		$wlOnly = array( array( 'id' => $id, 'watchlist' => true, 'label' => 'Watchlist' ) );
+		$wlOnly = [ [ 'id' => $id, 'watchlist' => true, 'label' => 'Watchlist' ] ];
 
 		$this->assertLists( 'nc-f2', $u, '{}', $wlOnly );
 		$this->assertLists( 'nc-f3', $u, '"lstids": 0', $wlOnly );
@@ -865,22 +864,22 @@ class GatherTests extends ApiTestCase {
 	}
 
 	private function legacyAddToWatchlist( $message, $user, $token, $titles ) {
-		$params = array(
+		$params = [
 			'action' => 'watch',
 			'titles' => $titles,
 			'token' => $token,
-		);
+		];
 		$res = $this->getLists( $message, $user, $params );
 		$this->getVal( $message, '"watch", 0, "watched"', $res );
 	}
 
 	private function getToken( User $user ) {
 		$message = 'token-' . $user->getName();
-		$res = $this->doApiRequest2( $message, $user, array(
+		$res = $this->doApiRequest2( $message, $user, [
 			'action' => 'query',
 			'meta' => 'tokens',
 			'type' => 'watch',
-		) );
+		] );
 		return $this->getVal( $message, '0, "query", "tokens", "watchtoken"', $res );
 	}
 
@@ -911,7 +910,7 @@ class GatherTests extends ApiTestCase {
 	private function editList( $message, $user, $token, $params ) {
 		$params = $this->toApiParams( $message, 'editlist', $token, $params );
 		$res = $this->doApiRequest2( $message, $user, $params );
-		return $this->getVal( $message, array( $params['action'] ), $res[0] );
+		return $this->getVal( $message, [ $params['action'] ], $res[0] );
 	}
 
 	private function getLists( $message, User $user, $params ) {
@@ -1036,10 +1035,10 @@ class GatherTests extends ApiTestCase {
 		$params = $this->toArr( $message, $params, true );
 		if ( $expected ) {
 			if ( is_object( $expected ) ) {
-				$expected = array( (array)$expected );
+				$expected = [ (array)$expected ];
 			} elseif ( is_string( $expected ) ) {
 				$expected = $this->toArr( $message, $expected );
-			} elseif( is_array( $expected ) ) {
+			} elseif ( is_array( $expected ) ) {
 				$expected = array_map( function ( $v ) {
 					return (array)$v;
 				}, $expected );
@@ -1047,10 +1046,10 @@ class GatherTests extends ApiTestCase {
 		}
 		if ( $expectedProp ) {
 			if ( is_object( $expectedProp ) ) {
-				$expectedProp = array( (array)$expectedProp );
+				$expectedProp = [ (array)$expectedProp ];
 			} elseif ( is_string( $expectedProp ) ) {
 				$expectedProp = $this->toArr( $message, $expectedProp );
-			} elseif( is_array( $expectedProp ) ) {
+			} elseif ( is_array( $expectedProp ) ) {
 				$expectedProp = array_map( function ( $v ) {
 					return (array)$v;
 				}, $expectedProp );
@@ -1087,7 +1086,7 @@ class GatherTests extends ApiTestCase {
 		if ( is_integer( $params ) ) {
 			$params = '"lsmid":' . $params;
 		}
-		$params = array_merge( (array)$this->toArr( $message, $params, true ), array(
+		$params = array_merge( (array)$this->toArr( $message, $params, true ), [
 			'action' => 'query',
 			'format' => 'json',
 			'continue' => '',
@@ -1095,7 +1094,7 @@ class GatherTests extends ApiTestCase {
 			'gapprefix' => 'Gather-List',
 			'gaplimit' => 'max',
 			'prop' => 'listmembership'
-		) );
+		] );
 
 		if ( $expected === null ) {
 			$this->badUse( $message, $u, 'query', false, $params );
@@ -1104,7 +1103,7 @@ class GatherTests extends ApiTestCase {
 
 		$res = $this->doApiRequest2( $message, $u, $params );
 
-		$found = array();
+		$found = [];
 		if ( isset( $res[0]['query']['pages'] ) ) {
 			foreach ( $res[0]['query']['pages'] as $page ) {
 				if ( array_key_exists( 'listmembership', $page ) ) {

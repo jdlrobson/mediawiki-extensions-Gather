@@ -43,7 +43,7 @@ class CollectionFeedItem extends View {
 	/**
 	 * @inheritdoc
 	 */
-	protected function getHtml( $data = array() ) {
+	protected function getHtml( $data = [] ) {
 		$lang = $this->language;
 		$item = $this->item;
 		$title = $item->getTitle();
@@ -55,18 +55,18 @@ class CollectionFeedItem extends View {
 		$ts = $item->getTimestamp();
 		$diffLink = $item->getChangeUrl();
 
-		$html = Html::openElement( 'li', array( 'class' => 'page-summary' ) );
-		$html .= Html::element( 'p', array( 'class' => 'mw-changeslist-date' ),
+		$html = Html::openElement( 'li', [ 'class' => 'page-summary' ] );
+		$html .= Html::element( 'p', [ 'class' => 'mw-changeslist-date' ],
 			$lang->userTime( $ts, $user ) );
 
 		if ( $diffLink ) {
-			$html .= Html::openElement( 'a', array( 'href' => $diffLink, 'class' => 'title' ) );
+			$html .= Html::openElement( 'a', [ 'href' => $diffLink, 'class' => 'title' ] );
 		} else {
-			$html .= Html::openElement( 'div', array( 'class' => 'title' ) );
+			$html .= Html::openElement( 'div', [ 'class' => 'title' ] );
 		}
 
 		if ( $title ) {
-			$html .= Html::element( 'h3', array(), $title->getPrefixedText() );
+			$html .= Html::element( 'h3', [], $title->getPrefixedText() );
 		}
 		if ( $diffLink ) {
 			$html .= Html::closeElement( 'a' );
@@ -84,10 +84,10 @@ class CollectionFeedItem extends View {
 			}
 			$html .= Html::element(
 				'p',
-				array(
+				[
 					'class' => $bytesClass,
 					'dir' => 'ltr',
-				),
+				],
 				$formattedBytes
 			);
 		}
@@ -96,21 +96,21 @@ class CollectionFeedItem extends View {
 			$usernameClass = self::getUsernameCSSClasses( $user );
 			$userPage = $user->getUserPage();
 
-			$html .= Html::element( 'a', array( 'href' => $userPage->getLocalUrl(),
-				'class' => $usernameClass ), $username );
-			$html .= Html::openElement( 'span', array( 'class' => 'mw-usertoollinks' ) ) .
-				Html::element( 'a', array(
+			$html .= Html::element( 'a', [ 'href' => $userPage->getLocalUrl(),
+				'class' => $usernameClass ], $username );
+			$html .= Html::openElement( 'span', [ 'class' => 'mw-usertoollinks' ] ) .
+				Html::element( 'a', [
 					'href' => $userPage->getTalkPage()->getLocalUrl(),
-					'class' => $usernameClass ), wfMessage( 'talkpagelinktext' ) ) .
-				Html::element( 'a', array(
+					'class' => $usernameClass ], wfMessage( 'talkpagelinktext' ) ) .
+				Html::element( 'a', [
 					'href' => SpecialPage::getTitleFor( 'Contributions', $username )->getLocalUrl(),
-					'class' => $usernameClass ), wfMessage( 'contribslink' ) ) .
+					'class' => $usernameClass ], wfMessage( 'contribslink' ) ) .
 				Html::closeElement( 'span' );
 		}
 
 		if ( $comment ) {
 			$html .= Html::element(
-				'p', array( 'class' => 'edit-summary component truncated-text multi-line two-line' ), $comment
+				'p', [ 'class' => 'edit-summary component truncated-text multi-line two-line' ], $comment
 			);
 		}
 
@@ -118,7 +118,7 @@ class CollectionFeedItem extends View {
 			$html .= ChangesList::flag( 'minor' );
 		}
 
-		$html .= Html::openElement( 'div', array( 'class' => 'list-thumb' ) );
+		$html .= Html::openElement( 'div', [ 'class' => 'list-thumb' ] );
 		$html .= Html::closeElement( 'div' );
 		$html .= Html::closeElement( 'li' );
 		return $html;

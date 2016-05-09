@@ -34,7 +34,7 @@ class CollectionFeed extends View {
 	 * @return string HTML
 	 */
 	private function getEmptyCollectionMessage() {
-		return Html::element( 'div', array( 'class' => 'content' ),
+		return Html::element( 'div', [ 'class' => 'content' ],
 			wfMessage( 'gather-editfeed-empty' ) );
 	}
 
@@ -50,8 +50,8 @@ class CollectionFeed extends View {
 				$html .= Html::closeElement( 'ul' );
 			}
 			$html .=
-				Html::element( 'h2', array( 'class' => 'list-header' ), $date ) .
-				Html::openElement( 'ul', array( 'class' => 'page-list side-list' ) );
+				Html::element( 'h2', [ 'class' => 'list-header' ], $date ) .
+				Html::openElement( 'ul', [ 'class' => 'page-list side-list' ] );
 		}
 		$this->lastDate = $date;
 		return $html;
@@ -77,8 +77,8 @@ class CollectionFeed extends View {
 	/**
 	 * @inheritdoc
 	 */
-	public function getHtml( $data = array() ) {
-		$html = Html::openElement( 'div', array( 'class' => 'mw-changeslist' ) );
+	public function getHtml( $data = [] ) {
+		$html = Html::openElement( 'div', [ 'class' => 'mw-changeslist' ] );
 		if ( $this->feed->getCount() > 0 ) {
 			$html .= $this->getCollectionItems();
 		} else {

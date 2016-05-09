@@ -17,7 +17,7 @@ abstract class View {
 	 * @param array additional $data to help construct the view
 	 * @return string Html
 	 */
-	abstract protected function getHtml( $data = array() );
+	abstract protected function getHtml( $data = [] );
 
 	/**
 	 * Returns the title for the view
@@ -44,7 +44,7 @@ abstract class View {
 	 *
 	 * @param OutputPage $out
 	 */
-	public function render( OutputPage $out, $data = array() ) {
+	public function render( OutputPage $out, $data = [] ) {
 		$data['langdir'] = $out->getLanguage()->getDir();
 		$out->addHTML( $this->getHtml( $data ) );
 	}

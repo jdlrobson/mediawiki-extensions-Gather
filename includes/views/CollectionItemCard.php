@@ -45,7 +45,7 @@ class CollectionItemCard extends View {
 	/**
 	 * @inheritdoc
 	 */
-	protected function getHtml( $data = array() ) {
+	protected function getHtml( $data = [] ) {
 		$dir = isset( $data['langdir'] ) ? $data['langdir'] : 'ltr';
 		$item = $this->item;
 		$title = $item->getTitle();
@@ -53,19 +53,19 @@ class CollectionItemCard extends View {
 		$pageUrl = $title->getLocalUrl();
 		$isMissing = $item->isMissing();
 
-		$data = array(
+		$data = [
 			'dir' => $dir,
-			'page' => array(
+			'page' => [
 				'url' => $pageUrl,
 				'displayTitle' => $title->getPrefixedText(),
-			),
+			],
 			'msgMissing' => wfMessage( 'gather-page-not-found' )->escaped(),
 			'isMissing' => $isMissing,
 			'progressiveAnchorClass' => CSS::anchorClass( 'progressive' ),
 			'iconClass' => CSS::iconClass(
 				'collections-read-more', 'element', 'collections-read-more-arrow'
 			),
-		);
+		];
 
 		// Handle excerpt for titles with an extract or unknown pages
 		if ( $item->hasExtract() ) {

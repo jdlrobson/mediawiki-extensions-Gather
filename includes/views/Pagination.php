@@ -20,12 +20,12 @@ class Pagination {
 	 * @param string $data data attributes for the button
 	 * @param string $classes Additional css classes for the pagination button
 	 */
-	public static function more( $url, $text, $data = array(), $classes = '' ) {
-		return Html::openElement( 'div', array( 'class' => 'collections-pagination' ) )
-			. Html::element( 'a', array_merge( array(
+	public static function more( $url, $text, $data = [], $classes = '' ) {
+		return Html::openElement( 'div', [ 'class' => 'collections-pagination' ] )
+			. Html::element( 'a', array_merge( [
 				'href' => $url,
 				'class' => CSS::buttonClass( 'progressive', $classes ),
-			), $data ), $text )
+			], $data ), $text )
 			. Html::closeElement( 'div' );
 	}
 

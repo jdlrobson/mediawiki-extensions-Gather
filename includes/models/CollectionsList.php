@@ -19,11 +19,11 @@ class CollectionsList implements IteratorAggregate, ArraySerializable, WithImage
 	/**
 	 * @var CollectionInfo[] list of collection items
 	 */
-	protected $collections = array();
+	protected $collections = [];
 	/**
 	 * @var array query string parameters
 	 */
-	protected $continue = array();
+	protected $continue = [];
 	/**
 	 * @var bool if the list can show private collections or not
 	 */
@@ -78,7 +78,7 @@ class CollectionsList implements IteratorAggregate, ArraySerializable, WithImage
 
 	/** @inheritdoc */
 	public function toArray() {
-		$arr = array();
+		$arr = [];
 		foreach ( $this->collections as $collection ) {
 			$arr[] = $collection->toArray();
 		}
@@ -109,7 +109,7 @@ class CollectionsList implements IteratorAggregate, ArraySerializable, WithImage
 	 * @param array $query string parameters for url
 	 * @return string localized url for collection
 	 */
-	public function getUrl( $query = array() ) {
+	public function getUrl( $query = [] ) {
 		if ( $this->getOwner() ) {
 			return SpecialPage::getTitleFor( 'Gather' )
 				->getSubpage( 'by' )
@@ -150,16 +150,16 @@ class CollectionsList implements IteratorAggregate, ArraySerializable, WithImage
 	 * @return models\CollectionsList List of collections.
 	 */
 	public static function newFromApi( $user = null, $includePrivate = false,
-		$memberTitle = false, $params = array(), $mode = null, $limit = 50
+		$memberTitle = false, $params = [], $mode = null, $limit = 50
 	) {
 		$collectionsList = new CollectionsList( $user, $includePrivate );
-		$query = array_merge( $params, array(
+		$query = array_merge( $params, [
 			'action' => 'query',
 			'list' => 'lists',
 			'lstprop' => 'label|description|public|image|count|updated|owner',
 			'lstlimit' => $limit,
 			'continue' => '',
-			) );
+			] );
 		if ( $memberTitle ) {
 			$query['lsttitle'] = $memberTitle;
 		}
@@ -173,7 +173,7 @@ class CollectionsList implements IteratorAggregate, ArraySerializable, WithImage
 		}
 		$api = new ApiMain( new FauxRequest( $query ) );
 		$api->execute();
-		$data = $api->getResult()->getResultData( null, array( 'Strip' => 'all' ) );
+		$data = $api->getResult()->getResultData( null, [ 'Strip' => 'all' ] );
 		if ( isset( $data['query']['lists'] ) ) {
 			$lists = $data['query']['lists'];
 			foreach ( $lists as $list ) {

@@ -43,21 +43,21 @@ class UpdateCounts extends Maintenance {
 			$ids = $dbw->selectFieldValues(
 				'gather_list',
 				'gl_id',
-				array( 'gl_id > ' . $maxGlId ),
+				[ 'gl_id > ' . $maxGlId ],
 				__METHOD__,
-				array(
+				[
 					'ORDER BY' => 'gl_id',
 					'LIMIT' => $this->mBatchSize,
 					'FOR UPDATE',
-				)
+				]
 			);
 
 			if ( $ids ) {
 				$dbw->update(
 					'gather_list',
-					array( 'gl_item_count = ' .
-						'(SELECT COUNT(*) FROM gather_list_item WHERE gli_gl_id = gl_id)' ),
-					array( 'gl_id' => $ids ),
+					[ 'gl_item_count = ' .
+						'(SELECT COUNT(*) FROM gather_list_item WHERE gli_gl_id = gl_id)' ],
+					[ 'gl_id' => $ids ],
 					__METHOD__
 				);
 				$maxGlId = max( $ids );

@@ -5,23 +5,23 @@
  */
 class CollectionTest extends MediaWikiTestCase {
 	public function provideHasMember() {
-		return array(
-			array(
+		return [
+			[
 				true,
-				array( 'foo', 'bar', 'baz' ),
+				[ 'foo', 'bar', 'baz' ],
 				'foo',
-			),
-			array(
+			],
+			[
 				true,
-				array( 'foo', 'bar', 'baz' ),
+				[ 'foo', 'bar', 'baz' ],
 				'baz',
-			),
-			array(
+			],
+			[
 				false,
-				array( 'foo', 'bar', 'baz' ),
+				[ 'foo', 'bar', 'baz' ],
 				'jon',
-			),
-		);
+			],
+		];
 	}
 
 	/**

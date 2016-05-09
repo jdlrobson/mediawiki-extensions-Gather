@@ -29,9 +29,9 @@ class EchoGatherModerationPresentationModel extends EchoEventPresentationModel {
 		$title = $this->event->getTitle();
 		$labelMsg = $this->msg( 'gather-moderation-notification-primary-link-text' );
 
-		return array(
+		return [
 			'url' => $title->getFullURL(),
 			'label' => $labelMsg->params( $this->getViewingUserForGender() )->text(),
-		);
+		];
 	}
 }

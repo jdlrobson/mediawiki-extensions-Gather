@@ -42,13 +42,13 @@ class SpecialGatherEditFeed extends SpecialPage {
 		$this->filter = $req->getVal( 'filter', 'all' );
 		$this->id = $req->getInt( 'collection-id', 0 );
 		$out->addHtml( $this->getHeader( $user, $this->id, $this->getPageTitle()->getLocalUrl() ) );
-		$out->addModuleStyles( array(
+		$out->addModuleStyles( [
 			'mediawiki.ui.input',
 			'ext.gather.styles',
 			'ext.gather.menu.icon',
 			'mobile.pagelist.styles',
 			'mobile.pagesummary.styles',
-		) );
+		] );
 		$out->setProperty( 'unstyledContent', true );
 
 		$this->showRecentChangesHeader();
@@ -67,15 +67,15 @@ class SpecialGatherEditFeed extends SpecialPage {
 	 * @return string Parsed HTML
 	 */
 	private function getHeader( User $user, $id, $actionUrl ) {
-		$html = Html::openElement( 'form', array( 'action' => $actionUrl ) )
-			. Html::openElement( 'select', array(
+		$html = Html::openElement( 'form', [ 'action' => $actionUrl ] )
+			. Html::openElement( 'select', [
 				'name' => 'collection-id',
-			) );
+			] );
 		$collections = models\CollectionsList::newFromApi( $user, true );
 		foreach ( $collections as $collection ) {
-			$attrs = array(
+			$attrs = [
 				'value' => $collection->getId(),
-			);
+			];
 			if ( $collection->getId() === $id ) {
 				$attrs['selected'] = true;
 			}
@@ -83,8 +83,8 @@ class SpecialGatherEditFeed extends SpecialPage {
 		}
 
 		$html .= Html::closeElement( 'select' )
-			. Html::submitButton( wfMessage( 'gather-editfeed-show' ), array(
-				'class' => CSS::buttonClass( 'progressive' ) ) )
+			. Html::submitButton( wfMessage( 'gather-editfeed-show' ), [
+				'class' => CSS::buttonClass( 'progressive' ) ] )
 			. Html::closeElement( 'form' );
 		return '<div class="gather-edit-feed-header content-header">' . $html . '</div>';
 	}
@@ -93,31 +93,31 @@ class SpecialGatherEditFeed extends SpecialPage {
 	 * Render "second" header for filter in feed view of watchlist
 	 */
 	function showRecentChangesHeader() {
-		$filters = array(
+		$filters = [
 			'all' => 'mobile-frontend-watchlist-filter-all',
 			'articles' => 'mobile-frontend-watchlist-filter-articles',
 			'talk' => 'mobile-frontend-watchlist-filter-talk',
 			'other' => 'mobile-frontend-watchlist-filter-other',
-		);
+		];
 		$out = $this->getOutput();
 
 		$out->addHtml(
-			Html::openElement( 'ul', array( 'class' => 'gather-ui-tabs' ) )
+			Html::openElement( 'ul', [ 'class' => 'gather-ui-tabs' ] )
 		);
 
 		foreach ( $filters as $filter => $msg ) {
-			$itemAttrs = array();
+			$itemAttrs = [];
 			if ( $filter === $this->filter ) {
 				$itemAttrs['class'] = 'selected';
 			}
-			$linkAttrs = array(
+			$linkAttrs = [
 				'href' => $this->getPageTitle()->getLocalUrl(
-					array(
+					[
 						'filter' => $filter,
 						'collection-id' => $this->id,
-					)
+					]
 				)
-			);
+			];
 			$out->addHtml(
 				Html::openElement( 'li', $itemAttrs ) .
 				Html::element( 'a', $linkAttrs, $this->msg( $msg )->plain() ) .

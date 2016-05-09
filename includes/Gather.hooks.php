@@ -36,24 +36,24 @@ class Hooks {
 	 * @return bool Always true
 	 */
 	public static function onResourceLoaderRegisterModules( ResourceLoader &$resourceLoader ) {
-		$schema = array(
+		$schema = [
 			'localBasePath' => dirname( __DIR__ ),
 			'remoteExtPath' => 'Gather',
-			'targets' => array( 'mobile', 'desktop' ),
-		);
+			'targets' => [ 'mobile', 'desktop' ],
+		];
 
 		if ( is_callable( 'EventLogging::logEvent' ) ) {
-			$schema += array(
-				'dependencies' => array(
+			$schema += [
+				'dependencies' => [
 					'mobile.context',
 					'schema.GatherClicks',
 					'schema.GatherFlags',
-				),
-				'scripts' => array(
+				],
+				'scripts' => [
 					"resources/ext.gather.schema/schemaGatherClicks.js",
 					"resources/ext.gather.schema/schemaGatherFlags.js"
-				)
-			);
+				]
+			];
 		}
 
 		$resourceLoader->register( 'ext.gather.schema', $schema );
@@ -72,46 +72,46 @@ class Hooks {
 	public static function onBeforeCreateEchoEvent(
 		&$notifications, &$notificationCategories, &$icons ) {
 
-		$notificationCategories['gather'] = array(
+		$notificationCategories['gather'] = [
 			'priority' => 3,
 			'tooltip' => 'gather-echo-pref-tooltip',
-		);
+		];
 
-		$notifications['gather-hide'] = array(
+		$notifications['gather-hide'] = [
 			'category' => 'gather',
 			'group' => 'negative',
 			'presentation-model' => 'Gather\EchoGatherModerationHidePresentationModel',
 			'title-message' => 'gather-moderation-hidden',
-			'title-params' => array( 'title' ),
+			'title-params' => [ 'title' ],
 			'email-subject-message' => 'gather-moderation-hidden-email-subject',
-			'email-subject-params' => array( 'title' ),
+			'email-subject-params' => [ 'title' ],
 			'email-body-batch-message' => 'gather-moderation-hidden-email-batch-body',
-			'email-body-batch-params' => array( 'title' ),
-		);
+			'email-body-batch-params' => [ 'title' ],
+		];
 
-		$notifications['gather-unhide'] = array(
+		$notifications['gather-unhide'] = [
 			'category' => 'gather',
 			'group' => 'positive',
 			'presentation-model' => 'Gather\EchoGatherModerationPresentationModel',
 			'title-message' => 'gather-moderation-unhidden',
-			'title-params' => array( 'title' ),
+			'title-params' => [ 'title' ],
 			'email-subject-message' => 'gather-moderation-unhidden-email-subject',
-			'email-subject-params' => array( 'title' ),
+			'email-subject-params' => [ 'title' ],
 			'email-body-batch-message' => 'gather-moderation-unhidden-email-batch-body',
-			'email-body-batch-params' => array( 'title' ),
-		);
+			'email-body-batch-params' => [ 'title' ],
+		];
 
-		$notifications['gather-approve'] = array(
+		$notifications['gather-approve'] = [
 			'category' => 'gather',
 			'group' => 'positive',
 			'presentation-model' => 'Gather\EchoGatherModerationPresentationModel',
 			'title-message' => 'gather-moderation-approved',
-			'title-params' => array( 'title' ),
+			'title-params' => [ 'title' ],
 			'email-subject-message' => 'gather-moderation-approved-email-subject',
-			'email-subject-params' => array( 'title' ),
+			'email-subject-params' => [ 'title' ],
 			'email-body-batch-message' => 'gather-moderation-approved-email-batch-body',
-			'email-body-batch-params' => array( 'title' ),
-		);
+			'email-body-batch-params' => [ 'title' ],
+		];
 
 		return true;
 	}
@@ -152,10 +152,10 @@ class Hooks {
 	 * @return bool Always true
 	 */
 	public static function onEventLoggingRegisterSchemas( &$schemas ) {
-		$schemas += array(
+		$schemas += [
 			'GatherClicks' => 12114785,
 			'GatherFlags' => 11793295,
-		);
+		];
 		return true;
 	}
 
@@ -185,10 +185,10 @@ class Hooks {
 
 		if ( $desktopBetaFeatureEnabled ) {
 			$out->addModules( 'ext.gather.desktop' );
-			$out->addModuleStyles( array(
+			$out->addModuleStyles( [
 				'mediawiki.ui.input',
 				'mediawiki.ui.icon',
-			) );
+			] );
 		}
 	}
 
@@ -206,16 +206,16 @@ class Hooks {
 
 		if ( $wgGatherEnableBetaFeature ) {
 			// Enable the mobile skin on desktop
-			$preferences['betafeatures-gather'] = array(
+			$preferences['betafeatures-gather'] = [
 				'label-message' => 'beta-feature-gather',
 				'desc-message' => 'beta-feature-gather-description',
 				'info-link' => '//www.mediawiki.org/wiki/Extension:Gather',
 				'discussion-link' => '//www.mediawiki.org/wiki/Extension talk:Gather',
-				'screenshot' => array(
+				'screenshot' => [
 					'ltr' => "$wgExtensionAssetsPath/Gather/images/beta-feature-ltr.svg",
 					'rtl' => "$wgExtensionAssetsPath/Gather/images/beta-feature-rtl.svg",
-				),
-			);
+				],
+			];
 		}
 
 		return true;
@@ -229,7 +229,7 @@ class Hooks {
 	 */
 	public static function onSkinMinervaDefaultModules( $skin, &$modules ) {
 		// Gather code should be loaded unconditionally since it also controls revealing the menu item.
-		$modules['watch'] = array( 'ext.gather.init.minerva' );
+		$modules['watch'] = [ 'ext.gather.init.minerva' ];
 		return true;
 	}
 
@@ -246,9 +246,9 @@ class Hooks {
 			$item->addComponent( wfMessage( 'gather-lists-title' )->escaped(),
 				SpecialPage::getTitleFor( 'Gather' )->getLocalURL(),
 				CSS::iconClass( 'collections-icon', 'before', 'collection-menu-item hidden' ),
-				array(
+				[
 					'data-event-name' => 'collections',
-				)
+				]
 			);
 		}
 		return true;
@@ -275,36 +275,36 @@ class Hooks {
 	 * @return bool
 	 */
 	public static function onResourceLoaderTestModules( &$modules, &$rl ) {
-		$boilerplate = array(
+		$boilerplate = [
 			'localBasePath' => __DIR__ . '/../tests/qunit/',
 			'remoteExtPath' => 'Gather/tests/qunit',
-			'targets' => array( 'desktop', 'mobile' ),
-		);
+			'targets' => [ 'desktop', 'mobile' ],
+		];
 
-		$modules['qunit']['ext.gather.api.tests'] = $boilerplate + array(
-			'scripts' => array(
+		$modules['qunit']['ext.gather.api.tests'] = $boilerplate + [
+			'scripts' => [
 				'ext.gather.api/test_RelatedPagesGateway.js',
-			),
-			'dependencies' => array( 'ext.gather.api' ),
-		);
-		$modules['qunit']['ext.gather.collection.contentOverlay.tests'] = $boilerplate + array(
-			'scripts' => array(
+			],
+			'dependencies' => [ 'ext.gather.api' ],
+		];
+		$modules['qunit']['ext.gather.collection.contentOverlay.tests'] = $boilerplate + [
+			'scripts' => [
 				'ext.gather.collection.contentOverlay/test_CollectionsContentOverlay.js',
-			),
-			'dependencies' => array( 'ext.gather.collection.contentOverlay' ),
-		);
-		$modules['qunit']['ext.gather.collection.editor.tests'] = $boilerplate + array(
-			'scripts' => array(
+			],
+			'dependencies' => [ 'ext.gather.collection.contentOverlay' ],
+		];
+		$modules['qunit']['ext.gather.collection.editor.tests'] = $boilerplate + [
+			'scripts' => [
 				'ext.gather.collection.editor/test_CollectionEditOverlay.js',
-			),
-			'dependencies' => array( 'ext.gather.collection.editor' ),
-		);
-		$modules['qunit']['ext.gather.page.search.tests'] = $boilerplate + array(
-			'scripts' => array(
+			],
+			'dependencies' => [ 'ext.gather.collection.editor' ],
+		];
+		$modules['qunit']['ext.gather.page.search.tests'] = $boilerplate + [
+			'scripts' => [
 				'ext.gather.page.search/test_CollectionSearchPanel.js',
-			),
-			'dependencies' => array( 'ext.gather.page.search' ),
-		);
+			],
+			'dependencies' => [ 'ext.gather.page.search' ],
+		];
 		return true;
 	}
 
@@ -324,7 +324,7 @@ class Hooks {
 		if ( defined( 'PAGE_IMAGES_INSTALLED' ) && $title->getNamespace() === NS_MAIN ) {
 			$pageImage = PageImages::getPageImage( $title );
 			if ( $pageImage ) {
-				$thumb = $pageImage->transform( array( 'height' => 100, 'width' => 100 ) );
+				$thumb = $pageImage->transform( [ 'height' => 100, 'width' => 100 ] );
 				if ( $thumb ) {
 					$vars['wgGatherPageImageThumbnail'] = $thumb->getUrl();
 				}
@@ -343,11 +343,11 @@ class Hooks {
 	 */
 	public static function onLoginFormValidErrorMessages( &$messages ) {
 		$messages = array_merge( $messages,
-			array(
+			[
 				'gather-anon-view-lists',
 				'gather-purpose-login-action', // watchstar button login CTA
 				'gather-purpose-signup-action', // watchstar button sign-up CTA
-			)
+			]
 		);
 	}
 
@@ -359,10 +359,10 @@ class Hooks {
 	 *    all except tableName and idField are optional.
 	 */
 	public static function onUserMergeAccountFields( array &$updateFields ) {
-		$updateFields[] = array( 'gather_list', 'gl_user', 'batchKey' => 'gl_id',
-			'options' => array( 'IGNORE' ) );
-		$updateFields[] = array( 'gather_list_flag', 'glf_user_id', 'batchKey' => 'glf_gl_id',
-			'options' => array( 'IGNORE' ) );
+		$updateFields[] = [ 'gather_list', 'gl_user', 'batchKey' => 'gl_id',
+			'options' => [ 'IGNORE' ] ];
+		$updateFields[] = [ 'gather_list_flag', 'glf_user_id', 'batchKey' => 'glf_gl_id',
+			'options' => [ 'IGNORE' ] ];
 	}
 
 	/**
@@ -385,11 +385,11 @@ class Hooks {
 		// - the disambiguated list name can exceed the normal 90 character label limit
 		// - if the disambiguated list name would exceed 255 characters, it gets truncated
 		$dbw->update( 'gather_list',
-			array( 'gl_user' => $newId, "gl_label = CONCAT(gl_label, $disambiguator )" ),
-			array( 'gl_user' => $oldId ),
-		__METHOD__, array( 'IGNORE' ) );
+			[ 'gl_user' => $newId, "gl_label = CONCAT(gl_label, $disambiguator )" ],
+			[ 'gl_user' => $oldId ],
+		__METHOD__, [ 'IGNORE' ] );
 
 		// If both users flagged a list, just discard the flags made by the old user.
-		$dbw->delete( 'gather_list_flag', array( 'glf_user_id' => $oldId ), __METHOD__ );
+		$dbw->delete( 'gather_list_flag', [ 'glf_user_id' => $oldId ], __METHOD__ );
 	}
 }

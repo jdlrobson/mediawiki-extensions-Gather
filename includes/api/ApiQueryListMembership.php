@@ -68,7 +68,7 @@ class ApiQueryListMembership extends ApiQueryBase {
 			$this->addWhereFld( 'gli_gl_id', $params['id'] );
 		}
 
-		$this->addFields( array( 'ns' => "{$prefix}_namespace", 'title' => "{$prefix}_title" ) );
+		$this->addFields( [ 'ns' => "{$prefix}_namespace", 'title' => "{$prefix}_title" ] );
 
 		$lb = new LinkBatch( $titles );
 		$this->addWhere( $lb->constructSet( $prefix, $db ) );
@@ -87,7 +87,7 @@ class ApiQueryListMembership extends ApiQueryBase {
 		if ( count( $titleLookup ) === 1 ) {
 			$this->addOption( 'ORDER BY', "{$prefix}_title" );
 		} else {
-			$this->addOption( 'ORDER BY', array( "{$prefix}_namespace", "{$prefix}_title" ) );
+			$this->addOption( 'ORDER BY', [ "{$prefix}_namespace", "{$prefix}_title" ] );
 		}
 
 		// NOTE: We never set listmembership=false because we don't really know which ones are not
@@ -103,7 +103,7 @@ class ApiQueryListMembership extends ApiQueryBase {
 				wfDebug( __METHOD__ . " Unexpected DB row {$row->ns}:{$row->title}\n" );
 				continue;
 			}
-			$fit = $result->addValue( array( 'query', 'pages', $titleLookup[$ns][$row->title] ),
+			$fit = $result->addValue( [ 'query', 'pages', $titleLookup[$ns][$row->title] ],
 				'listmembership', true );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue', $row->ns . '|' . $row->title );
@@ -117,18 +117,18 @@ class ApiQueryListMembership extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		return array_merge( ApiMixinListAccess::getListAccessParams(), array(
-			'continue' => array(
+		return array_merge( ApiMixinListAccess::getListAccessParams(), [
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-		) );
+			],
+		] );
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&prop=listmembership&titles=Page&lsmid=0'
 			=> 'apihelp-query+listmembership-example-1',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

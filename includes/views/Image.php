@@ -37,7 +37,7 @@ class Image {
 	/**
 	 * Get the view html
 	 */
-	public function getHtml( $data = array() ) {
+	public function getHtml( $data = [] ) {
 		return $this->getPageImageHtml();
 	}
 
@@ -49,10 +49,10 @@ class Image {
 		if ( $this->item->hasImage() ) {
 			$thumb = models\Image::getThumbnail( $this->item->getFile(), $size );
 			if ( $thumb && $thumb->getUrl() ) {
-				$data = array(
+				$data = [
 					'url' => wfExpandUrl( $this->sanitizeURL( $thumb->getUrl() ), PROTO_CURRENT ),
 					'wide' => $thumb->getWidth() > $thumb->getHeight(),
-				);
+				];
 				return Template::render( 'CardImage', $data );
 			}
 		}

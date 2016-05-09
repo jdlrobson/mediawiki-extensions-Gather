@@ -32,23 +32,23 @@ class ReportTable extends View {
 	 * @param array $data
 	 * @return string Html
 	 */
-	protected function getHtml( $data = array() ) {
+	protected function getHtml( $data = [] ) {
 		$html = '';
-		$html .= Html::openElement( 'div', array( 'class' => 'content gather-lists' ) );
+		$html .= Html::openElement( 'div', [ 'class' => 'content gather-lists' ] );
 		// Display protocol for hiding another users list
 		if ( $data['canHide'] ) {
-			$html .= Html::rawElement( 'div', array( 'class' => 'hide-protocol' ),
+			$html .= Html::rawElement( 'div', [ 'class' => 'hide-protocol' ],
 				wfMessage( 'gather-lists-hide-protocol' )->parse() );
 		}
-		$html .= Html::openElement( 'ul', array() );
-		$html .= Html::openElement( 'li', array( 'class' => 'heading' ) )
-		. Html::element( 'span', array(), wfMessage( 'gather-lists-collection-title' ) )
-		. Html::element( 'span', array(), wfMessage( 'gather-lists-collection-description' ) )
-		. Html::element( 'span', array(), wfMessage( 'gather-lists-collection-count' ) )
-		. Html::element( 'span', array(), wfMessage( 'gather-lists-collection-owner' ) )
-		. Html::element( 'span', array(), wfMessage( 'gather-lists-collection-last-updated' ) );
+		$html .= Html::openElement( 'ul', [] );
+		$html .= Html::openElement( 'li', [ 'class' => 'heading' ] )
+		. Html::element( 'span', [], wfMessage( 'gather-lists-collection-title' ) )
+		. Html::element( 'span', [], wfMessage( 'gather-lists-collection-description' ) )
+		. Html::element( 'span', [], wfMessage( 'gather-lists-collection-count' ) )
+		. Html::element( 'span', [], wfMessage( 'gather-lists-collection-owner' ) )
+		. Html::element( 'span', [], wfMessage( 'gather-lists-collection-last-updated' ) );
 		if ( $data['canHide'] ) {
-			$html .= Html::element( 'span', array(), '' );
+			$html .= Html::element( 'span', [], '' );
 		}
 		$html .= Html::closeElement( 'li' );
 		foreach ( $this->collectionList as $collection ) {

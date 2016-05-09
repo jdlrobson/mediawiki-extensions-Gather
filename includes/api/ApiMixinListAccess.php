@@ -37,22 +37,22 @@ class ApiMixinListAccess {
 	 * @return array
 	 */
 	public static function getListAccessParams() {
-		return array(
-			'id' => array(
+		return [
+			'id' => [
 				ApiBase::PARAM_HELP_MSG => 'gather-api-help-param-listid',
 				ApiBase::PARAM_DFLT => 0,
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_MIN => 0,
-			),
-			'owner' => array(
+			],
+			'owner' => [
 				ApiBase::PARAM_HELP_MSG => 'gather-api-help-param-listowner',
 				ApiBase::PARAM_TYPE => 'user',
-			),
-			'token' => array(
+			],
+			'token' => [
 				ApiBase::PARAM_HELP_MSG => 'gather-api-help-param-listtoken',
 				ApiBase::PARAM_TYPE => 'string',
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -87,9 +87,9 @@ class ApiMixinListAccess {
 		// Id was given, this could be public or private list, legacy watchlist or regular
 		// Allow access to any public list/watchlist, and to private with proper owner/self
 		$listRow = $db->selectRow( 'gather_list',
-			array( 'gl_label', 'gl_user', 'gl_perm', 'gl_perm_override', 'gl_flag_count',
-				'gl_needs_review' ),
-			array( 'gl_id' => $params['id'] ),
+			[ 'gl_label', 'gl_user', 'gl_perm', 'gl_perm_override', 'gl_flag_count',
+				'gl_needs_review' ],
+			[ 'gl_id' => $params['id'] ],
 			__METHOD__ );
 		if ( $listRow === false ) {
 			$module->dieUsage( 'List does not exist', 'badid' );

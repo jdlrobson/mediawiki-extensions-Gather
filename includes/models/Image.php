@@ -20,7 +20,7 @@ class Image {
 	 */
 	public static function getThumbnail( $image, $size = self::SHARING_THUMBNAIL_WIDTH ) {
 		if ( $image ) {
-			$thumb = $image->transform( array( 'width' => $size ) );
+			$thumb = $image->transform( [ 'width' => $size ] );
 			if ( $thumb && $thumb->getUrl() ) {
 				return $thumb;
 			}

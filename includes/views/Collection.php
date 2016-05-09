@@ -52,23 +52,23 @@ class Collection extends View {
 			$privacyMsg = wfMessage( 'gather-private' )->plain();
 		}
 
-		$html = Html::element( 'div', array(
+		$html = Html::element( 'div', [
 				'class' => $owner ? 'collection-moderation' : ''
-			) ) .
-			Html::openElement( 'div', array( 'class' => 'collection-header' ) ) .
-			Html::openElement( 'div', array( 'class' => 'collection-meta' ) );
+			] ) .
+			Html::openElement( 'div', [ 'class' => 'collection-header' ] ) .
+			Html::openElement( 'div', [ 'class' => 'collection-meta' ] );
 		// Provide privacy tag if collection is not public
 		if ( $privacyMsg ) {
-			$html .= Html::element( 'div', array( 'class' => 'collection-privacy' ), $privacyMsg );
+			$html .= Html::element( 'div', [ 'class' => 'collection-privacy' ], $privacyMsg );
 		}
 		$html .= Html::closeElement( 'div' );
 		// collection doesn't necessarily have an owner
 		if ( $owner ) {
 			$html .= $this->getOwnerHtml( $owner );
 		}
-		$html .=Html::element( 'h1', array( 'id' => 'section_0' ), $collection->getTitle() );
+		$html .=Html::element( 'h1', [ 'id' => 'section_0' ], $collection->getTitle() );
 		if ( $description ) {
-			$html .= Html::element( 'div', array( 'class' => 'collection-description' ), $description );
+			$html .= Html::element( 'div', [ 'class' => 'collection-description' ], $description );
 		}
 
 		$html .= $this->getActionButtonsHtml() .
@@ -85,16 +85,16 @@ class Collection extends View {
 	 */
 	private function getOwnerHtml( $owner ) {
 		$ownerName = $owner->getName();
-		$userIconLink = Html::openElement( 'a', array(
+		$userIconLink = Html::openElement( 'a', [
 				'href' => SpecialPage::getTitleFor( 'Gather' )->getSubPage( 'by' )->
 					getSubPage( $ownerName )->getLocalUrl(),
-			) ) .
-			Html::element( 'span', array(
-				'class' => CSS::iconClass( 'collection-owner', 'before', 'collection-owner-icon' ) ) ) .
+			] ) .
+			Html::element( 'span', [
+				'class' => CSS::iconClass( 'collection-owner', 'before', 'collection-owner-icon' ) ] ) .
 			$owner->getName() .
 			Html::closeElement( 'a' );
 
-		return Html::openElement( 'div', array( 'class' => 'collection-owner' ) )
+		return Html::openElement( 'div', [ 'class' => 'collection-owner' ] )
 			. wfMessage( 'gather-collection-owner-text' )
 				->rawParams( $userIconLink )->params( $ownerName )->parse()
 			. Html::closeElement( 'div' );
@@ -106,9 +106,9 @@ class Collection extends View {
 	 */
 	public function getActionButtonsHtml() {
 		return Html::openElement( 'div',
-				array(
+				[
 					'class' => 'collection-actions',
-				)
+				]
 			) .
 			$this->getEditButtonHtml() .
 			Html::closeElement( 'div' );
@@ -122,11 +122,11 @@ class Collection extends View {
 		$id = $this->collection->getId();
 		// Do not edit watchlist
 		if ( $id !== 0 && is_numeric( $id ) && $this->collection->isOwner( $this->user ) ) {
-			return Html::element( 'a', array(
+			return Html::element( 'a', [
 				// FIXME: This should work without JavaScript
 				'href' => '#/edit-collection/' . $id,
 				'class' => CSS::buttonClass( 'progressive', 'collection-action-button edit-collection' )
-			), wfMessage( 'gather-edit-button' )->text() );
+			], wfMessage( 'gather-edit-button' )->text() );
 		} else {
 			return '';
 		}
@@ -140,9 +140,9 @@ class Collection extends View {
 	private function getEmptyCollectionMessage() {
 		$key = $this->collection->isOwner( $this->user ) ? 'gather-empty-footer-mine' :
 			'gather-empty-footer';
-		return Html::openElement( 'div', array( 'class' => 'collection-empty' ) ) .
-			Html::element( 'h3', array(), wfMessage( 'gather-empty' )->text() ) .
-			Html::element( 'div', array(),
+		return Html::openElement( 'div', [ 'class' => 'collection-empty' ] ) .
+			Html::element( 'h3', [], wfMessage( 'gather-empty' )->text() ) .
+			Html::element( 'div', [],
 				wfMessage( $key, $this->user->getName() )->text() ) .
 			Html::closeElement( 'div' );
 	}
@@ -167,8 +167,8 @@ class Collection extends View {
 	 *
 	 * @return string HTML
 	 */
-	protected function getCollectionItems( models\Collection $collection, $data = array() ) {
-		$html = Html::openElement( 'div', array( 'class' => 'collection-cards' ) );
+	protected function getCollectionItems( models\Collection $collection, $data = [] ) {
+		$html = Html::openElement( 'div', [ 'class' => 'collection-cards' ] );
 		foreach ( $collection as $item ) {
 			$view = new CollectionItemCard( $item );
 			$html .= $view->getHtml( $data );
@@ -180,11 +180,11 @@ class Collection extends View {
 	/**
 	 * @inheritdoc
 	 */
-	protected function getHtml( $data = array() ) {
+	protected function getHtml( $data = [] ) {
 		$collection = $this->collection;
 		$owner = $collection->getOwner();
 
-		$html = Html::openElement( 'div', array(
+		$html = Html::openElement( 'div', [
 				'class' => 'collection content view-border-box',
 				'data-id' => $collection->getId(),
 				'data-label' => $collection->getTitle(),
@@ -192,7 +192,7 @@ class Collection extends View {
 				'data-is-public' => $collection->isPublic(),
 				'data-is-admin' => $this->user->isAllowed( 'gather-hidelist' ),
 				'data-is-owner' => $collection->isOwner( $this->user ) ? true : false,
-			) ) .
+			] ) .
 			$this->getHeaderHtml( $collection );
 
 		if ( $collection->getCount() > 0 ) {
@@ -200,9 +200,9 @@ class Collection extends View {
 			$url = $collection->getContinueUrl();
 			if ( $url ) {
 				$html .= Pagination::more( $url, wfMessage( 'gather-collection-more' )->text(),
-					array(
+					[
 						'data-pagination-query' => $collection->getContinueQuery(),
-					)
+					]
 				);
 			}
 		} else {

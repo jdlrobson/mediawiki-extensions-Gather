@@ -1,7 +1,7 @@
 <?php
 
 class GatherTestCase extends ApiTestCase {
-	private static $gatherUsers = array();
+	private static $gatherUsers = [];
 	private static $listCount = 0;
 
 	public function setUp() {
@@ -31,13 +31,13 @@ class GatherTestCase extends ApiTestCase {
 	protected function doApiRequestWithWatchToken(
 		array $params, array $session = null, $appendModule = false, User $user = null
 	) {
-		$tokens = $this->getFromResults( $this->doApiRequest( array(
+		$tokens = $this->getFromResults( $this->doApiRequest( [
 			'action' => 'query',
 			'meta' => 'tokens',
 			'type' => 'watch',
-		), null, false, $user ), 'tokens' );
+		], null, false, $user ), 'tokens' );
 
-		$params = array_merge( $params, array( 'token' => $tokens['watchtoken'] ) );
+		$params = array_merge( $params, [ 'token' => $tokens['watchtoken'] ] );
 		return $this->doApiRequest( $params, $session, $appendModule, $user );
 	}
 
@@ -50,7 +50,7 @@ class GatherTestCase extends ApiTestCase {
 	 * @return int List ID
 	 */
 	protected function createList(
-		$user, array $pages = array(), $label = null, array $properties = array()
+		$user, array $pages = [], $label = null, array $properties = []
 	) {
 		if ( is_string( $user ) ) {
 			$user = static::$users[$user]->getUser();
@@ -60,12 +60,12 @@ class GatherTestCase extends ApiTestCase {
 			$label = 'New list ' . self::$listCount;
 		}
 
-		$params = array_merge( array(
+		$params = array_merge( [
 			'action' => 'editlist',
 			'label' => $label,
 			'perm' => 'public',
 			'titles' => implode( '|', $pages ),
-		), $properties );
+		], $properties );
 		$result = $this->getFromResults( $this->doApiRequestWithWatchToken( $params, null, false,
 			$user ), 'editlist' );
 		$this->assertEquals( 'created', $result['status'] );
@@ -80,11 +80,11 @@ class GatherTestCase extends ApiTestCase {
 		if ( is_string( $user ) ) {
 			$user = static::$users[$user]->getUser();
 		}
-		$params = array(
+		$params = [
 			'action' => 'editlist',
 			'mode' => 'flag',
 			'id' => $listId,
-		);
+		];
 		$result = $this->getFromResults( $this->doApiRequestWithWatchToken( $params, null, false,
 			$user ), 'editlist' );
 		$this->assertEquals( 'flagged', $result['status'] );
@@ -96,14 +96,14 @@ class GatherTestCase extends ApiTestCase {
 	 */
 	protected function setListPermissionOverride( $listId, $mode ) {
 		$user = static::$users['sysop']->getUser();
-		$params = array(
+		$params = [
 			'action' => 'editlist',
 			'mode' => $mode,
 			'id' => $listId,
-		);
+		];
 		$result = $this->getFromResults( $this->doApiRequestWithWatchToken( $params, null, false,
 			$user ), 'editlist' );
-		$this->assertContains( $result['status'], array( 'updated', 'unchanged' ) );
+		$this->assertContains( $result['status'], [ 'updated', 'unchanged' ] );
 	}
 
 	/**
@@ -128,12 +128,12 @@ class GatherTestCase extends ApiTestCase {
 	}
 
 	protected function getListData( $listId, $user = null ) {
-		$lists = $this->getFromResults( $this->doApiRequest( array(
+		$lists = $this->getFromResults( $this->doApiRequest( [
 			'action' => 'query',
 			'list' => 'lists',
 			'lstid' => $listId,
 			'lstprop' => 'label|description|public|review|image|count|updated|owner',
-		), null, false, $user ), 'lists' );
+		], null, false, $user ), 'lists' );
 		$this->assertNotEmpty( $lists, "List $listId not found" );
 		return $lists[0];
 	}

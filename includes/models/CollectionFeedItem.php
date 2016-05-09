@@ -34,9 +34,9 @@ class CollectionFeedItem {
 	}
 
 	public function getChangeUrl() {
-		$args = array(
+		$args = [
 			'diff' => $this->revisionId,
-		);
+		];
 		return $this->getTitle()->getLocalUrl( $args );
 	}
 

@@ -29,7 +29,7 @@ class CollectionFeed implements IteratorAggregate {
 	 *
 	 * @var CollectionFeedItem[]
 	 */
-	protected $items = array();
+	protected $items = [];
 
 	/**
 	 * Adds a item to the collection.
@@ -115,16 +115,16 @@ class CollectionFeed implements IteratorAggregate {
 	public static function newFromDatabase( $user, $id, $ns ) {
 		$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
 		$res = $dbr->select( 'gather_list', 'count(*)',
-			array(
+			[
 				"gl_perm = 'public' OR gl_id = " . $dbr->addQuotes( $id ),
-			),
-			__METHOD__, array( 'LIMIT' => 1 ) );
+			],
+			__METHOD__, [ 'LIMIT' => 1 ] );
 		// permission not granted.
 		if ( !$res || count( $res ) === 0 ) {
 			return false;
 		}
 
-		$conds = array();
+		$conds = [];
 		$column = 'rc_namespace';
 		switch ( $ns ) {
 			case 'all':
@@ -144,46 +144,46 @@ class CollectionFeed implements IteratorAggregate {
 				break;
 		}
 
-		$fields = array( $dbr->tableName( 'recentchanges' ) . '.*' );
+		$fields = [ $dbr->tableName( 'recentchanges' ) . '.*' ];
 		if ( $id === 0 ) {
 			$joinTable = 'watchlist';
-			$joinConds = array(
-				'watchlist' => array(
+			$joinConds = [
+				'watchlist' => [
 					'INNER JOIN',
-					array(
+					[
 						'wl_user' => $user->getId(),
 						'wl_namespace=rc_namespace',
 						'wl_title=rc_title',
 						// FIXME: Filter out wikidata changes which currently show as anonymous (see bug 49315)
 						'rc_type!=' . RC_EXTERNAL,
-					),
-				),
-			);
+					],
+				],
+			];
 		} else {
 			$joinTable = 'gather_list_item';
 			// FIXME: Don't expose private lists here
-			$joinConds = array(
-				'gather_list_item' => array(
+			$joinConds = [
+				'gather_list_item' => [
 					'INNER JOIN',
-					array(
+					[
 						'gli_gl_id' => $id,
 						'gli_namespace=rc_namespace',
 						'gli_title=rc_title',
 						// FIXME: Filter out wikidata changes which currently show as anonymous (see bug 49315)
 						'rc_type!=' . RC_EXTERNAL,
-					),
-				),
-			);
+					],
+				],
+			];
 		}
 
-		$tables = array( 'recentchanges', $joinTable );
-		$options = array( 'ORDER BY' => 'rc_timestamp DESC' );
+		$tables = [ 'recentchanges', $joinTable ];
+		$options = [ 'ORDER BY' => 'rc_timestamp DESC' ];
 		$options['LIMIT'] = self::LIMIT;
 
 		$canRollback = $user->isAllowed( 'rollback' );
 		if ( $canRollback ) {
 			$tables[] = 'page';
-			$joinConds['page'] = array( 'LEFT JOIN', 'rc_cur_id=page_id' );
+			$joinConds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
 			$fields[] = 'page_latest';
 		}
 
@@ -191,10 +191,10 @@ class CollectionFeed implements IteratorAggregate {
 		// Until 1.22, MediaWiki used an array here. Since 1.23 (Iec4aab87), it uses a FormOptions
 		// object (which implements array-like interface ArrayAccess).
 		// Let's keep using an array and hope any new extensions are compatible with both styles...
-		$values = array();
+		$values = [];
 		Hooks::run(
 			'SpecialWatchlistQuery',
-			array( &$conds, &$tables, &$joinConds, &$fields, &$values )
+			[ &$conds, &$tables, &$joinConds, &$fields, &$values ]
 		);
 
 		$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $options, $joinConds );

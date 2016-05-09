@@ -60,9 +60,9 @@ class CollectionsListItemCard extends View {
 	/**
 	 * @inheritdoc
 	 */
-	public function getHtml( $data = array() ) {
+	public function getHtml( $data = [] ) {
 		$collection = $this->collection;
-		$defaults = array(
+		$defaults = [
 			'langdir' => 'ltr',
 			'articleCountMsg' => wfMessage( 'gather-article-count', $collection->getCount() )->text(),
 			'privacyMsg' => $this->getPrivacyMsg(),
@@ -70,14 +70,14 @@ class CollectionsListItemCard extends View {
 			'hasImage' => $collection->hasImage(),
 			'image' => $this->image->getHtml(),
 			'title' => $this->getTitle(),
-		);
+		];
 		$owner = $collection->getOwner();
 		if ( $owner && $this->showOwnerLink ) {
-			$defaults['owner'] = array(
+			$defaults['owner'] = [
 				'link' => $collection->getOwnerUrl(),
 				'className' => helpers\CSS::iconClass( 'profile', 'before' ),
 				'label' => $owner->getName(),
-			);
+			];
 		}
 		return Template::render( 'CollectionsListItemCard', array_merge( $defaults, $data ) );
 	}

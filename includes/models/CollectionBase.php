@@ -153,7 +153,7 @@ abstract class CollectionBase implements WithImage, ArraySerializable {
 	 * @param array [$args] optional query string parameters
 	 * @return string localized url for collection
 	 */
-	public function getUrl( $args = array() ) {
+	public function getUrl( $args = [] ) {
 		return isset( $this->url ) ? $this->url : SpecialPage::getTitleFor( 'Gather' )
 			->getSubpage( 'id' )
 			->getSubpage( $this->getId() )
@@ -188,7 +188,7 @@ abstract class CollectionBase implements WithImage, ArraySerializable {
 
 	/** @inheritdoc */
 	public function toArray() {
-		$data = array(
+		$data = [
 			'id' => $this->id,
 			'owner' => $this->owner->getName(),
 			'title' => $this->title,
@@ -196,7 +196,7 @@ abstract class CollectionBase implements WithImage, ArraySerializable {
 			'public' => $this->public,
 			'isWatchlist' => $this->isWatchlist,
 			'image' => $this->image ? $this->image->getTitle()->getText() : null
-		);
+		];
 		return $data;
 	}
 

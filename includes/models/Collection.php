@@ -26,20 +26,20 @@ class Collection extends CollectionBase implements IteratorAggregate {
 	 *
 	 * @var array
 	 */
-	protected $apiParams = array();
+	protected $apiParams = [];
 	/**
 	 * Internal data used for creating url of collections which span multiple urls.
 	 *
 	 * @var array
 	 */
-	protected $continue = array();
+	protected $continue = [];
 
 	/**
 	 * The internal collection of items.
 	 *
 	 * @var CollectionItem[]
 	 */
-	protected $items = array();
+	protected $items = [];
 
 	/**
 	 * Image that could be used to illustrate collection.
@@ -124,7 +124,7 @@ class Collection extends CollectionBase implements IteratorAggregate {
 	/** @inheritdoc */
 	public function toArray() {
 		$data = parent::toArray();
-		$data['items'] = array();
+		$data['items'] = [];
 		foreach ( $this as $item ) {
 			$data['items'][] = $item->toArray();
 		}
@@ -153,12 +153,12 @@ class Collection extends CollectionBase implements IteratorAggregate {
 	/**
 	 * @param array $continue information to obtain further items
 	 */
-	public function setContinue( $continue, $params = array() ) {
+	public function setContinue( $continue, $params = [] ) {
 		$this->apiParams = $params;
 		$this->continue = $continue;
 	}
 
-	public static function newFromApi( $c, $params, $limit = 10, $continue = array() ) {
+	public static function newFromApi( $c, $params, $limit = 10, $continue = [] ) {
 		$c = self::newFromApiParams( array_merge( array_merge( $params, $continue ),
 			self::getDefaultQueryParams( $limit ) ), $c );
 		// Continuing a random collection is just a case of having any arbitary api continuation query.
@@ -172,7 +172,7 @@ class Collection extends CollectionBase implements IteratorAggregate {
 	 * @param Integer [$limit] maximum number of items in the collection
 	 */
 	private static function getDefaultQueryParams( $limit = 50 ) {
-		return array(
+		return [
 			'action' => 'query',
 			'prop' => 'pageimages|extracts',
 			'explaintext' => true,
@@ -181,7 +181,7 @@ class Collection extends CollectionBase implements IteratorAggregate {
 			'exlimit' => $limit,
 			'pilimit' => $limit,
 			'continue' => '',
-		);
+		];
 	}
 
 	/**
@@ -192,10 +192,10 @@ class Collection extends CollectionBase implements IteratorAggregate {
 	 * @param array [$continue] optional parameters to append to the query.
 	 * @return models\Collections a collection
 	 */
-	public static function newFromListsApi( $id, User $user = null, $continue = array() ) {
+	public static function newFromListsApi( $id, User $user = null, $continue = [] ) {
 		$limit = 50;
 		$collection = null;
-		$params = array_merge( $continue, array(
+		$params = array_merge( $continue, [
 			'list' => 'lists',
 			'lstids' => $id,
 			'lstprop' => 'label|description|public|image|owner',
@@ -203,7 +203,7 @@ class Collection extends CollectionBase implements IteratorAggregate {
 			'glspsort' => 'namespace',
 			'glspid' => $id,
 			'glsplimit' => $limit,
-		), self::getDefaultQueryParams( $limit ) );
+		], self::getDefaultQueryParams( $limit ) );
 		// If user is present, include it in the request. Api will return not found
 		// if the specified owner doesn't match the actual collection owner.
 		if ( $user ) {
@@ -223,7 +223,7 @@ class Collection extends CollectionBase implements IteratorAggregate {
 		$id = isset( $params['lstids'] ) ? $params['lstids'] : -1;
 		try {
 			$api->execute();
-			$data = $api->getResult()->getResultData( null, array( 'Strip' => 'all' ) );
+			$data = $api->getResult()->getResultData( null, [ 'Strip' => 'all' ] );
 			// When present is response we override optional parameter
 			if ( isset( $data['query']['lists'] ) ) {
 				$lists = $data['query']['lists'];

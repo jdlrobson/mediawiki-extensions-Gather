@@ -15,7 +15,7 @@ class Tabs extends View {
 	/**
 	 * @inheritdoc
 	 */
-	public function getHtml( $data = array() ) {
+	public function getHtml( $data = [] ) {
 		return Template::render( 'tabs', $data );
 	}
 }

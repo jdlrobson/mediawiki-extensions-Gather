@@ -45,10 +45,10 @@ class GatherListPermissions extends LoggedUpdateMaintenance {
 
 			$res = $db->select(
 				'gather_list',
-				array( 'gl_id', 'gl_info', 'gl_label' ),
-				array( 'gl_perm' => null ),
+				[ 'gl_id', 'gl_info', 'gl_label' ],
+				[ 'gl_perm' => null ],
 				__METHOD__,
-				array( 'LIMIT' => $batchSize )
+				[ 'LIMIT' => $batchSize ]
 			);
 
 			foreach ( $res as $row ) {
@@ -61,12 +61,12 @@ class GatherListPermissions extends LoggedUpdateMaintenance {
 
 				$db->update(
 					'gather_list',
-					array(
+					[
 						'gl_perm' => $perm,
 						'gl_info' => FormatJson::encode( $info, false, FormatJson::ALL_OK ),
 						'gl_updated' => $db->timestamp( wfTimestampNow() ),
-					),
-					array( 'gl_id' => $row->gl_id ),
+					],
+					[ 'gl_id' => $row->gl_id ],
 					__METHOD__ );
 			}
 

@@ -15,7 +15,7 @@ use MWTimestamp;
  */
 class CollectionInfo extends CollectionBase {
 	/** @var array $knownMembers cache of known members in this collection */
-	protected $knownMembers = array();
+	protected $knownMembers = [];
 	/** @var int $count of items in the collection */
 	protected $count;
 	/** @var MWTimestamp $updated Last updated time of the collection */
