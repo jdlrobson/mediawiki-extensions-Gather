@@ -5,7 +5,8 @@
 			"Macofe",
 			"LiteHell",
 			"Alex00728",
-			"Hwangjy9"
+			"Hwangjy9",
+			"아라"
 		]
 	},
 	"gather-lists-collection-owner": "소유자",
@@ -34,6 +35,7 @@
 	"gather-update-collection-success": "컬렉션이 성공적으로 업데이트 되었습니다.",
 	"gather-no-such-action": "죄송합니다. 요청된 동작이 존재하지 않습니다.",
 	"gather-unknown-error": "요청을 처리하는 중 알수 없는 에러가 생겼습니다.",
+	"gather-anon-view-lists": "모음집을 보려면 로그인해야 합니다.",
 	"gather-empty-footer": "이곳은 비어있는 컬렉션 입니다.",
 	"gather-delete-button": "삭제",
 	"gather-overlay-edit-button": "제목과 설명 수정",
