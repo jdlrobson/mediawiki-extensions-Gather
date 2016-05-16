@@ -6,7 +6,8 @@
 			"LiteHell",
 			"Alex00728",
 			"Hwangjy9",
-			"아라"
+			"아라",
+			"Ykhwong"
 		]
 	},
 	"gather-lists-collection-owner": "소유자",
@@ -24,8 +25,8 @@
 	"gather-lists-show-failure-toast": "\"$1\" 리스트를 불러오는데 실패하였습니다.",
 	"gather-collection-random-title": "임의 문서로",
 	"gather-collection-edited-title": "최근 바뀜",
-	"gather-remove-from-collection-failed-toast": "컬렉션에서 이 페이지를 제거 할수 없습니다.",
-	"gather-add-to-collection-failed-toast": "컬렉션에 페이지를 추가 할수 없습니다.",
+	"gather-remove-from-collection-failed-toast": "컬렉션에서 이 페이지를 제거할 수 없습니다.",
+	"gather-add-to-collection-failed-toast": "컬렉션에 페이지를 추가할 수 없습니다.",
 	"gather-edit-collection-related-pages": "관련된 문서",
 	"gather-add-new-placeholder": "컬렉션 이름",
 	"gather-add-to-new": "새 공용 컬렉션에 추가",
@@ -34,7 +35,7 @@
 	"gather-add-to-collection-cancel": "괜찮습니다.",
 	"gather-update-collection-success": "컬렉션이 성공적으로 업데이트 되었습니다.",
 	"gather-no-such-action": "죄송합니다. 요청된 동작이 존재하지 않습니다.",
-	"gather-unknown-error": "요청을 처리하는 중 알수 없는 에러가 생겼습니다.",
+	"gather-unknown-error": "요청을 처리하는 중에 알 수 없는 오류가 발생했습니다.",
 	"gather-anon-view-lists": "모음집을 보려면 로그인해야 합니다.",
 	"gather-empty-footer": "이곳은 비어있는 컬렉션 입니다.",
 	"gather-delete-button": "삭제",
