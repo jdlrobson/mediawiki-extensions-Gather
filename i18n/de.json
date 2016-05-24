@@ -147,6 +147,7 @@
 	"apihelp-editlist-paramvalue-mode-update": "Fügt Seiten zu einer Liste hinzu (und erstellt sie, falls keine Listenkennung angegeben wurde).",
 	"apihelp-editlist-paramvalue-mode-remove": "Löscht Seiten von einer Liste.",
 	"apihelp-editlist-paramvalue-mode-deletelist": "Löscht die ganze Liste.",
+	"apihelp-editlist-paramvalue-mode-showlist": "Macht eine frühere Verstecklistenoperation rückgängig.",
 	"apihelp-editlist-paramvalue-mode-flag": "Liste als unangemessen markieren.",
 	"apihelp-query+lists-description": "Listet Sammlungen eines angegebenen Benutzers auf.",
 	"apihelp-query+lists-param-prop": "Zusätzliche anzuzeigende Informationen.",
