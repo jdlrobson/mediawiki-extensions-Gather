@@ -6,11 +6,12 @@
 			"Jagwar",
 			"Shirayuki",
 			"Aursani",
-			"Macofe"
+			"Macofe",
+			"Andibing"
 		]
 	},
 	"gather-edit-collection-label-name": "Name",
-	"gather-edit-collection-save-label": "Done",
+	"gather-edit-collection-save-label": "Save",
 	"gather-create-new-button-label": "Create",
 	"gather-collection-content-tutorial-heading": "Start a collection of your favourite interests that you can bookmark for later or share with others.",
 	"gather-loginpage-desc": "With Collections you can create and share lists of your favourite pages.",
